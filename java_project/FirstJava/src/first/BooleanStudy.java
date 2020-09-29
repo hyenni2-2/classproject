@@ -34,6 +34,7 @@ public class BooleanStudy {
 		
 		// 메트로폴리스
 		
+		/*
 		boolean isCapital;
 		int jongro;
 		int riches;
@@ -70,7 +71,7 @@ public class BooleanStudy {
 		
 		//서울 종로구 지방선거권 유무 확인 프로그램 만들기
 		
-		int a;
+     
 		
 		
 		
