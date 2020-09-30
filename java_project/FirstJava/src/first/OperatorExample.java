@@ -154,6 +154,7 @@ public class OperatorExample {
         System.out.println(shortPi);
 		*/
 		
+		/*
 	   float f = 0.1f;
 	   double d = 0.1;
 	   double d2 = (double)f;
@@ -167,8 +168,18 @@ public class OperatorExample {
 	   System.out.println("d==d2 ? "+(d==d2)); //둘 다 double형이긴한데...선언을 0.1로 해놨기 때문에 d를, false가 아닐까?
 	   System.out.println("d2==f ? "+(d2==f)); //소숫점 자리수가 다르기때문에 false (x)
 	   // float형을 double형으로으로 바꾸어도 안의 내용물은 똑같음...ㅠㅠ 잊지말자. 값이 다르다는 걸.
+	   */
+		
+	   int x = 10;
+	   int y = -10;
 	   
+	  int absX = (x >= 0)? x:-x;
+      int absY = (y >= 0)? y:-y;
 	   
+      
+      System.out.println("x= 10일 때, x의 절대값은 "+absX);
+      System.out.println("y=-10일 때, y의 절대값은 "+absY);
+      // y가 10이 나오는 이유는 absY에서 0보다 작을땐 -를 붙이게 해놔서
 	   
 	   
 	   
