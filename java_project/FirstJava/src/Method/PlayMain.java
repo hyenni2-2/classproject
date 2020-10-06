@@ -13,7 +13,7 @@ public class PlayMain {
 		p.takeStone(2);
 		
 		System.out.println("어린이 1의 구슬 개수는 : ");
-		p.showKid1Result();
+		p.showKid2Result();
 		
 		
 
