@@ -10,12 +10,11 @@ public class PlayMain {
 		Play p = null; // Play의 객체 생성
 		p = new Play(); // 객체 생성한 후 객체 주소값 반환
 		
-		p.takeStone(2);
 		
 		System.out.println("어린이 1의 구슬 개수는 : ");
-		p.showKid1Result();
+		p.showKid2Result();
 		
-		System.out.println();
+		
 		
 
 		
