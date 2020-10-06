@@ -129,7 +129,19 @@ public class IfLoop {
 		}while(k>0);
 */
 		
-		
+		/*
+		//문제 8
+		int i = 0;
+		boolean j;
+		while(i<=1000) {
+          while(j%2==0 && %7==0) {
+               j = j+i;
+               j++;
+          }
+          System.out.println(i);
+          i++;
+		}
+		*/
 	    
 	
 	

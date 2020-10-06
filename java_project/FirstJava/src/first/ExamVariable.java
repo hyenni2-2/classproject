@@ -8,6 +8,13 @@ public class ExamVariable {
 		
 		System.out.println(regNo);
 
+		int 변수 = 10;
+		System.out.println(변수);
+		
+		
+		
+		
+		
 	}
 
 }
