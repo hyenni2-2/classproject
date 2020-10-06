@@ -11,12 +11,9 @@ public class OperatorChapter {
 		int b = (((25*5)+(36-4))-71)/4; //21
         int c = (128/4)*2;	     //64
         
-       boolean result = true;
+       boolean result = a>b && b>c;
        
-       if(a>b && b>c) {
-    	   System.out.println(result);
-       }
-       System.out.println(!result);
+       System.out.println(result);
 	    
 	    
 	}

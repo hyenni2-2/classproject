@@ -65,17 +65,19 @@ public class OperatorChapter2 {
 		System.out.println(result);
 		*/
 		
+		/*
 		//7번
 		// 'C = 5/9 * (F-32)'
-		/*
 		int fahrenheit = 100;
 		float celcius = ((float)(fahrenheit - 32)*5/9);// 37.7778f
-		celcius = (int)(celcius * 1000) / 1000f;
-		if(celcius>=0.005f) {
+		celcius = (int)(celcius * 100); //3777.0
+				if(celcius%10>=5) { //3777%10 >=5보다 크면 반올림.
+					celcius = celcius + 1; //3778.0
 			System.out.println("Fahrenheit:"+fahrenheit);
-			System.out.println("Celcius:"+(int)((celcius+0.01f)*100)/100f);
+			System.out.println("Celcius:"+(celcius/100f)); // 37.78
 		}
 		*/
+		
 		
 		
 		/*
@@ -112,9 +114,8 @@ public class OperatorChapter2 {
 		
 		
 		// 10번
-		char ch = 'A';
-		char lowerCase = (char)((ch<ch+32)?(ch+32):ch);
-		//lowerCase = (char)((ch<ch+32)?ch:(ch+32));
+		char ch = 'a';
+		char lowerCase = (ch>='A' && ch<='Z' ) ? ( (char)(ch+32) ) : ch;
 		System.out.println("ch:" + ch);
 		System.out.println("chto lowerCase:"+lowerCase);
 		
