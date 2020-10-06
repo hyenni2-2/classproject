@@ -13,8 +13,9 @@ public class PlayMain {
 		p.takeStone(2);
 		
 		System.out.println("어린이 1의 구슬 개수는 : ");
-		p.showKid2Result();
+		p.showKid1Result();
 		
+		System.out.println();
 		
 
 		
