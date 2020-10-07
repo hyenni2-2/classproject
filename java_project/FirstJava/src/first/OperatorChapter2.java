@@ -106,8 +106,10 @@ public class OperatorChapter2 {
 		
 		/*
 		//9번
-		char ch = 'z';
-		boolean b = (ch >= 'a' && ch <= 'z') || (ch >= 0 && ch <= 9);
+		char ch = 'D';
+		boolean b = (ch >= 'a' && ch <= 'z') || 
+		            (ch >= 'A' && ch <= 'Z') || 
+		            (ch >= '0' && ch <= '9');
 		System.out.println(b);
 		*/
 		

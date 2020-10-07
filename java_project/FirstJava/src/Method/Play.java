@@ -3,8 +3,8 @@ package Method;
 public class Play { 
        // 아이가 소유하고 있는 구슬의 개수 정보 -> 변수
        // 어린이1 / 2 구슬 
-	   int kid1=15;  // 어린이1이 가진 구슬
-	   int kid2=9; // 어린이2가 가진 구슬
+	   int kid1;  // 어린이1이 가진 구슬
+	   int kid2; // 어린이2가 가진 구슬
 	   int left1; // 어린이 1이 주고 남은 구슬
 	    int left2;// 어린이 2가 주고 남은 구슬
 	   
