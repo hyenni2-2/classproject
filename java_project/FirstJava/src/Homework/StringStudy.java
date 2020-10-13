@@ -8,7 +8,7 @@ public class StringStudy {
 		// 이 문자열을 역순으로 출력
 		
 		String str = "ABCDEFGHIJKLMN";
-		for(int i=13; i>=0; i--) {
+		for(int i=str.length()-1; i>=0; i--) {
 			System.out.print(str.charAt(i));
 		}
 		
@@ -20,9 +20,9 @@ public class StringStudy {
 		//이 문자열을 이용하여 중간에 삽입된 – 를 뺀 String 인스턴스를 생성.
 	
 		str = "990929-1010123";
-		for(int i=0; i<str.length(); i++) {
-			System.out.print(str.charAt(i));	
-		}
+		StringBuilder sb1 = new StringBuilder("990929");
+		sb1.append(1010123);
+		System.out.println(sb1);
 		
 		
 
