@@ -22,10 +22,13 @@ public class ArrayTest {
 		
 		System.out.println("배열 arr의 요소의 개수 : " + arr.length);
 		
+		System.out.println("==================================");
+
 		for(int i=0; i<arr.length; i++) {
 			System.out.println(arr[i]);
 		}
-		
+		System.out.println("==================================");
+
 		// int sum = arr[0] + arr[1] + arr[2];
 		// System.out.println(sum);
 		

@@ -2,7 +2,7 @@ package Homework;
 
 import java.util.Scanner;
 
-public class PhoneBookMain1 {
+public class PhoneBookMain2 {
 
 	public static void main(String[] args) {
 //		PhoneInfor info = new PhoneInfor();
