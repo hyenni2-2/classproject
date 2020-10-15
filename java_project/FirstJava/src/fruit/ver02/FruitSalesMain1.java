@@ -14,10 +14,15 @@ public class FruitSalesMain1 {
 		
 		// 셀러 3
 	    FruitSeller seller3 = new FruitSeller(seller);
-		
-		
+
 		// FruitBuyer 타입의 참조변수 선언과 초기화
 		FruitBuyer buyer = new FruitBuyer(10000,0);
+		
+//		seller.myMoney += 1500;    셀러,바이어 클래스에서 private을 붙였기 때문에
+//	    buyer.myMoney -= 1500;     직접참조가 안됨.
+//	    
+//	    seller.numOfApple -= 2;
+//	    buyer.numOfApple =+ 1;
 		
 		
 		// 사과를 구매 : 3000원 지불

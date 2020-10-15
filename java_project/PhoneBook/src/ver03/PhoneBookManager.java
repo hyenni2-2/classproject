@@ -30,7 +30,7 @@ public class PhoneBookManager {
     
     
     
-    PhoneBookManager(int size) {
+    public PhoneBookManager(int size) {
     	phoneBook = new PhoneInfor[size];   // 생성자 오버로딩을 이용해서 초기화.
         sc = new Scanner(System.in);
     }
@@ -92,7 +92,7 @@ public class PhoneBookManager {
     	// 이름을 요소 index 검색 시작
     	int index = searchIndex(name);   // 배열에는 -1이 있을 수가 없으나, 분기를 위해 -1을 대입
     	
-    	// 검색 : index를 찾는다.(반복)
+//    	 검색 : index를 찾는다.(반복)
 //    	for(int i=0; i<cnt; i++) {
 //    		if(phoneBook[i].name.equals(name)) {    //사용자가 입력한 문자와 저장된 문자가 같은지 확인
 //    			index=i;

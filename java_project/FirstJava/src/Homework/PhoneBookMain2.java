@@ -18,8 +18,6 @@ public class PhoneBookMain2 {
 //	    
 //	    input.inputData();
 
-	    Manager modiInfo = new Manager();
-	    modiInfo.saveInfo();
 	}
 
 	

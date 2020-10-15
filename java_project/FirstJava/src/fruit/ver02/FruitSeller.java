@@ -17,8 +17,8 @@ public class FruitSeller {
 	// 변수 : 인스턴스 변수라고도 표현, 멤버 변수라고도 함.
 	// int applePrice = 1000;      // 사과의 가격
 	final int APPLE_PRICE; //사과의 가격, 변경 불가하도록 상수 선언
-	int numOfApple;         // 사과의 보유 갯수
-	int myMoney;            //  수익 금액
+	private int numOfApple;         // 사과의 보유 갯수
+	private int myMoney;            //  수익 금액
 	
 	
 	

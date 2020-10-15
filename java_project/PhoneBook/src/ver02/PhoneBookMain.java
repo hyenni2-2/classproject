@@ -9,9 +9,10 @@ public class PhoneBookMain {
 		// 사용자에게 데이터를 받음
 		Scanner s = new Scanner(System.in);
 		
+		
 		 while(true) {
 			// 인스턴스 생성을 위해 이름, 전화번호, 생일 데이터 받기
-				System.out.println("데이터 저장을 위한 데이터를 입력해주세요.");
+                System.out.println("데이터 저장을 위한 데이터를 입력해주세요.");
 				System.out.println("이름을 입력하세요");
 				String name = s.nextLine();
 				System.out.println("번호를 입력하세요");
