@@ -17,9 +17,12 @@ public class ArrayStudy {
 	    	System.out.println((i+1) +"회차 요소는 : ");
 	    	arr[i] = sc.nextInt(); // 배열 안의 arr[i]값을 참조하고 싶은거니까, arr[i]로 넣어야함. arr로 넣으면 주소값나옴;;
 	    }
-		ArrayStudy value = new ArrayStudy(); // 호출 메서드 선언
-		System.out.println("minNum : " + value.miniValue(arr));
-		System.out.println("maxNum : " + value.maxValue(arr));
+//		ArrayStudy value = new ArrayStudy(); // 호출 메서드 선언
+//		System.out.println("minNum : " + value.miniValue(arr));
+//		System.out.println("maxNum : " + value.maxValue(arr));
+	    
+	    System.out.println(miniValue(arr));
+	    System.out.println(maxValue(arr));
 		
         System.out.println("=========================");
 
@@ -27,7 +30,7 @@ public class ArrayStudy {
 				{10,30,20,1,5},
 				{1,3,5}
 		};
-        value.addOneDArr(arr1, 4);
+        addOneDArr(arr1, 4);
 
         System.out.println("=========================");
         
@@ -36,7 +39,7 @@ public class ArrayStudy {
         		{4,5,6},
         		{7,8,9}
         };
-        value.shiftArr(arr2);
+        shiftArr(arr2);
         
         	}
         	
@@ -48,7 +51,7 @@ public class ArrayStudy {
 	
 	int min=0;
 	int max=0;
-	int miniValue(int[] arr) {
+	public static int miniValue(int[] arr) {
 		int min = arr[0];
 		for(int i=0; i<arr.length; i++) {
 			if(min>arr[i]) {  
@@ -58,9 +61,9 @@ public class ArrayStudy {
 		return min;
 	}
 	
-	int maxValue(int[] arr){
+	public static int maxValue(int[] arr){
 		int max=arr[0];
-		for(int i=0; i<arr.length; i++) {
+		for(int i=0; i<arr.length; i++) { //i를 1로 해도 됨. 0번지를 기준으로 시작하기에 1부터 비교해도 됨
 	        if(max<arr[i]) {
 	        	max=arr[i];
 	        }
@@ -84,7 +87,7 @@ public class ArrayStudy {
 	
 	
 	
-	void addOneDArr(int[][] arr1, int add) {    //2차원 배열 메서드
+	public static void addOneDArr(int[][] arr1, int add) {    //2차원 배열 메서드
 		for(int i=0; i<arr1.length; i++) {
 			for(int j=0; j<arr1[i].length; j++) {
 				arr1[i][j] = arr1[i][j] + add;
@@ -107,7 +110,7 @@ public class ArrayStudy {
 //		4 5 6
 //      즉 총 N행으로 이뤄진 2차원 배열이 존재한다면, 
 //      메서드 호출 시, 1행은 2행으로 이동이 이뤄져야한다. 
-        void shiftArr(int[][] arr2) {
+	public static void shiftArr(int[][] arr2) {
            int[][] temp = new int[arr2.length][arr2[0].length]; // 열은 바뀌지 않음.
            for(int i=0; i<arr2.length-1; i++) { //번지로 계산하는거니까 길이에서 -1을 해야함
         	   temp[i] = arr2[i];
