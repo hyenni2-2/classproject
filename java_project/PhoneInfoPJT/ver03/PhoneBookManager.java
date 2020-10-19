@@ -44,10 +44,6 @@ public class PhoneBookManager {
     // 저장 후에는 cnt를 증가. cnt++
     
     void insertMember() { // 사용자로부터 데이터를 받기 때문에 매개변수 x
-    	
-    	
-    	
-    	
     	System.out.println("친구의 정보 입력을 시작합니다.");
     	
     	// 이름,전화번호,생일 입력받기
