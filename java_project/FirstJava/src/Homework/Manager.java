@@ -91,26 +91,14 @@ public class Manager {
 			  // index를 이용해서 이름 찾기. 반복해서 돌아가면서 찾아야 하니까 for문 넣기
 			  for(int i=0; i<count; i++) {
 				  if(users[i].name.equals(name)) {
-					index=i;                  //index에 우리가 찾은 i값을 넣기
+					index=i;                //index에 우리가 찾은 i값을 넣기
+					users[index].showData();
 					break;
+				  } else {
+					  System.out.println("찾는 이름이 없어요!");
+					  return;
 				  }
 				  
 			  }
-			  
-			  
-			  
-			  if(index<0) {
-				  System.out.println("찾는 이름이 없습니다.");
-			  } else {
-				  users[index].showData();    // showData를 쓸 수 있는 이유 = users가 PhoneInfor타입을 참조하는 배열이라서.
-			  }
-			  
 		  }
-		
-	   
-		
-	
-	
-	
-	
 }
