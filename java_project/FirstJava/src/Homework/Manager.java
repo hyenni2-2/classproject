@@ -86,19 +86,85 @@ public class Manager {
 			  String name = sc.nextLine();
 			  
 			  // index 선언
-			  int index = -1;    // index에 값이 들어와있다면 0부터니까 -1은 있을 수 없음.
+			  int index = searchIndex(name);
+			  
+			  if(index<0) {
+				  System.out.println("일치하는 결과가 없어요.");
+			  } else {
+				users[index].showData();
+			  }
+			  
+			  
 			  
 			  // index를 이용해서 이름 찾기. 반복해서 돌아가면서 찾아야 하니까 for문 넣기
-			  for(int i=0; i<count; i++) {
-				  if(users[i].name.equals(name)) {
-					index=i;                //index에 우리가 찾은 i값을 넣기
-					users[index].showData();
-					break;
-				  } else {
-					  System.out.println("찾는 이름이 없어요!");
-					  return;
-				  }
-				  
-			  }
+//			  for(int i=0; i<count; i++) {
+//				  if(users[i].name.equals(name)) {
+//					index=i;                //index에 우리가 찾은 i값을 넣기
+//					users[index].showData();
+//					break;
+//				  } else {
+//					  System.out.println("찾는 이름이 없어요!");
+//					  return;
+//				  }
+//				  
+//			  }
 		  }
+		  
+		  // 정보 삭제하기
+		  // 배열의 index 값 찾는 기능 정의하기
+		  // 저장된 값 찾기
+	     // 찾아서 반환해야 함
+		int searchIndex(String name) {
+			 int result=-1;
+			 
+			 
+	    for(int i=0; i<count; i++) {
+	    	if(users[i].name.equals(name)) {
+	    	result=i;
+	    	break;
+	    }	 
+		 }
+	    return result;
+		}
+		
+		  // 배열에 저장된 값을 왼쪽으로 옮기기
+		void deleteInfo() {
+			if(count==0) {
+				System.out.println("저장된 정보가 없어요. 처음으로 돌아갑니다.");
+				return;
+			}
+		
+		System.out.println("정보를 삭제합니다.");
+		System.out.println("삭제할 이름은? ");
+		name = sc.nextLine();
+		
+		int index=searchIndex(name);
+		
+		if(index<0) {
+			System.out.println("찾는 이름이 없어요. ");
+		} else {  // 이름을 찾았을 때
+			for(int i=index; i<count-1; i++) {
+				index=i;
+			    users[i]=users[i+1];
+			}
+			count--;
+			System.out.println("정보를 삭제했어요.");
+		}
+}
+		
+		// 지금까지의 데이터 보여주기
+		void showAllData() {
+			
+			if(count==0) {
+				System.out.println("저장된 정보가 없어요.");
+				return;
+			} 
+			
+			System.out.println("저장된 정보================");
+				for(int i=0; i<count; i++) {
+					users[i].showData();
+				}
+			System.out.println("========================");
+			}
+		
 }

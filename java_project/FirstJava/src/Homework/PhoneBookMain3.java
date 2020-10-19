@@ -33,12 +33,12 @@ public class PhoneBookMain3 {
 		case 2:
 			modiInfo.searchInfo();
 			break;
-//		case 3:
-//			
-//			break;
-//		case 4:
-//		   
-//			break;
+		case 3:
+			modiInfo.deleteInfo();
+			break;
+		case 4:
+		   modiInfo.showAllData();
+			break;
 		case 5:
 			System.out.println("프로그램을 종료합니다.");
 			System.exit(0);			
