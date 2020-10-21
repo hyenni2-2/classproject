@@ -1,8 +1,23 @@
-package PbPjt;
+package PbPjtVer05;
 
 import java.util.Scanner;
 
+import PbPjt.PhoneCafeInfor;
+import PbPjt.PhoneCompanyInfo;
+import PbPjt.PhoneFamilyInfor;
+import PbPjt.PhoneInfo;
+import PbPjt.PhoneUnivInfor;
+
 public class PhoneInfoManager {
+	
+//	Project ver 0.50
+//	PhoneBookManager 클래스의 인스턴스수가 최대 하나를 넘지 않도록 코드를 변경.   -> 싱글톤으로 만들기.
+//	‘interface’기반의 상수 표현을 바탕으로 메뉴 선택과 그에 따른 처리가, 이름에 부여된 상수를 기반으로 진행되도록 변경. -> interface로 menu 생성
+//	현재의 기본 클래스를 interface와 추상클래스를 사용하는 구조로 변경해 봅시다. -> PhoneInfor 구조 변경하기
+//	interface : 필수 메서드 정의
+//	추상클래스 : 인스턴스 변수와 interface를 상속 받지만 구현하지 않은 클래스
+
+	
 
 	private PhoneInfo[] pInfo;  // 정보 저장하는 배열
 	private int pInfoCnt;           // index로도 씀. 저장된 값을 확인하는 변수, 반복에도 사용 
@@ -13,12 +28,25 @@ public class PhoneInfoManager {
 		
 	
 	Scanner sc = new Scanner(System.in);
-
-		// 생성자로 초기화하기
-		public PhoneInfoManager(int input) {
+	
+	// 싱글톤 처리하기
+	PhoneInfoManager(int input) {
 			pInfo = new PhoneInfo[input];
 			pInfoCnt = 0;
-		}
+		
+	}
+	
+	// 사용할 인스턴스 생성하기. manager로 만들었다. 
+	// 무분별한 인스턴스 생성을 막는다. 하나로 공유해서 쓸 수 있도록.
+	private static PhoneInfoManager manager = new PhoneInfoManager();
+
+	// 외부에서 값을 넣었을 때 참조할 수 있도록. 
+	public static PhoneInfoManager getInstance() {
+		return manager;
+	}
+	
+		// 생성자로 초기화하기
+		
 		
 		// 친구 저장하는 기능
 		void saveInfo(PhoneInfo p) {
@@ -148,7 +176,7 @@ public class PhoneInfoManager {
 		
 
 		// 전체 정보 출력하는 메서드
-		public void showAllInfo() {
+		void showAllInfo() {
 			if(pInfoCnt==0) {
 				System.out.println("저장된 정보가 없어요. 다시 돌아갑니다.");
 			} else {
@@ -160,7 +188,7 @@ public class PhoneInfoManager {
 			}
 		}
 			
-		public void showAllSimple() {
+		void showAllSimple() {
 			if(pInfoCnt==0) {
 				System.out.println("저장된 정보가 없어요. 다시 돌아갑니다.");
 			} else {

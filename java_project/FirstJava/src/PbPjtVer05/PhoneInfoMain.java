@@ -1,8 +1,8 @@
-package PbPjt;
+package PbPjtVer05;
 
 import java.util.Scanner;
 
-public class PhoneInfoMain {
+public class PhoneInfoMain implements MenuVer05 {
 
 	public static void main(String[] args) {
 		
@@ -36,15 +36,15 @@ public class PhoneInfoMain {
 			}
 			
 			System.out.println("2020 옐로우 페이지==============");
-			System.out.println("1. 대학 친구 정보 저장");
-			System.out.println("2. 회사 동기 정보 저장");
-			System.out.println("3. 동호회 친구 정보 저장");
-			System.out.println("4. 가족 정보 저장");
-			System.out.println("5. 이름 찾아보기");
-			System.out.println("6. 정보 삭제하기");
-			System.out.println("7. 전체 정보 확인하기");
-			System.out.println("8. 기본 정보 확인하기");
-			System.out.println("9. EXIT");
+			System.out.println(MenuVer05.UNIV+". 대학 친구 정보 저장");
+			System.out.println(MenuVer05.COM+". 회사 동기 정보 저장");
+			System.out.println(MenuVer05.CAFE+". 동호회 친구 정보 저장");
+			System.out.println(MenuVer05.FAM+". 가족 정보 저장");
+			System.out.println(MenuVer05.SEARCH+". 이름 찾아보기");
+			System.out.println(MenuVer05.DELETE+". 정보 삭제하기");
+			System.out.println(MenuVer05.DISPLAY_ALL+". 전체 정보 확인하기");
+			System.out.println(MenuVer05.DISPLAY_BASIC+". 기본 정보 확인하기");
+			System.out.println(MenuVer05.EXIT+". EXIT");
 			System.out.println("===========================");
 
 			// 선택한 번호 입력받기(Manager에 정보 입력받는 변수명이랑 같아야함)
