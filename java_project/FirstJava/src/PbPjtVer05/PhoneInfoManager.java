@@ -25,7 +25,8 @@ public class PhoneInfoManager {
 	public int getInfoCnt() {  // cnt를 메인에서  쓰기 위해 getter 사용
 		return pInfoCnt;
 	}
-		
+	
+	
 	
 	Scanner sc = new Scanner(System.in);
 	
@@ -33,12 +34,11 @@ public class PhoneInfoManager {
 	PhoneInfoManager(int input) {
 			pInfo = new PhoneInfo[input];
 			pInfoCnt = 0;
-		
 	}
 	
 	// 사용할 인스턴스 생성하기. manager로 만들었다. 
 	// 무분별한 인스턴스 생성을 막는다. 하나로 공유해서 쓸 수 있도록.
-	private static PhoneInfoManager manager = new PhoneInfoManager();
+	private static PhoneInfoManager manager = new PhoneInfoManager(0);
 
 	// 외부에서 값을 넣었을 때 참조할 수 있도록. 
 	public static PhoneInfoManager getInstance() {

@@ -33,6 +33,7 @@ public class PhoneBookManager {
 	// 배열에 전화번호 정보를 저장하는 메서드
 	private void addInfor(PhoneInfor info) {
 		pBook[cnt++] = info;
+		System.out.println(info);
 	}
 	
 	// 전화번호 정보를 인스턴스 생성하고 배열에 저장
@@ -67,7 +68,7 @@ public class PhoneBookManager {
         System.out.println("전화번호 >> ");
         String pNum = Util.sc.nextLine();
         System.out.println("주소 >> ");
-        String addr = Util.sc.next();
+        String addr = Util.sc.nextLine();  // next로 썼기 때문에 표시를 안하고 넘겨버림....
         System.out.println("이메일 >> ");
         String email = Util.sc.nextLine();
         Util.sc.nextLine();
