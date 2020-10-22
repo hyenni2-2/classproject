@@ -146,6 +146,8 @@ public class PhoneInfoManager {
 		
 		
 		
+		
+		
 
 		// 전체 정보 출력하는 메서드
 		public void showAllInfo() {
