@@ -1,4 +1,4 @@
-package PbPjtVer05;
+package pbPjtVer05;
 
 import java.util.Scanner;
 
@@ -9,13 +9,6 @@ import PbPjt.PhoneInfo;
 import PbPjt.PhoneUnivInfor;
 
 public class PhoneInfoManager {
-	
-//	Project ver 0.50
-//	PhoneBookManager 클래스의 인스턴스수가 최대 하나를 넘지 않도록 코드를 변경.   -> 싱글톤으로 만들기.
-//	‘interface’기반의 상수 표현을 바탕으로 메뉴 선택과 그에 따른 처리가, 이름에 부여된 상수를 기반으로 진행되도록 변경. -> interface로 menu 생성
-//	현재의 기본 클래스를 interface와 추상클래스를 사용하는 구조로 변경해 봅시다. -> PhoneInfor 구조 변경하기
-//	interface : 필수 메서드 정의
-//	추상클래스 : 인스턴스 변수와 interface를 상속 받지만 구현하지 않은 클래스
 
 	
 
@@ -23,7 +16,7 @@ public class PhoneInfoManager {
 	private int pInfoCnt;           // index로도 씀. 저장된 값을 확인하는 변수, 반복에도 사용 
 	
 	public int getInfoCnt() {  // cnt를 메인에서  쓰기 위해 getter 사용
-		return pInfoCnt;
+		return pInfoCnt;    // 0보다 크다고 설정
 	}
 	
 	
@@ -33,7 +26,7 @@ public class PhoneInfoManager {
 	// 싱글톤 처리하기
 	PhoneInfoManager(int input) {
 			pInfo = new PhoneInfo[input];
-			pInfoCnt = 0;
+			
 	}
 	
 	// 사용할 인스턴스 생성하기. manager로 만들었다. 

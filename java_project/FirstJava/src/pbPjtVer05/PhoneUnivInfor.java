@@ -1,4 +1,4 @@
-package PbPjtVer05;
+package pbPjtVer05;
 
 public class PhoneUnivInfor extends PhoneInfo {
 	private String major;

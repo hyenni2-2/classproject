@@ -1,4 +1,4 @@
-package PbPjtVer05;
+package pbPjtVer05;
 
 public abstract class PhoneInfo implements PhoneInfoVer05 {
 	private String name;

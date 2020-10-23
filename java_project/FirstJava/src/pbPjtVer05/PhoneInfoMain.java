@@ -1,28 +1,65 @@
-package PbPjtVer05;
+package pbPjtVer05;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PhoneInfoMain implements MenuVer05 {
 
-	public static void main(String[] args) {
+
+	public static void main(String[] args) throws MenuException {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		// 배열에 몇 명 넣을지 설정
-		System.out.println("몇 명을 저장하시겠어요? ");
-		int put = 0;
-		put = sc.nextInt();
-		PhoneInfoManager manager = new PhoneInfoManager(put);   // 순서에 유의해서 만들기. 
-
 		
+		// 안으로 넣으면 문제 해결.!
+		// 배열에 몇 명 넣을지 설정
+//		System.out.println("몇 명을 저장하시겠어요? ");
+//		int put = 0;
+//		PhoneInfoManager manager = new PhoneInfoManager(put);   // 순서에 유의해서 만들기. 
+//		try {
+//			put = sc.nextInt();
+//			if(put<0) {
+//				MenuException e = new MenuException("입력 에러");
+//				throw e;
+//			}
+//			
+//		} catch(InputMismatchException|MenuException e) {
+//			System.out.println("잘못된 입력입니다. 다시 입력해 주세요. ");
+//		}		
+
+		int put = 0;
+		PhoneInfoManager manager = new PhoneInfoManager(put);   // 순서에 유의해서 만들기. 
 		
 		// 무한반복문으로 질문 사항 만들기
+		int choose;
 		while(true) {
+			System.out.println("몇 명을 저장하시겠어요? ");
+
+			try {
+				put = sc.nextInt();
+				if(put<=0) {
+					MenuException e = new MenuException("입력 에러");
+					throw e;
+				}
+			} catch(InputMismatchException|MenuException e) {
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요. ");
+				sc.nextLine();      // 뒤에 생긴 공백으로 인한 에러를 처리해줌..!!
+				continue;
+			}
+			
+			
+			
+			
 			if(put==manager.getInfoCnt()) {
 				System.out.println("더 이상 저장할 수 없습니다.");
 				System.out.println("전체 정보를 확인할까요?");
 				System.out.println("확인 : 1,  취소 : 2");
-				int choose = sc.nextInt();
+				try {
+				choose = sc.nextInt();
+				} catch(Exception e) {
+					System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+					continue;
+				}
 				switch(choose) {
 				case 1:
 					manager.showAllInfo();

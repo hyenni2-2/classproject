@@ -1,4 +1,4 @@
-package PbPjtVer05;
+package pbPjtVer05;
 
 public class PhoneCafeInfor extends PhoneInfo {
     private String cafe;
