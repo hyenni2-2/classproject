@@ -1,4 +1,6 @@
-package ver05;
+package ver06;
+
+import java.util.InputMismatchException;
 
 import ver03.Util;
 
@@ -19,12 +21,25 @@ public class PhoneBookMain implements Util {
 
 			System.out.println("\n>> ");
 
-			int select = SC.nextInt();
+			int select = Util.SC.nextInt();
 
+			try {
 			if (!(select > 0 && select < 6)) {
-				System.out.println("메뉴의 선택이 올바르지 않습니다.\n다시 선택해 주세요.");
+				// System.out.println("메뉴의 선택이 올바르지 않습니다.\n다시 선택해 주세요.");
+				// Exception e = new Exception("잘못된 메뉴 입력");
+				BadinputException e = new BadinputException(String.valueOf(select));
+				throw e;
+			}
+			} catch(InputMismatchException | BadinputException e) {
+				System.out.println("메뉴 입력이 잘못되었습니다.");
+				SC.nextLine();
+				continue;
+			} catch (Exception e1) {
+				System.out.println("메뉴 입력이 잘못되었습니다.");
+				SC.nextLine();
 				continue;
 			}
+			
 
 			switch (select) {
 			case Menu.INSERT:

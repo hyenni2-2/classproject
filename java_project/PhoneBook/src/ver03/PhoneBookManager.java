@@ -1,8 +1,8 @@
 package ver03;
 
-import java.util.Scanner;
+import ver03.Util;
 
-public class PhoneBookManager {
+public class PhoneBookManager implements Util {
 //	Project : ver 0.30
 //	배열을 이용해서 프로그램 사용자가 입력하는 정보가 최대 100개까지
 //	유지되도록 프로그램을 변경. 아래기능 삽입
@@ -18,7 +18,6 @@ public class PhoneBookManager {
      // PhoneInfor타입의 참조변수. 주소값을 가져오는 것
      int cnt;                   // 저장된 정보의 개수 : 반복횟수로도 사용 가능, 배열에 새로운 데이터 입력 시 index로도 사용 가능
      
-     Scanner sc;
      
      
     // 초기화 - 생성자
@@ -32,7 +31,7 @@ public class PhoneBookManager {
     
     public PhoneBookManager(int size) {
     	phoneBook = new PhoneInfor[size];   // 생성자 오버로딩을 이용해서 초기화.
-        sc = new Scanner(System.in);
+       
     }
      
     // 기능 : 저장, 검색, 삭제
@@ -52,11 +51,11 @@ public class PhoneBookManager {
     	
     	// 이름,전화번호,생일 입력받기
     	System.out.println("이름을 입력하세요. : ");
-    	String name = Util.sc.nextLine();
+    	String name = SC.nextLine();
     	System.out.println("전화번호를 입력하세요. : ");
-    	String pNum = Util.sc.nextLine();
+    	String pNum = SC.nextLine();
     	System.out.println("생일을 입력하세요. : ");
-    	String bd = Util.sc.nextLine().trim();    // 앞뒤 공백을 지워서 문자 저장
+    	String bd = SC.nextLine().trim();    // 앞뒤 공백을 지워서 문자 저장
     
     	// 배열에 저장하기 위한 인스턴스의 참조변수 선언
         PhoneInfor infor = null;
@@ -91,7 +90,7 @@ public class PhoneBookManager {
     	// 찾고자 하는 이름 받기
     	System.out.println("정보 검색을 시작합니다.");
     	System.out.println("찾을 이름을 입력하세요.");
-    	String name = sc.nextLine();
+    	String name = SC.nextLine();
     	
     	// 이름을 요소 index 검색 시작
     	int index = searchIndex(name);   // 배열에는 -1이 있을 수가 없으나, 분기를 위해 -1을 대입
@@ -148,7 +147,7 @@ public class PhoneBookManager {
 		}
     	System.out.println("정보 삭제를 진행합니다.");
     	System.out.println("삭제하고자 하는 정보의 이름을 입력해 주세요.");
-    	String name = sc.nextLine();
+    	String name = SC.nextLine();
     	
     	// 이름을 요소 index 검색 시작
     	int index = searchIndex(name);

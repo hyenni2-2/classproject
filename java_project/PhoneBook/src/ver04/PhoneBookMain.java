@@ -2,7 +2,7 @@ package ver04;
 
 import ver03.Util;
 
-public class PhoneBookMain {
+public class PhoneBookMain implements Util {
 
 	public static void main(String[] args) {
 
@@ -18,7 +18,7 @@ public class PhoneBookMain {
 
 			System.out.println("\n>> ");
 
-			int select = Util.sc.nextInt();
+			int select = SC.nextInt();
 
 			if (!(select > 0 && select < 6)) {
 				System.out.println("메뉴의 선택이 올바르지 않습니다.\n다시 선택해 주세요.");
