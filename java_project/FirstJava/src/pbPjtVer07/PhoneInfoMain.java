@@ -1,4 +1,4 @@
-package pbPjtVer06;
+package pbPjtVer07;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

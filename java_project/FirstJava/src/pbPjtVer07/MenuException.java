@@ -1,4 +1,4 @@
-package pbPjtVer06;
+package pbPjtVer07;
 
 public class MenuException extends Exception {
 

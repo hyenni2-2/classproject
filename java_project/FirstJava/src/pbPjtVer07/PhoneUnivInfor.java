@@ -1,6 +1,6 @@
-package pbPjtVer06;
+package pbPjtVer07;
 
-public class PhoneUnivInfor extends PhoneInfo {
+public class PhoneUnivInfor extends PhoneInfo07 {
 	private String major;
 	private String year;
 	

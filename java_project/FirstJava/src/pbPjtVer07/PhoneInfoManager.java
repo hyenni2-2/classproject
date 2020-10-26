@@ -1,4 +1,4 @@
-package pbPjtVer06;
+package pbPjtVer07;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,19 +7,19 @@ import java.util.Scanner;
 public class PhoneInfoManager {
 
 
-	List<PhoneInfo> pInfo;
+	List<PhoneInfo07> pInfo;
 
 	
 	Scanner sc = new Scanner(System.in);
 
 		// 생성자로 초기화하기
 		public PhoneInfoManager(int input) {
-			pInfo = new ArrayList<PhoneInfo>();
+			pInfo = new ArrayList<PhoneInfo07>();
 			
 		}
 		
 		// 친구 저장하는 기능
-		void saveInfo(PhoneInfo p) {
+		void saveInfo(PhoneInfo07 p) {
 			pInfo.add(p);
 		}
 		
