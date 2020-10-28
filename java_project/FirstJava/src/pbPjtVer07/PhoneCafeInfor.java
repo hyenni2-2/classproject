@@ -1,6 +1,6 @@
 package pbPjtVer07;
 
-public class PhoneCafeInfor extends PhoneInfo07 {
+public class PhoneCafeInfor extends PhoneInfo {
     private String cafe;
 	
 	public PhoneCafeInfor(String name, String num, String addr, String email, String cafe) {

@@ -1,5 +1,12 @@
 package pbPjtVer07;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,19 +14,19 @@ import java.util.Scanner;
 public class PhoneInfoManager {
 
 
-	List<PhoneInfo07> pInfo;
+	List<PhoneInfo> pInfo;
 
 	
 	Scanner sc = new Scanner(System.in);
 
 		// 생성자로 초기화하기
 		public PhoneInfoManager(int input) {
-			pInfo = new ArrayList<PhoneInfo07>();
+			pInfo = new ArrayList<PhoneInfo>();
 			
 		}
 		
 		// 친구 저장하는 기능
-		void saveInfo(PhoneInfo07 p) {
+		void saveInfo(PhoneInfo p) {
 			pInfo.add(p);
 		}
 		
@@ -163,6 +170,50 @@ public class PhoneInfoManager {
 		
 		
 			}
+		}
+
+		
+		
+//		전화번호 관리 프로그램 Version 0.7
+//		직렬화를 이용해서 데이터를 저장하고, 프로그램 재 실행시 저장된 데이터를 로드해서 사용하도록 처리하자.
+		
+		void save() {
+			if(pInfo.size()==0) {
+				System.out.println("저장된 데이터가 없어요. 메뉴로 다시 돌아갑니다.");
+				return;
+			}
+			try {   // 데이터 저장을 위한 스트림 생성
+				ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("phoneInfo.ser"));
+				out.writeObject(pInfo);  //pInfo가 어레이리스트 타입이어서, 그 pInfo자체를 저장
+				out.close();
+				System.out.println("내용이 저장되었습니다.파일이름:phoneInfo.ser");
+			} catch (IOException e) {
+				System.out.println("저장 중 에러 발생! : "+e.getStackTrace());
+			}
+			
+		}
+			
+		void load() { // 저장된 데이터 로드하기
+			File file = new File("phoneInfo.ser");
+			if(!file.exists()) {
+				System.out.println("원본 파일이 없습니다.");
+				return;
+			}
+			
+			ObjectInputStream in;
+			try {
+				in = new ObjectInputStream(new FileInputStream("phoneInfo.ser"));
+				pInfo=(List<PhoneInfo>) in.readObject();     // 불러올 데이터를 저장할 인스턴스 생성.
+				in.close();
+			    System.out.println("데이터 불러오기 완료");
+			} catch (IOException e) {
+				// System.out.println("불러오기 에러 발생! ");
+			} catch (ClassNotFoundException e) {
+               System.out.println("데이터 불러오기 에러입니다.: " + e.getMessage());
+               
+			} 
+
+			
 		}
 		
 	}

@@ -1,6 +1,6 @@
 package pbPjtVer07;
 
-public class PhoneFamilyInfor extends PhoneInfo07 {
+public class PhoneFamilyInfor extends PhoneInfo {
 	
 	private int family;
 

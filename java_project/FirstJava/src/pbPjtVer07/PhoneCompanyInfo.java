@@ -1,6 +1,6 @@
 package pbPjtVer07;
 
-public class PhoneCompanyInfo extends PhoneInfo07 {
+public class PhoneCompanyInfo extends PhoneInfo {
     
 	private String company;
 	

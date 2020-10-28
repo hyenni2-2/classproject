@@ -16,7 +16,9 @@ public class PhoneInfoMain implements MenuVer05 {
 		// 무한반복문으로 질문 사항 만들기
 		int choose;
 		
-		while(true) {
+
+		
+		
 			System.out.println("몇 명을 저장하시겠어요? ");
 			try {
 				put = sc.nextInt();
@@ -27,12 +29,30 @@ public class PhoneInfoMain implements MenuVer05 {
 			} catch(InputMismatchException|MenuException e) {
 				System.out.println("잘못된 입력입니다. 다시 입력해 주세요. ");
 				sc.nextLine();      // 뒤에 생긴 공백으로 인한 에러를 처리해줌..!!
-				continue;
 			}
 			
+	
 			
 			
-		
+			while(true) {
+				if(put==manager.pInfo.size()) {
+					System.out.println("더 이상 저장할 수 없습니다.");
+					System.out.println("전체 정보를 확인할까요?");
+					System.out.println("확인 : 1,  취소 : 2");
+				
+					choose = sc.nextInt();
+					
+					switch(choose) {
+					case 1:
+						manager.showAllInfo();
+						System.out.println("프로그램을 종료합니다.");
+						break;
+					case 2: 
+						System.out.println("프로그램을 종료합니다.");
+						break;
+					} 
+					return;
+				}
 			System.out.println("2020 옐로우 페이지==============");
 			System.out.println(MenuVer05.UNIV+". 대학 친구 정보 저장");
 			System.out.println(MenuVer05.COM+". 회사 동기 정보 저장");
@@ -42,6 +62,8 @@ public class PhoneInfoMain implements MenuVer05 {
 			System.out.println(MenuVer05.DELETE+". 정보 삭제하기");
 			System.out.println(MenuVer05.DISPLAY_ALL+". 전체 정보 확인하기");
 			System.out.println(MenuVer05.DISPLAY_BASIC+". 기본 정보 확인하기");
+			System.out.println(MenuVer05.SAVE+". 정보 외부 파일로 저장하기");
+			System.out.println(MenuVer05.LOAD+". 정보 외부에서 불러오기");
 			System.out.println(MenuVer05.EXIT+". EXIT");
 			System.out.println("===========================");
 
@@ -52,7 +74,7 @@ public class PhoneInfoMain implements MenuVer05 {
 			
 			try {
 			 choice = sc.nextInt();
-			 if(choice==0 && choice>9) {
+			 if(choice>11) {
 				 MenuException me=new MenuException("입력 에러");
 				 throw me;
 			 }
@@ -66,6 +88,9 @@ public class PhoneInfoMain implements MenuVer05 {
 				
 			
 		switch(choice) {
+		case MenuVer05.LOAD:
+		    manager.load();
+		    break;
 		case MenuVer05.UNIV: case MenuVer05.COM: case MenuVer05.CAFE: case MenuVer05.FAM:
 			manager.saveFriend(choice);
 			break;
@@ -81,6 +106,9 @@ public class PhoneInfoMain implements MenuVer05 {
 		case MenuVer05.DISPLAY_BASIC:
 			manager.showAllSimple();
 			break;
+		case MenuVer05.SAVE:
+			manager.save();
+			break;
 		case MenuVer05.EXIT:
 			System.out.println("프로그램 종료!");
 			System.exit(0);
@@ -89,30 +117,13 @@ public class PhoneInfoMain implements MenuVer05 {
 			System.out.println("잘못된 숫자! 다시 입력하세요.");
 				}
 
-		if(put==manager.pInfo.size()) {
-			System.out.println("더 이상 저장할 수 없습니다.");
-			System.out.println("전체 정보를 확인할까요?");
-			System.out.println("확인 : 1,  취소 : 2");
 		
-			choose = sc.nextInt();
-			
-			switch(choose) {
-			case 1:
-				manager.showAllInfo();
-				System.out.println("프로그램을 종료합니다.");
-				break;
-			case 2: 
-				System.out.println("프로그램을 종료합니다.");
-				break;
-			} 
-			break;
-		}
 		
-		}
+		}	
 		
 		
 		
-
+		
 	}
 
 }
