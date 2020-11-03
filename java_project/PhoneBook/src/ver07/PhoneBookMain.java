@@ -60,7 +60,6 @@ public class PhoneBookMain implements Util,Menu {
 				break;
 			case EXIT:
 				System.out.println("프로그램을 종료합니다. ");
-				return;
 			}
 
 		}
