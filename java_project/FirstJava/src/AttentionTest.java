@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class AttentionTest {
 	
+	void att() {
 	// 날짜 받기
 	Date today=new Date();
 	SimpleDateFormat now = new SimpleDateFormat("dd");
@@ -17,8 +18,7 @@ public class AttentionTest {
 	
 	Scanner sc = new Scanner(System.in);
 	
-	
-	void att() {
+
 		while(true) {
 			int choice;
 			System.out.println("++++++++++++++++++++++++++++++++");
