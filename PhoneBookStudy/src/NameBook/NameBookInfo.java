@@ -1,6 +1,6 @@
 package NameBook;
 
-public class NameBookInfo {
+public class NameBookInfo implements Util {
 	// 전화번호부 인포 만들기
 	
 	// 변수 선언하기
@@ -10,37 +10,46 @@ public class NameBookInfo {
     private String email;
     
     
+    
+    
+    
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-    
 	
 	
-    
+	public NameBookInfo() {
+		
+	}
+
 	public NameBookInfo(String name, String phoneNumber, String address, String email) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
@@ -57,17 +66,17 @@ public class NameBookInfo {
 	
 	
 	void showAll() {
-		System.out.println("이름 : " + getName());
-		System.out.println("전화번호 : " + getPhoneNumber());
-		System.out.println("주소 : " + getAddress());
-		System.out.println("이메일 : " + getEmail());
+		System.out.println("이름 : " + name);
+		System.out.println("전화번호 : " + phoneNumber);
+		System.out.println("주소 : " + address);
+		System.out.println("이메일 : " + email);
 		
 	}
 	
     void showPart() {
-    	System.out.println("이름 : " + getName());
-		System.out.println("전화번호 : " + getPhoneNumber());
-		System.out.println("이메일 : " + getEmail());
+    	System.out.println("이름 : " + name);
+		System.out.println("전화번호 : " + phoneNumber);
+		System.out.println("이메일 : " + email);
     }
 
 	
