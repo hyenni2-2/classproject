@@ -3,9 +3,7 @@
 
 -- scott 계정으로 로그인
 -- scott 계정이 소유한 테이블 객체를 확인 : Tab -> 사용자가 가지는 테이블의 정보를 저장하는 데이터 딕셔너리
-select * 
-from tab
-;
+select * from tab;
 
 -- 테이블의 구조 확인 : DESC
 -- 테이블의 데이터를 검색하기 전 구조를 확인할 때 
@@ -70,7 +68,7 @@ from emp
 
 -- 데이터베이스의 sql 내부의 문자열 처리는 작은 따옴표''
 
-select ename || ' 의 직무는 ' || job || '입니다.' as describe
+select ename || ' 의 직무는 ' || job || '입니다.'
 from emp;
 
 -- Distinct : 데이터의 중복값을 제거하고 출력
@@ -138,73 +136,4 @@ where deptno=10 and job='MANAGER'
 select ename, deptno, job
 from emp
 where deptno=10 or job='MANAGER'
-;
-
-
--- 다음은 부서번호가 10번이 아닌 사원의 사원이름, 부서번호, 직급을 출력해 봅시다.
-select ename, deptno, job
-from emp
--- where deptno <> 10
--- where deptno != 10
-where not deptno = 10 
-;
-
--- 2000에서 3000 받는 사원 조회
-select ename, sal
-from emp
--- where sal >= 2000 and sal <= 3000
-where sal between 2000 and 3000 -- a 이상 b 이하의 범위
-;
-
--- 1987년에 입사한 사원을 출력해 봅시다.
-select * 
-from emp
--- where hiredate between '1987/01/01' and '1987/12/31'
-where hiredate >= '1987/01/01' and hiredate <= '1987/12/31'
-;
-
--- 이번에는 커미션이 300 이거나 500 이거나 1400 인 사원을 검색하기
-select *
-from emp
--- where comm=300 or comm =500 or comm=1400
-where comm in(300,500,1400)
-;
-
--- 찾으려는 이름이 F로 시작 하는 것은 알지만 그 뒤의 문자는 모를 경우
-select *
-from emp
--- where ename like 'F%' --F로 시작하고 뒤는 어떤 문자가 와도 상관 없음
--- where ename like '%S' --F로 시작하고 뒤는 어떤 문자가 와도 상관 없음
--- where ename like '%A%'   -- 이름에 A문자를 포함하는 이름을 검색
--- where ename like '_A%' -- 첫 번째 문자는 어떤 문자든 상관없고  두 번째 자리는 반드시 A가 오는 이름 검색
---where ename like '__R%' -- 첫 번째, 두 번째 자리는 어떤 문자와도 상관 없고 세 번째 자리에 R이 오는 이름 검색
--- 000000-1000000 '_______1%'
--- '1987/12/19' -> '_____12%'
-where ename not like '%A%'
-;
-
--- IS NULL 연산자를 사용하여 커미션을 받지 않는 사원을 검색
-select *
-from emp
--- where comm=null
-where comm is null
-;
-
--- 커미션을 받는 사원을 검색
-select *
-from emp
-where comm is not null and comm != 0
-;
-
--- 사원의 리스트를
--- 급여의 오름차순으로 정렬해보자
-select *
-from emp
--- order by sal asc -- 오름차순
--- order by sal desc -- 내림차순
--- order by sal      -- 생략일 경우 오름차순
--- order by ename desc
--- order by comm desc 
--- order by hiredate -- 날짜의 작다 표현은 오래된 날짜라는 뜻 : 오래된 날짜부터 최근 날짜로 정렬
-order by hiredate, sal asc
 ;
