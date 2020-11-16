@@ -50,16 +50,18 @@ where hiredate between '1981/2/20' and '1981/5/1'
 -- 이름을 기준(내림차순)으로 영문자순으로 출력하시오.
 select ename, deptno 
 from emp
-where deptno=20 or deptno=30
+-- where deptno=20 or deptno=30
+where deptno in(20,30)
 order by ename desc
 ;
 
 -- 사원의 급여가 2000에서 3000사이에 포함되고 
 -- 부서번호가 20 또는 30인 사원의 이름, 급여와 부서번호를 출력, 
 -- 이름순(오름차순)으로 출력하시오.
-select ename, deptno, sal 
+select ename, sal, deptno 
 from emp
-where (sal between 2000 and 3000) and (deptno=20 or deptno=30)
+-- where (sal between 2000 and 3000) and (deptno=20 or deptno=30)
+where (sal between 2000 and 3000) and deptno in(20,30)
 order by ename
 ;
 
@@ -80,7 +82,7 @@ where mgr is null
 -- 급여 및 커미션을 기준으로 내림차순 정렬하여 표시하시오.
 select ename, sal, comm
 from emp
-where comm is not null 
+where comm is not null and comm>0
 order by sal, comm desc
 ;
 
@@ -101,7 +103,7 @@ where ename like '%A%E%'
 -- 사원의 이름, 담당업무, 급여를 출력하시오.
 select ename, job, sal
 from emp
-where (job='CLERK' or job='SALESMAN') and (sal not IN(1600,950,1300))
+where job in('CLERK','SALESMAN') and (sal not IN(1600,950,1300))
 ;
 
 -- 커미션이 $500 이상인 사원의 이름과 급여 및 커미션을 출력하시오.
@@ -146,8 +148,18 @@ from orders
 where custid=1
 ;
 
+select sum(saleprice) as "총구매액"
+from orders
+where custid=(select custid from customer where name='박지성')  -- 박지성의 custid
+;
+
 -- 박지성이구매한도서의수(박지성의고객번호는1번으로놓고작성)
 select count(custid) as "구매한 도서 수"
+from orders
+where custid=1
+;
+
+select count(*) as "구매한 도서 수"
 from orders
 where custid=1
 ;
@@ -217,7 +229,7 @@ where mod(empno,2)=0
 
 -- 입사일을 년도는 2자리(YY), 월은 숫자(MM)로 표시하고 
 -- 요일은 약어 (DY)로 지정하여 출력하시오.
-select ename, to_char(hiredate,'YY/MM/DD DY') as "입사연월"
+select ename, to_char(hiredate,'YY/MM DY') as "입사연월"
 from emp
 ;
 
@@ -231,7 +243,7 @@ from dual
 -- 사원들의 상관 사번을 출력하되 
 -- 상관이 없는 사원에 대해서는 
 -- NULL 값 대신 0으로 출력하시오.
-select ename, empno, nvl(mgr,0)
+select ename, nvl(mgr,0)
 from emp
 ;
 -- DECODE 함수로 직급에 따라 급여를 인상하도록 하시오. 
@@ -241,7 +253,8 @@ select ename, job,
                   'SALESMAN', sal+180,
                   'MANAGER', sal+150,
                   'CLERK', sal+100,
-                  'PRESIDENT', 0) 
+                  'PRESIDENT', sal
+                  ) 
                   as upsal
 from emp
 ;
@@ -263,13 +276,12 @@ group by job
 select job, count(*)
 from emp
 group by job
+order by job
 ;
 ​
 -- 관리자 수를 출력하시오.
-select job, count(*) as "관리자 수"
+select count(distinct mgr) as "관리자 수"
 from emp
-where job='MANAGER'
-group by job
 ;
 
 -- 급여 최고액, 급여 최저액의 차액을 출력하시오.
@@ -282,9 +294,10 @@ from emp
 -- 결과를 급여에 대한 내림차순으로 정렬하여 출력하시오.
 select job, min(sal) 
 from emp
-group by job,sal,mgr
-having (min(sal)>=2000) and (mgr is not null)
-order by sal desc
+where mgr is not null
+group by job
+having min(sal)>=2000
+order by min(sal) desc
 ;
 
 -- 각 부서에 대해 부서번호, 사원 수, 부서 내의 모든 사원의 평균 급여를 출력하시오. 
@@ -304,18 +317,20 @@ from emp
 
 -- 각 부서에 대해 부서번호 이름, 지역 명, 사원 수, 부서내의 모든 사원의 평균 급여를 출력하시오. 
 -- 평균 급여는 정수로 반올림 하시오. DECODE 사용.
-select decode(deptno, 10, 'ACCOUNTING',
-                      20, 'RESEARCH',
-                      30, 'SALES',
-                      40, 'OPERATIONS') as "부서명",
+select deptno,
       decode(deptno, 10, 'NEW YORK',
                      20, 'DALLAS',
                      30, 'CHICAGO',
                      40, 'BOSTON') as "지역",
+      decode(deptno, 10, 'ACCOUNTING',
+                      20, 'RESEARCH',
+                      30, 'SALES',
+                      40, 'OPERATIONS') as "부서명",
       count(*) as "부서 인원",
       round(avg(sal)) as "평균 급여"                  
 from emp
-group by deptno
+group by deptno 
+order by deptno
 ;
 ​
 
@@ -328,7 +343,7 @@ select  job, deptno as dno,
        decode(deptno, '30', sum(sal)) as "부서30",
        sum(sal) as "총액"
 from emp 
-group by job, deptno,sal
+group by job, deptno
 order by deptno
 ;
 
