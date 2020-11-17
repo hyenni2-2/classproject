@@ -119,6 +119,12 @@ select ename, job, sal
 from emp
 where sal=(select min(sal) from emp);
 
+select ename, job, sal
+from emp
+where sal<=all(select sal from emp);
+
+
+
 -- 46. 평균급여가 가장 적은 직급의 -> 조건이니까 where절??  -> having 절이었음...그룹의 결과를 제한.
 -- 직급 이름과 직급의 평균을 구하시오.
 select job, avg(sal) from emp group by job;   -- 직급별 평균
@@ -203,7 +209,7 @@ select ename,sal from emp where mgr in(select empno from emp where ename='KING')
 -- 사원에 대한 부서번호, 사원이름 및 담당 업무를 표시하시오.
 select deptno from dept where dname='RESEARCH';
 
-select empno, ename, job
+select deptno, ename, job
 from emp
 where deptno=all(select deptno from dept where dname='RESEARCH');
 

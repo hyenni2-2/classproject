@@ -142,9 +142,16 @@ select * from orders;
 select c.name
 from orders o, customer c,book b
 where o.custid=c.custid and b.bookid=o.bookid 
-having count(distinct b.publisher)>=2
 group by c.name
+
+
+having count(distinct b.publisher)>=2
 ;
+
+select c.name, b.bookname, b.publisher
+from orders o, customer c,book b
+where o.custid=c.custid and b.bookid=o.bookid ;
+
 
 select o.custid,b.publisher
 from orders o, book b
