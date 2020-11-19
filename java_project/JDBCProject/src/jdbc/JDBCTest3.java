@@ -27,24 +27,20 @@ public class JDBCTest3 {
 			conn = DriverManager.getConnection(DbUrl, DbUser, DbPw);
 			System.out.println("DB 접속 완료!");
 			
-			String sql = "select * from emp order by deptno";
+			String sql = "update emp set sal=1000 where ename='SCOTT'";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             
 //    		3. EMP 테이블에 서 “SCOTT” 사원의 급여(sal) 정보를 1000으로 바꾸는 프로그램을 작성해보자.
-            
-            
+            int result = pstmt.executeUpdate(sql);
 
+  
+            pstmt.close();
             
             
-
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("DB 연결 중 오류 발생"+e.getMessage());
 			e.printStackTrace();
-	
-
-
-
 //		4.EMP 테이블에 서 “SCOTT” 이름으로 검색한 결과를 출력하는 프로그램을 작성해보자.
 
 //		5.모든 사원정보를 출력하되 부서정보를 함께 출력하는 프로그램을 작성해보자.
