@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!-- HTML5 문서임을 정의 -->
+
+<html lang="ko"><!-- html 문서의 시작, 작성하는 언어 정의 -->
+
+<head>
+    <!-- html 문서의 정보를 정의 -->
+    <title>First HTML5</title><!-- 웹 문서의 정의 -->
+    <meta charset="utf-8"> <!-- 문서의 속성 -->
+    <style>
+        h1 {
+            background-color: skyblue;
+            color: royalblue
+        }
+         h2 {
+            background-color: palegoldenrod;
+            color: palevioletred
+        }
+        div {
+            background-color: cornflowerblue;
+        }
+        span {
+            background-color: dodgerblue;
+        }
+        p {
+          background-color: antiquewhite  
+        }
+    </style> <!-- 웹 문서의 요소들의 스타일 정의 -->
+    <script>
+        // alert(':-)');
+    </script> <!-- 자바 스크립트 정의 -->
+    </head>
+
+    <body>
+        
+        <h3 id="top">INDEX</h3>
+        <ol>
+            <li> <a href="http://www.naver.com">N@ver</a></li>
+            <li><a href="http://192.168.0.45/">link</a></li>
+            <li><a href="#tag-1">He@ding T@g</a></li>
+            <li><a href="#tag-2">P T@g</a></li>
+            <li><a href="#tag-3">br T@g</a></li>
+            <li><a href="#tag-4">list</a></li>
+            <li><a href="#tag-5">table tag</a></li>
+            <li><a href="#tag-6">img tag</a></li>
+            <li><a href="#tag-7">공간분할 tag</a></li>
+
+
+        </ol>
+
+        <hr>
+        
+        <h1>form tag</h1>
+        
+        <form action="#" method="get">
+        
+            아이디
+            <input type="text" name="userid" value="value"><br>
+            이름
+            <input type="text" name="username" value="value"><br>
+            비밀번호
+            <input type="password" name="pw" value="value"><br>
+            프로필 사진
+            <input type="file" name="file"><br>
+           OK? <input type="checkbox" name="ok"><br>
+           
+            A <input type="radio" name="choice" value="A">
+            B <input type="radio" name="choice" value="B">
+            C <input type="radio" name="choice" value="C"><br>
+              
+             <input type="submit" value="서버로 전송">
+            
+            
+
+            
+            
+            
+        
+        </form>
+        
+        
+        
+        
+        
+        
+        <hr>
+        
+        <h1 id="tag-7">공간 분할 tag</h1>
+        
+        <!--block속성-->
+        <div> DIV DIV DIV DIV DIV DIV DIV </div>
+        <!--인라인 속성-->
+        <span>span span span span span</span><span>span span span span span</span><div> DIV DIV DIV DIV DIV DIV DIV </div>
+        
+        <hr>
+        
+        <h1 id="tag-6">img tag</h1>
+        <img src=https://t1.daumcdn.net/daumtop_chanel/op/20200723055344399.png width=100>
+        
+        <img src="image_9664745211604644619009.jpg" width=300>
+        <img src="image_944732371604644619007.jpg" width=300>
+        
+        <img src="images/image_3259942281604644619008.jpg" width=300>
+        
+        <img src="test" alt="이미지 파일입니다.">
+        
+                
+        <h1>Table tag</h1>
+        <table border="1">
+        <tr>
+            <td rowspan="2">1,1</td>
+            <td>1,2</td>
+            </tr>
+            <tr>
+            <!--<td>2,1</td>-->
+            <td>2,2</td>
+            </tr>
+        </table>    
+        
+        
+          <h1>Table tag</h1>
+        <table border="1">
+        <tr>
+            <td colspan="2">1,1</td>
+            <!--<td>1,</td>-->
+            </tr>
+            <tr>
+            <td>2,1</td>
+            <td>2,2</td>
+            </tr>
+        </table>    
+        
+        
+        <h1 id="tag-5">Table tag</h1>
+        <table border="1">
+            <tr>
+            <th colspan="2">지역별 홍차</th>
+            <!--<td></td>-->    
+            </tr>
+            <tr>
+            <th rowspan="3">중국</th>
+            <td>정산소종</td>    
+            </tr>
+            <tr>
+            <!--<td></td>-->
+            <td>기문</td>    
+            </tr>
+            <tr>
+            <!--<td></td>-->
+            <td>운남</td>    
+            </tr>
+            <tr>
+            <th rowspan="4">인도 및 스리랑카</th>
+            <td>아삼</td>    
+            </tr>
+            <tr>
+            <!--<td></td>-->
+            <td>실론</td>    
+            </tr>
+            <tr>
+            <!--<td></td>-->
+            <td>다질링</td>    
+            </tr>
+            <tr>
+            <!--<td></td>-->
+            <td>닐기리</td>    
+            </tr>
+            
+            
+            
+            
+        
+        
+        
+        <h1>Table tag</h1>
+        <table border="1">
+        
+            <tr>
+            <th>tag</th>
+            <th>설명</th>
+            </tr>
+            <tr>
+            <td>table</td>
+            <td>테이블을 생성해주는 태그</td>
+            </tr>
+            <tr>
+            <td>thead</td>
+            <td>테이블의 머릿글</td>
+            </tr>
+            <tr>
+            <td>tbody</td>
+            <td>테이블의 본문</td>
+            </tr>
+            <tr>
+            <td>tfoot</td>
+            <td>설명</td>
+            </tr>
+            <tr>
+            <td>tr</td>
+            <td>테이블의 행을 생성</td>
+            </tr>
+            <tr>
+            <td>th</td>
+            <td>테이블의 각 열의 라벨을 표현</td>
+            </tr>
+            <tr>
+            <td>td</td>
+            <td>행에 포함되는 열을 생성</td>
+            </tr>
+            
+        
+        </table>
+        
+        
+        
+        <h1 id="tag-4">LIST tag</h1>
+        
+        <!--순서 없는 리스트-->
+        <ul>
+           <li>카카오</li>
+           <li>네이버</li>
+           <li>인스타그램</li>
+        </ul>
+        
+        <hr>
+        <!--순서 있는 리스트-->
+        <ol>
+           <li>카카오</li>
+           <li>네이버</li>
+           <li>인스타그램</li>
+        
+        </ol>
+        
+        <hr>
+        
+        
+        
+        
+        
+        <h3 id="tag-3">홍차</h3>
+        <hr>
+        <h4>정의</h4>
+        <p>
+            동양에서는 우러난 차의 빛깔(붉은색)을 보고 홍차라고 하지만, 서양에서는 찻잎의 색깔(검은색)을 보고 흑차(Black Tea)라고 부른다. 녹차는 동서양 공통으로 綠茶-Green Tea다. 즉, 동양(특히 중국)에서 '흑차'라고 하면 보이차 종류의 후발효차를 지칭하는 명칭이다. 반대로 서양에서 '홍차', 즉 red tea는 허브의 일종인 루이보스를 우려낸 대용차를 말한다.
+        </p>
+        
+        <h4>등급</h4>
+        <p>
+        T.G.F.O.P(Tippy Golden Flowery Orange Pekoe) - 솜털이 나있는 가지끝의 어린 찻잎과 차순(flowery)을 포함한 특등급품. 부수지 않고 그대로 말려 포장된다.
+        </p>
+        - 브로큰 페코
+        <br><br>
+        - 브로큰 페코 수숑
+        <br><br>
+        - 브로큰 오렌지 페코 패닝
+        
+        
+        <hr>
+        
+
+        
+        <h1 id="tag-2">Paragraph Tag</h1>
+        <h2>‘통 큰’ 조지 클루니, 11억원 돈가방 친구 14명에게 쐈다[할리우드비하인드]</h2>
+        <p>
+        조지 클루니가 가장 친한 친구 14명에게 현금으로 1백만 달러(한화 약 11억 원)를 선물했다는 인터뷰가 나와 화제다.
+        </p>
+        <p>
+        최근 해외 매거진 GQ와의 인터뷰에서 할리우드 배우 조지 클루니는 2013년 영화 '그래비티'로 많은 러닝 개런티를 받았으며, 이를 지난 35년 간 자신을 도와준 지인들에게 베풀고 싶었다고 밝혔다. 당시 조지 클루니는 미혼이었다.
+        </p>
+        
+        <hr>
+        
+        <h1 id="tag-1">He@ding T@g</h1>
+        <h1>This is heading 1</h1>
+        <h2>This is heading 2</h2>
+        <h3>This is heading 3</h3>
+        <h4>This is heading 4</h4>
+        <h5>This is heading 5</h5>
+        <h6>This is heading 6</h6>
+        
+        <a href="#top">top</a>
+    </body>
+</html>
