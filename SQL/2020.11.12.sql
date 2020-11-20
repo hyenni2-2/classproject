@@ -353,3 +353,11 @@ where deptno=(select deptno from dept where dname='SALES');
 rollback;
 
 select * from emp10;
+
+select * from emp;
+
+delete  from emp where empno=3;
+
+commit;
+
+desc emp;

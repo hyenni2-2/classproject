@@ -241,3 +241,5 @@ select deptno from emp where job='MANAGER';
 select ename 
 from emp
 where deptno in(select deptno from emp where job='MANAGER');
+
+
