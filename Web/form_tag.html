@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>FORM TAG 연습</title>
+        <meta charset="utf-8">
+        <style></style>
+        <script></script>
+    </head>
+    <body>
+    
+        <h1>Form Tag</h1>
+        <hr>
+        
+        <!--
+          서버로 전송하고자 하는 폼 데이터를 묶는다.
+          action : 데이터를 전송할 경로(위치)
+          method : 전송하는 방식(GET / POST)
+          -->
+        <form action="#" method="get">  <!--#이면 자기 자신을 참조-->
+            
+            type=text : <input type="text" name="username" value="tester"><br>
+            type=password : <input type="password" name="pw"><br>
+            <!--checkbox는 여러개 선택을 받을 수 있음-->
+            type=checkbox : <input type="checkbox" name="chk" value="ok1"><br> 
+                            <input type="checkbox" name="chk" value="ok2"><br>
+            <!--radio는 하나만 선택 가능-->
+            type=radio : A <input type="radio" name="choice" value="A">
+                         B <input type="radio" name="choice" value="B">
+                         C <input type="radio" name="choice" value="C">
+                         D <input type="radio" name="choice" value="D">
+                         F <input type="radio" name="choice" value="F"><br>
+            <!--color는 사용자가 색 선택 가능하게 함-->
+            type=color : <input type="color" name="color"><br>
+            <!--연월일시 선택-->
+            type=datetime-local : <input type="datetime-local" name="localDatetime"><br>
+            <!--연월일만 선택-->
+            type=date : <input type="date" name="date"><br>
+            <!--월 선택-->
+            type=month : <input type="month"><br>
+            <!--주 선택-->
+            type=week : <input type="week" name="week"><br>
+            <!--시간만 선택-->
+            type=time : <input type="time" name="time"><br>
+            type=email : <input type="email" name="email"><br>
+            type=file : <input type="file" name="userPhoto"><br>
+            <!--사용자에게 보여줄 필요는 없으나 서버쪽에서 관리하기 위한 숨겨진 데이터-->
+            <!--사용자가 입력할 수 없으므로 value값(idx값) 직접 설정-->
+            <!--데이터 전송의 목적-->
+            type=hidden : 화면에는 표현되지 않음 
+            <input type="hidden" name="idx" value="1"><br>
+            <!--제출하는 버튼을 이미지로 대체함-->
+            type=image : <input type="image" src="image_9664745211604644619009.jpg" width="100"><br>
+            <!--숫자 타입만 받을 수 있음. 자바에서 처리하기 편리하게 하기 위해-->
+            type=number : <input type="number" name="num"><br>
+            <!--범위 표현, 슬라이드 바 형식-->
+            type=range : <input type="range" name="age" min="0", max="150"><br>
+            <!--전화번호 저장, 미국식이어서 영문자도 들어갈 수 있음-->
+            type=tel : <input type="tel"><br>
+            <!--url 입력하는 칸-->
+            type=url : <input type="url" name="url"><br>
+           
+            
+            
+            
+            <br>
+            <br>
+            <!--데이터를 전송-->
+            <input type="submit">       
+            <!--초기화-->
+            <input type="reset">
+            
+            
+                
+            
+        </form>
+        
+        
+        
+        
+    </body>
+</html>
