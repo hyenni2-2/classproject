@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+} 
+
+#wrap {
+     font-family: 'Nanum Myeongjo', serif;
+     margin: 20px auto;
+     padding: 10px;
+     
+     background-color: #FFF;
+     box-shadow: 3px 3px 5px #DDD;
+     border-radius: 5px;
+     width: 800px;
+ }
+
+#body {
+    background-color: grey;
+}
+
+ #header {
+
+     padding: 20px 40px;
+
+ }
+
+ #navi {
+     border-top: 1px solid #AAA;
+     border-bottom: 1px solid #AAA;
+     overflow: hidden;
+ }
+
+ #navi>ul {
+     float: left;
+     overflow: hidden;
+     list-style: none;
+ }
+
+#navi>ul>li {
+    float: left;
+    width: 80px;
+    height: 30px;
+    /*padding: 0 10px ;*/
+    
+    line-height: 30px;
+    text-align: center;
+}
+
+#navi>ul>li:hover {
+    cursor: pointer;
+    background-color: gray;
+    color: lightblue;
+}
+
+ #navi>form {
+     float: right;
+     margin-right: 10px;
+     
+ }
+
+
+#navi>form>input[type=button] {
+    margin-left: -5px;
+    width:40px;
+    border-radius: 0 10px 10px 0;
+    vertical-align: middle;
+}
+
+#navi>form>input[type=text] {
+    height: 18px;
+    border-radius: 10px 0 0 10px;
+    padding: 0 10px;
+}
+
+#navi>form>input {
+    border: 1px solid #AAA;
+    margin-top: 0px;
+}
+
+
+#content-wrap {
+    overflow: hidden;
+}
+
+
+ #content {
+     width: 595px;
+     float: left;
+     
+     padding: 5px;
+
+ }
+
+#content>section>article>h1 {
+    color: darkslateblue;
+    margin: 15px 0;
+    font-size: 24px; 
+}
+
+#content>section>article>img {
+    margin: 10px 0;
+}
+
+#content>section>article>hr {
+    margin: 10px 0;
+}
+
+
+
+ #aside {
+     width: 190px;
+     float: right;
+    
+ }
+
+#aside>h4 {
+    margin-top: 30px;
+}
+
+#aside>ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+#aside>h4+div {
+    padding-left: 10px;
+}
+
+#aside>
+
+ #footer {
+     width: 1000px;
+     clear: both;
+
+
+ }

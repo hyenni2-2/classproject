@@ -1,0 +1,48 @@
+header {
+    overflow: hidden;
+    border-bottom: 1px solid #AAA;
+    margin: 0;
+    padding: 0;
+
+}
+
+
+
+p3 {
+    
+    float: left;
+    overflow: hidden;
+    margin-left: 20px;
+    border-radius: 0 10px 10px 0;
+    
+    
+}
+
+form {
+    float: left;
+        overflow: hidden;
+    vertical-align: middle;
+border-radius: 10px 0;
+}
+
+a{
+    float: left;
+        overflow: hidden;
+ border-radius: 0 10px 10px 0;;
+}
+
+
+
+.cir {
+        width: 100px;
+            height: 100px;            
+            border-radius: 200px;
+            position: absolute;
+}
+
+#circle {
+    background-image: url(images/KakaoTalk_20201124_154850856_01.jpg);
+            background-size: contain;
+            left: 50px;
+            top: 50px;
+}
