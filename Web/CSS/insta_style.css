@@ -3,7 +3,9 @@ header {
     border-bottom: 1px solid #AAA;
     margin: 0;
     padding: 0;
-
+    width: 700px;
+    height: 70px;
+    border: 1px solid black;
 }
 
 
@@ -14,8 +16,8 @@ p3 {
     overflow: hidden;
     margin-left: 20px;
     border-radius: 0 10px 10px 0;
-    
-    
+    font-size: 40px;
+    font-weight: 400;
 }
 
 form {
@@ -23,6 +25,7 @@ form {
         overflow: hidden;
     vertical-align: middle;
 border-radius: 10px 0;
+    text-align: center;
 }
 
 a{
@@ -32,17 +35,33 @@ a{
 }
 
 
+nav {
+    width: 700px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+    
+}
+
 
 .cir {
         width: 100px;
             height: 100px;            
             border-radius: 200px;
             position: absolute;
+    align-content: center;
+    
 }
 
 #circle {
     background-image: url(images/KakaoTalk_20201124_154850856_01.jpg);
             background-size: contain;
-            left: 50px;
-            top: 50px;
+    padding: 20px;
+    margin: 20px;
+}
+
+
+nav>p3 {
+    padding-right: 20px;
+    text-align: bottom;
 }
