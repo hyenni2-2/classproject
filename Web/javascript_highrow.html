@@ -7,7 +7,7 @@
     <script>
     // 하이로우
     // 랜덤한 숫자가 주어지고, 사용자가 입력하면 높고 낮다로 판단
-    // 몇번째에 맞추는지 캉운팅
+    // 몇번째에 맞추는지 카운팅
     // 성공 조건 : 10회 이전, 30초 이전에 맞추기
     var number = (Math.random()*100)+1;
     number = Math.floor(number);
@@ -15,29 +15,44 @@
         
     console.log('Random number : ', number);
     
-    var userNum = prompt('숫자를 입력하세요');
-    var cnt = 10;
+   /* var userNum = prompt('숫자를 입력하세요');*/
+    /*input = Number(userNum);*/
+    var cnt=1;  
     
-    //10번 물어보는 거니까, for문 작성해서 반복해야겠지
-    for(var i=1; i<10; i++){
-            if(userNum==number){
-                alert('축하합니다. 숫자를 맞췄습니다. 숫자는 :'+number+', '+(i+1)+'번째에 맞춤');
+    //10번 물어보는 거니까, for문 작성해서 반복 
+  
+var game = function(){
+    var userNum = prompt('숫자를 입력하세요');
+    input = Number(userNum);
+    
+        for(var i=1; i<11; i++){
+            if(input==number){
+                alert('축하합니다. 숫자를 맞췄습니다. 숫자는 :'+number+', '+i+'번째에 맞춤');
                 break;
-            } else if(userNum>number){
-                prompt('too high, 다시 입력하세요.');
-                i++;
-            } else if(userNum<number){
-                prompt('too low, 다시 입력하세요.');
-                i++;
+            } else if(input>number){
+                var input=Number(prompt('too high, 다시 입력하세요.'+(i)+'번째'));
+                  
+            } else if(input<number){
+                var input=Number(prompt('too low, 다시 입력하세요.'+(i)+'번째'));
+                
             }
             
+        
             if(i==10){
                 alert('횟수를 모두 다 사용했습니다. 게임 오버, 답은'+number);
                 break;
             }
+        
         }
         
-    
+      }  
+
+game();
+
+
+        // 30초 안에 10번하려면 callback함수+타이머 함수써야해서
+        setInterval(function(game,1000));
+        
         
         
     
@@ -48,6 +63,8 @@
     </head>
 
 <body>
+    
+    
     
 </body>
 </html>
