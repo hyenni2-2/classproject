@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Yeon Sung', cursive;
+}
+
+/*프로그램 타이틀 선택*/
+h1.header {
+    margin: 20px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #BBB;
+}
+
+h2.title {
+    margin: 20px 40px;
+}
+
+#regform {
+    margin: 10px 30px;
+}
+
+#regform>table {
+    width: 700px;
+}
+
+#regform>table td {
+    width: 120px;
+    padding: 10px;
+    vertical-align: top;
+}
+
+#regform>table input {
+    width: 80%;
+    padding: 5px;
+}
+
+#regform>table label {
+    display: block;
+}
+
+#regform>table input[type=submit] {
+    width: 100px;
+    height: 40px;
+    background-color: lightsteelblue;
+    border: 2px solid #CCC;
+    
+}
+
+div.msg {
+color: brown;
+display: none;
+}
+
+
+table.table {
+     margin: 10px 40px;
+    width: 600px;
+    border-collapse: collapse;
+}
+
+table.table td,table.table th {
+    padding: 10px;
+    border:  1px solid #aaa;
+    background-color: #fff;
+   
+    text-align: center;
+}
+
+div.edit_div {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    
+    box-shadow: 5px 5px 5px #ddd;
+    
+    position: absolute;
+    
+    top: 50px;
+    left: 100px;
+    
+    display: none;
+    background-color: lightsteelblue;
+    /*margin: 0 auto;*/
+}
+
+div.edit_div>div.edit_for_header {
+    overflow: hidden;
+    padding: 5px;
+}
+
+div.edit_div>div.edit_for_header>h2 {
+    float: left;
+}
+div.edit_div>div.edit_for_header>a {
+    float: right;
+}
+
+#editform {
+    margin: 5px;
+}
+
+#editform>table {
+    width: 100%;
+}
+
+#editform>table td {
+    padding: 5px;
+    text-align: center;
+}
+
+#editform input[type=submit] {
+    background-color: azure;
+    padding: 10px;
+    width: 50%;
+    font-size: 1.2em;
+    font-family: 'Yeon Sung', cursive;
+    font-weight: bold;
+    color: darkseagreen;
+    
+    border:  3px solid darkseagreen;
+    
+
+    
+}
+
+
+
+
+
+
