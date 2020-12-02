@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배너 이미지</title>
+    <!--jquery 라이브러리 로드-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function(){
+        
+        setInterval(function(){
+        $('img').first().appendTo('div');    
+        }, 4000);
+    });
+    
+    </script>
+    <style>
+        
+        div {
+            width: 250px;
+            height: 250px;
+            
+            border:  2px solid #ddd;
+            
+            overflow: hidden;
+        }
+        
+        img {
+            width: 250px;
+            height: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    <img src="../images/KakaoTalk_20201124_154850856.jpg">
+    <img src="../images/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.jpg">
+    <img src="../image_9664745211604644619009.jpg">
+    <img src="../images/image_609687511604644619009.jpg">
+    
+    </div>
+    
+</body>
+</html>
