@@ -39,6 +39,40 @@ body {
     display: none;   
 }
 
+#main {
+    float: left;
+    width: 50%;
+}
+
+
+#side {
+    float: right;
+    width: 50%;
+}
+
+.sidebar {
+    margin: 20px;
+    padding: 10px;
+   
+}
+
+table.sidetab {
+    border-collapse: collapse;
+}
+
+table.sidetab tr, table.sidetab th {
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+div.modify {
+    width: 400px;
+    background-color: dodgerblue;
+    border: 1px solid #ddd;
+}
+
 
 
 

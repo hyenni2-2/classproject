@@ -15,12 +15,13 @@
     <div>
         <h1 class="header">SIGN UP</h1>
     </div>
+    <hr>
     <!--헤더 종료-->
     <!--회원가입 폼 시작-->
-    <div>
-        <hr>
+    <div id="main">
+        
         <h3 class="title">REGISTER</h3>
-        <form id=saveform onsubmit="return save();">
+        <form id="saveform" onsubmit="return save();">
         <table id="tab">
             <tr>
                 <th>NAME</th>
@@ -32,7 +33,7 @@
             <tr>
                 <th>B.DAY</th>
                 <td>
-                    <input type="text" name="bd" id="bd" required>
+                    <input type="date" name="bd" id="bd" required>
                     <div class="msg">It can't be a blank field.</div>
                 </td>
             </tr>
@@ -66,6 +67,64 @@
             </form>
     </div>
     <!--회원가입 폼 종료-->
+    <!--회원 정보 리스트 시작-->
+    <div id="side">
+    <h3 class="sidebar">MEMBER PAGE</h3>
+    <table class="sidetab">
+        <tbody id="tbody">
+          <!-- <tr>
+            <th>INDEX</th>
+            <th>NAME</th>
+            <th>B.DAY</th>
+            <th>P.NUM</th>
+            <th>PW</th>
+            <th>EDIT</th>
+            </tr>-->
+        </tbody>
+        </table>
+    </div>
+    <!--회원정보 리스트 끝-->
+    <!--수정폼 만들기-->
+    <div class="modify">
+    <h4>MODIFY</h4>
+        <hr>
+    <table>
+        <tr>
+        <td><label>NAME</label></td>
+        <td>
+            <input type="text" name="ename" id="ename" readonly>
+            <div class="msg">You can't change this field.</div>
+            </td>
+        </tr>
+        
+        <tr>
+        <td><label>PW</label></td>
+        <td>
+            <input type="password" name="epw" id="epw">
+            <div class="msg">You can't change this field.</div>
+            </td>
+        </tr>
+        
+        <tr>
+        <td><label>PW-CHECK</label></td>
+        <td><input type="password" id="erepw"></td>
+        </tr>
+        
+        <tr>
+        <td><label>B.DAY</label></td>
+        <td><input type="date" id="ebd" name="ebd"></td>
+        
+        </tr>
+        
+        </table>
+    
+    
+    
+    
+    
+    </div>
+    
+    
 
 
 </body>
