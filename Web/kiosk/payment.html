@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>payment</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <!--jquery 라이브러리 로드-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <script>
+        
+        
+        // 선택한 정보 저장된 것 (임시)
+        var pay = [
+
+            {
+                name: '고기고기',
+                price: 5000,
+                cnt: 1
+            },
+            {
+                name: '도련님',
+                price: 10000,
+                cnt: 2
+            }
+        ];
+
+        console.log(pay[1]);
+
+
+        // 결제 메소드 만들기 : 가격 * 갯수 -> 잊지말고 호출하기
+        function paying(pay) {
+            for (var i = 0; i < pay.length; i++) {
+                var total = 0;
+                total = (pay[i].price * pay[i].cnt);
+                return total;
+            }
+        };
+        
+        
+        // 결제창 띄우기 
+        
+
+        
+    </script>
+
+
+</head>
+
+<body>
+
+
+
+
+
+</body>
+
+</html>
