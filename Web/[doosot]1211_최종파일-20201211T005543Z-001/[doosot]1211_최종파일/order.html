@@ -76,11 +76,12 @@
 
                     </div>
                     <div class="sum" id="sum">
-                            <!--합계출력-->
+                        <!--합계출력-->
                     </div>
 
                     <div class="paybutton">
-                        <input type="submit" class="btn btn-warning" value="결제" onclick="payClick()"> <!--결제창띄우기--> 
+                        <input type="submit" class="btn btn-warning" value="결제" onclick="payClick()">
+                        <!--결제창띄우기-->
                         <input type="button" class="btn btn-warning" value="취소" onclick="removeCart()">
                     </div>
 
@@ -111,7 +112,7 @@
         <div>
             <div class="addselectmenu">
                 <img id="view_img" class="view_img">
-  
+
                 <table>
                     <tr>
                         <td style="width:55%; text-align:left;"><span id="menu_name"></span></td>
@@ -138,42 +139,48 @@
 
     <!-- 매장or테이크아웃여부 START -->
     <div class="takeout" id="takeout">
-        <input type="button" class="btn btn-warning" value="매장식사" onclick="javascript:takeout('no')"><br>
-        <input type="button" class="btn btn-warning" value="포장하기" onclick="javascript:takeout('yes')">
+        <input type="button" class="btn btn-warning" value="매장식사" onclick="javascript:takeout(false)"><br>
+        <input type="button" class="btn btn-warning" value="포장하기" onclick="javascript:takeout(true)">
     </div>
     <!-- 매장or테이크아웃여부 END -->
-    
-    
-     <!--결제수단선택창 만들기-->
-        <div class="payment" id="paystart">
-            <div>
-                <table class="ptab">
-                    <tr>
+
+
+    <!--결제수단선택창 만들기-->
+    <div class="payment" id="paystart">
+        <div>
+            <table class="ptab">
+
+                <tr>
+                    <td colspan="3"><input type="button" value="X" onclick="closePay()"></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
                         <h2 class="title">결제수단 선택</h2>
                         <hr align="center" width:95>
+                    </td>
+                </tr>
+                <tbody class="tab">
+                    <tr>
+                        <td><img src="image/pay/cash.png" width="100" height="100" onclick="choosePay(0)"></td>
+                        <td><img src="image/pay/card.png" width="100" height="100" onclick="choosePay(1)"></td>
+                        <td><img src="image/pay/sam.png" width="100" height="100" onclick="choosePay(2)"></td>
                     </tr>
-                    <tbody class="tab">
-                        <tr>
-                            <td><img src="image/pay/cash.png" width="100" height="100" onclick="choosePay(0)"></td>
-                            <td><img src="image/pay/card.png" width="100" height="100" onclick="choosePay(1)"></td>
-                            <td><img src="image/pay/sam.png" width="100" height="100" onclick="choosePay(2)"></td>
-                        </tr>
-                        <tr align="center">
-                            <td>현금</td>
-                            <td>카드</td>
-                            <td>삼성페이</td>
-                        </tr>
-                        <tr>
-                            <td><img src="image/pay/kakao.png" width="100" height="100" onclick="choosePay(3)">
-                            </td>
-                        </tr>
-                        <tr align="center">
-                            <td>카카오페이</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                    <tr align="center">
+                        <td>현금</td>
+                        <td>카드</td>
+                        <td>삼성페이</td>
+                    </tr>
+                    <tr>
+                        <td><img src="image/pay/kakao.png" width="100" height="100" onclick="choosePay(3)">
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>카카오페이</td>
+
+                </tbody>
+            </table>
         </div>
+    </div>
     <!--결제수단선택창 종료-->
 
     <!--세부선택창-->
@@ -181,33 +188,13 @@
     </div>
     <!--세부선택창 종료-->
 
-    <!--결제실패창 시작-->
-    <div class="payment" id="payfail">
-        <table class="ptab2">
-            <tr>
-                <h2 class="title">결제</h2>
-                <hr align="center" width:95>
-            </tr>
-            <tbody class="tab2">
-                <tr>
-                    <td align="center"><img src="image/pay/cry.png" width="180" height="180"></td>
-                </tr>
-                <tr align="center">
-                    <td>
-                        결제에 실패했습니다.<br>다시 시도해 주세요.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <!--결제실패창 닫기-->
-    
+
     <!--영수증 시작-->
-    <div class="payment" id="receipt">
-</div>
+    <div class="receipt" id="receipt">
+    </div>
     <!--영수증 종료-->
 
-    
+
 
     <!-- FOOTER START -->
     <footer class="footer2">

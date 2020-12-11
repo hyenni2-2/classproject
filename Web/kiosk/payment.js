@@ -500,6 +500,7 @@ function choosePay(index) {
 
 
     // 영수증 출력 : 카트리스트 배열 이용
+/*
     setTimeout(function () {
 
         var reHtml = '';
@@ -548,13 +549,14 @@ function choosePay(index) {
         rec.innerHTML = reHtml;
 
     }, 1000);
+*/
 
 
 
 
 
 
-    /*// 2초 후 팝업창 끄고 실패창 부르기
+    // 2초 후 팝업창 끄고 실패창 부르기
     setTimeout(function () {
         document.querySelector('#payfail').style.display = 'block';
         // 실패창 닫는 메서드
@@ -563,6 +565,6 @@ function choosePay(index) {
             document.querySelector('.payment').style.display = 'none';
         }, 2000);
     }, 2000);
-*/
+
 
 

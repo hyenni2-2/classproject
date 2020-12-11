@@ -18,12 +18,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Jal_Onuel';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 }
 
 
@@ -391,6 +385,7 @@ body {
 .cart a1 {
     color: #cf1126;
     font-weight: bold;
+    
 }
 
 .cart a2 {
@@ -406,16 +401,8 @@ body {
     margin-bottom: 20px;
 }
 
-.sidemenu_show {
-    padding-top: 15px;
-    padding-left: 10px;
-}
-
-.sidemenu_show li{
-    margin-left: 23px;
-    list-style: none;
-    
-    font-size: 13px;
+.sidemenu_show{
+    padding-top : 15px;
 }
 
 
@@ -446,6 +433,7 @@ body {
 .cart input[type=submit] {
     margin-right: 10px;
 }
+
 
 
 
@@ -569,10 +557,12 @@ button:hover:after {
 
     border-radius: 5px 0 0 5px;
 
-    background-color: burlywood;
+    background-color: #f2c000;
     color: black;
 
-    line-height: 15px;
+    line-height: 13px;
+    
+    border: 0px;
 
 }
 
@@ -585,9 +575,10 @@ button:hover:after {
 
     line-height: 15px;
 
-    background-color: burlywood;
+    background-color: #f2c000;
     color: black;
 
+    border: 0px;
 
 }
 
@@ -620,20 +611,13 @@ input[name="cartCnt"] {
     width: 100%;
 }
 
-.ul {
-    margin-left: 30px;
-}
+
 .tdcol3 input[type=text] {
     border-style: none;
     margin: 0 5px;
 }
 
-.sidemenu_show{
-    padding : 2px;
-}
-
 .sidemenu_show li{
-    margin-left: 30px;
     list-style: none;
 }
 
@@ -645,7 +629,7 @@ input[name="cartCnt"] {
     position: absolute;
     top: 180px;
     left: 28%;
-    margin: 10px;
+    margin: 120x;
     width: 370px;
     height: 550px;
     background-color: #fffcf8;
@@ -674,15 +658,19 @@ input[name="cartCnt"] {
 }
 
 
+.payment table{
+    margin: auto;
+    margin-top : 10px;
+}
 
 .title {
+    font-family: 'TmoneyRoundWindExtraBold';
     text-align: center;
+    font-weight: bold;
     margin: 10px;
     padding: 20px;
     color: #cf1126;
-    font-family: 'Noto Sans KR', sans-serif;
 }
-
 
 hr
 {
@@ -720,15 +708,98 @@ hr
 }
 
 
-/*
-영수증 css
-#receipt td {
-    font-size: 17px;
-    font-weight: bolder;
+.tab2 img{
+    margin-left: 30px;
 }
 
-#psum {
-    font-size: 3em;
-    font-weight: bolder;
+.receipt {
+    
+    width: 420px;
+    height: 700;
+    max-height: auto;
+    padding: 10px;
+    background-color: white;
+    overflow: scroll;    
+    position: absolute;
+    top: 180px;
+    left: 28%;
+    display : none;
+    border: 10px solid #f2c000;
 }
-*/
+
+
+.receipt table {
+    width: 100%;
+    
+}
+
+.receipt hr {
+    border-style: dashed;
+    border-color : black;
+    margin : 10px auto;
+    width: 100%;
+}
+
+.receipt a1 {
+    font-size: 0.7em;
+    margin-top: -10px;
+}
+
+.receipt h1 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px;
+    font-family: 'TmoneyRoundWindExtraBold';
+}
+
+.receipt_t {
+    text-align: right;
+    padding-right: 15px;
+    width: 25%;
+}
+
+.receipt_name{
+    width : 50%;
+    
+}
+
+.receipt_price{
+    width: 15%;
+}
+
+receipt_cnt{
+    width : 10%
+}
+
+.receipt h3,
+.receipt h2 {
+    font-size: 20px;
+    font-weight: bold; 
+    margin-top : 0px;
+    margin-bottom : 0px;
+    margin-left: 20px;
+}
+
+.receipt_total {
+    text-align: right;
+    padding-right: 15px;
+}
+
+
+.receipt p {
+    font-size : 15px;
+}
+
+.hansot{
+    text-align: center;
+}
+
+.receipt img{
+    margin-left: 110px;
+}
+
+.ptab input[type=button]{
+    float:right;
+    border : 0px;
+}
