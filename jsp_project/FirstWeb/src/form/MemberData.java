@@ -4,14 +4,14 @@ public class MemberData {
 
 	// 변수 선언하기
 	private String userid; // 사용자 아이디
-	private int pw; // 사용자 이름
+	private String pw; // 사용자 이름
 
 	// 생성자 생성
 	public MemberData() {
 
 	}
 	
-	public MemberData(String userid, int pw) {
+	public MemberData(String userid, String pw) {
 		this.userid = userid;
 		this.pw = pw;
 	}
@@ -24,11 +24,11 @@ public class MemberData {
 		this.userid = userid;
 	}
 
-	public int getPw() {
+	public String getPw() {
 		return pw;
 	}
 
-	public void setPw(int pw) {
+	public void setPw(String pw) {
 		this.pw = pw;
 	}
 
