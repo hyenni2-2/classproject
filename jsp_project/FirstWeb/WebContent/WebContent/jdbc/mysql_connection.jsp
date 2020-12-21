@@ -8,11 +8,11 @@
 	// 모든 JAVA API를 사용할 수 있다.
 Connection conn = null;
 
-// 1.드라이버 로드
+// 1.드라이버 로드 : 프로그램에서 한번만 실행해주면 된다. -> 실행할 때 한 번
 Class.forName("com.mysql.cj.jdbc.Driver");
 
 // 2. DB 연결 : Connection 객체를 얻어온다.
-String jdbcUrl = "jdbc:mysql://localhost:3306/open?serverTimezone=UTC";
+String jdbcUrl = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC";
 String user = "aia";
 String password = "aia";
 
@@ -24,7 +24,7 @@ out.println("<h1>mysql 연결</h1>");
 Statement stmt = conn.createStatement();
 
 // SQL
-String sql_Dept = "select * from dept";
+String sql_Dept = "select * from test.dept";
 // 
 ResultSet rs = stmt.executeQuery(sql_Dept);
 %>
@@ -48,10 +48,7 @@ ResultSet rs = stmt.executeQuery(sql_Dept);
 		<%
 		
 		while(rs.next()){
-			
 
-		
-		
 		%>
 		<tr>
 		<td><%= rs.getInt(1)%></td>  <!-- 괄호 안에는 컬럼번호 -->
