@@ -6,7 +6,6 @@
     
     String saveId = cookieBox.exists("uid") ? cookieBox.getValue("uid"):"";
     String checked = cookieBox.exists("uid") ? "checked":"";
-    
     %>
 <!DOCTYPE html>
 <html>

@@ -19,19 +19,19 @@
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><%= data.getId() %></td>
+			<td>${joinData.id}<%-- <%= data.getId() %> --%></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><%= data.getPw() %></td>
+			<td>${joinData.pw}<%-- <%= data.getPw() %> --%></td>
 		</tr>
 		<tr>
 			<td>이름</td>
-			<td><%= data.getName() %></td>
+			<td>${joinData.name}<%-- <%= data.getName() %> --%></td>
 		</tr>
 		<tr>
 			<td>사진</td>
-			<td><%= data.getPhoto() %></td>
+			<td>${joinData.photo}<%-- <%= data.getPhoto() %> --%></td>
 		</tr>
 	</table>
 </body>

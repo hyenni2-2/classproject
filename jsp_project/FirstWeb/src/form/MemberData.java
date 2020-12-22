@@ -11,6 +11,8 @@ public class MemberData {
 
 	}
 	
+	
+	
 	public MemberData(String userid, String pw) {
 		this.userid = userid;
 		this.pw = pw;

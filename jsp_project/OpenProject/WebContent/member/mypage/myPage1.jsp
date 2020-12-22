@@ -23,14 +23,19 @@
 	<div class="contents">
 		<h2 class="content_title">My Page 1</h2>
 		<hr>
-		<div class="content"><%=session.getAttribute("loginInfo")%></div>
+		<div class="content"><%-- <%=session.getAttribute("loginInfo")%> --%>
+		${loginInfo}
+		</div>
 		<br>
 		<%
 		 LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
 		 
 		 if(loginInfo != null) {
 		%>	
-		<img alt="프로필 사진" src="<%= request.getContextPath()%>/images/<%= loginInfo.getMemberPhoto()%>"
+		<%-- <img alt="프로필 사진" src="<%= request.getContextPath()%>/images/<%= loginInfo.getMemberPhoto()%>"
+		height = "100"
+		> --%>
+		<img alt="프로필 사진" src="${pageContext.request.contextPath}/images/${loginInfo.memberPhoto}"
 		height = "100"
 		>
 		<%} %>

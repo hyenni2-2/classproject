@@ -5,8 +5,7 @@
     CookieBox cookieBox = new CookieBox(request);
     
     String saveId = cookieBox.exists("uid") ? cookieBox.getValue("uid"):"";
-    String checked = cookieBox.exists("uid") ? "checked":"";
-    
+    String checked = cookieBox.exists("uid") ? "checked":"";   
     %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -25,7 +24,9 @@
             <tr>
                 <th><label for="userid">아이디</label></th>
                 <td>
-                    <input type="text" id="userid" name="userid" value="<%= saveId %>">
+                    <%-- <input type="text" id="userid" name="userid" value="<%= saveId %>"> --%>
+                    <input type="text" id="userid" name="userid" value="${cookie.uid.value}">
+                    
                 </td>
             </tr>
             <tr>

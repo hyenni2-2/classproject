@@ -22,11 +22,13 @@
 	<table>
 		<tr>
 			<td>이름</td>
-			<td><%= data.getUserid() %></td>
+			<%-- <td><%= data.getUserid() %></td> --%>
+			<td>${data.userId}</td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><%= data.getPw() %></td>
+			<%-- <td><%= data.getPw() %></td> --%>
+			<td>${data.pw}></td>
 		</tr>
 	</table>
 	

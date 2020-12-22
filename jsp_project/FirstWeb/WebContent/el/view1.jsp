@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Session 속성값 확인</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-<h1>세션에 저장된 userName : <%= session.getAttribute("userName") %></h1>
-
-<h1><a href="../index.jsp">index로 이동</a></h1>
+  <h1>
+    ${sessionScope.userId}, ${userId}
+  </h1>
+  
 
 </body>
 </html>
