@@ -1,9 +1,17 @@
-<%@page import="member.LoginInfo"%>
+<%@page import="member.model.LoginInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%
 	// LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
-	%>
+%>
+<c:if test="${not loginChk}">
+<script>
+	alert("아이디 또는 비밀번호가 다릅니다. 다시 로그인해주세요.");
+	history.go(-1); // 뒷페이지로 가게함
+</script>
+</c:if>
+<c:if test="${loginChk}"> <!-- 로그인체크가 정상적으로 들어오지 않으면 html안만들어지게함 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,3 +42,4 @@
 
 </body>
 </html>
+</c:if>

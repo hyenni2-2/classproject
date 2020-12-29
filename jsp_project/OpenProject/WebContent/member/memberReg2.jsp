@@ -8,7 +8,7 @@
 <%@page import="member.dao.MemberDao"%>
 <%@page import="jdbc.ConnectionProvider"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="member.Member"%>
+<%@page import="member.model.Member"%>
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -33,6 +33,7 @@ if (conn != null) {
    String pw = null;
    String userName = null;
    String userPhoto = null;
+   // /upload/member
    String dir = request.getSession().getServletContext().getRealPath("/upload/member");
 
    

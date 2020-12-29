@@ -1,5 +1,5 @@
-<%@page import="member.LoginInfo"%>
-<%@page import="member.Member"%>
+<%@page import="member.model.LoginInfo"%>
+<%@page import="member.model.Member"%>
 <%@page import="jdbc.ConnectionProvider"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="member.dao.MemberDao"%>
