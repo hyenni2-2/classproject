@@ -7,7 +7,7 @@ public class LoginFormCommand implements Command {
 
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
-		return "WEB-INF/view/member/loginForm.jsp";
+		return "/WEB-INF/view/member/loginForm.jsp";
 	}
 	
 	
