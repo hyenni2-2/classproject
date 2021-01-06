@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- MemberDao Bean(인스턴스)으로 등록 -->
+	<bean id="memberDao" class="member.dao.MemberDao">
+	</bean>
+
+	<!-- MemberRegService Bean으로 등록, 생성자 방식, 최근 트렌드, 런타임 시에 오류가 남 -->
+	<!-- <bean id="memberRegService" class="member.service.MemberRegService"/> --> <!-- 디폴트 생성자가 없어서 오류 발생함 -->
+	<bean id="memberRegService"
+		class="member.service.MemberRegService">
+		<!-- <constructor-arg ref="memberDao"/> -->  <!-- 매개변수가 참조변수일 때 ref 사용 -->
+		<constructor-arg>
+			<ref bean="memberDao" /> <!-- 주입하기 -->
+		</constructor-arg>
+	</bean>
+
+	<!-- MemberInfoServive Bean 등록, 프로퍼티 방식, (컴파일 시에 오류가 나서 runtime오류 발생할 수 있음) -->
+	<bean id="memberInfoService"
+		class="member.service.MemberInfoService">
+		<!-- <property name="dao" ref="memberDao"/> -->
+		<property name="dao">
+			<ref bean="memberDao" />
+		</property>
+
+	</bean>
+
+
+</beans>
