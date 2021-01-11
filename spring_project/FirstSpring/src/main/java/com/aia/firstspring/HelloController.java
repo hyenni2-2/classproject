@@ -1,4 +1,4 @@
-package com.aia.firstspring.member.controller;
+package com.aia.firstspring;
 
 import java.util.Calendar;
 
