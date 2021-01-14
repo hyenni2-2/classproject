@@ -6,23 +6,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="styleSheet" href="${url_defaultCss}">
+<%@ include file="/WEB-INF/views/include/basicset.jsp" %>
 
-<style></style>
-
+<style>
+</style>
 </head>
 <body>
 
-	<!-- 나중에 web-inf 폴더 안으로 옮길거라,상대경로를 적용할 수 없다. 따라서 절대 경로를 썼음. -->
+
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
 
-	<!-- 각 페이지마다 콘텐츠는 다르기 때문에 남겨둔다. -->
 	<div class="contents">
 		<h2 class="content_title">회원 가입 폼</h2>
 		<hr>
 		<div class="content">
+		
 			<form method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
@@ -53,6 +53,7 @@
 	</div>
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+
 
 </body>
 </html>

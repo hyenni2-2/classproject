@@ -1,26 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
- <mapper namespace="com.aia.op.member.dao.MemberDao">
- 
- <resultMap type="com.aia.op.member.domain.Member" id="memberResult">
-  <id column="idx" property="idx"/>
-  <result column="memberid" property="memberid" />
-  <result column="password" property="password"/>
-  <result column="membername" property="membername"/>
-  <result column="memberphoto" property="memberphoto"/>
-  <result column="regdate" property="regdate"/>
- </resultMap>
- 
- <insert id="insertMember"
-         parameterType="com.aia.op.member.domain.Member">
- INSERT INTO member (memberid, password, membername, memberphoto) VALUES (#{memberid},#{password},#{membername},#{memberphoto})
- </insert>
- 
- <select id="selectLogin"
-         resultType="com.aia.op.member.domain.Member"
-         resultMap="memberResult" >
-   select * from member where memberid=#{param1} and password=#{param2} 
- </select>
+<mapper namespace="com.aia.op.member.dao.MemberDao">
 
- </mapper>
+	<!-- member타입의 resultMap, pw랑 regdate는 null처리 해야함(원래는) : 로그인 시 사용 -->
+	<resultMap type="com.aia.op.member.domain.Member"
+		id="memberResult">
+		<id column="idx" property="idx" />
+		<result column="memberid" property="memberid" />
+		<result column="password" property="password" />
+		<result column="membername" property="membername" />
+		<result column="memberphoto" property="memberphoto" />
+		<result column="regdate" property="regdate" />
+	</resultMap>
+
+	<resultMap type="com.aia.op.member.domain.Member"
+		id="memberListResult">
+		<id column="idx" property="idx" />
+		<result column="memberid" property="memberid" />
+		<result column="membername" property="membername" />
+		<result column="memberphoto" property="memberphoto" />
+		<result column="regdate" property="regdate" />
+	</resultMap>
+
+	<!-- 회원가입 -->
+	<insert id="insertMember"
+		parameterType="com.aia.op.member.domain.Member">
+		INSERT INTO member (memberid, password, membername, memberphoto) VALUES
+		(#{memberid},#{password},#{membername},#{memberphoto})
+	</insert>
+
+	<!-- 로그인 -->
+	<select id="selectLogin"
+		resultType="com.aia.op.member.domain.Member" resultMap="memberResult">
+		select * from member where memberid=#{param1} and password=#{param2}
+	</select>
+
+	<!-- 회원의 총 명수 -->
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from member
+	</select>
+
+	<select id="selectMemberList" parameterType="map" resultMap="memberListResult">
+		select * from member 
+		
+		<where>
+		 <if test="searchParam.searchType == 'id'"> <!-- searchParam은 key값 -->
+		  <include refid="searchId" />
+		 </if>
+		 <if test="searchParam.searchType == 'name'"> <!-- searchParam은 key값 -->
+		  <include refid="searchName" />
+		 </if>
+		 <if test="searchParam.searchType == 'both'"> <!-- searchParam은 key값 -->
+		  <include refid="searchId" />
+		  <include refid="searchName" />
+		 </if>
+		</where>
+		
+		limit #{startRow}, #{cntPerPage}
+	</select>
+
+	<select id="selectSearchMemberCount"
+		    parameterType="com.aia.op.member.domain.SearchParam"
+		    resultType="int">
+
+		select count(*) from member
+		
+		<!-- where idx>0 -->
+
+
+		<where> <!-- 동적 쿼리를 만들어줌 -->
+			<if test="searchParam.searchType == 'id'">
+				<!-- memberid like concat('%', #{keyword}, '%')  -->
+				<!-- concat은 sql안에서 문자열을 만들어준다. -->
+				<include refid="searchId"/>
+				
+			</if>
+			<if test="searchParam.searchType == 'name'">
+				<!-- membername like concat('%', #{keyword}, '%') -->
+				<include refid="searchName"/>
+			</if>
+			<if test="searchParam.searchType == 'both'">
+				<!-- membername like concat('%', #{keyword}, '%') or 
+				memberid like concat('%', #{keyword}, '%') -->
+				<include refid="searchId"/>
+				<include refid="searchName"/>
+			</if>
+		</where>
+		
+		<!-- <if test="searchType == 'id'">
+				where memberid like concat('%', #{keyword}, '%') 
+				concat은 sql안에서 문자열을 만들어준다.
+			</if>
+			<if test="searchType == 'name'">
+				where membername like concat('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'both'">
+				where membername like concat('%', #{keyword}, '%') or where memberid like
+				concat('%', #{keyword}, '%')
+			</if> -->
+	</select>
+	
+	
+	<sql id="searchId">
+	 or memberid like concat('%', #{searchParam.keyword}, '%') 
+	</sql>
+	
+	<sql id="searchName">
+	 or membername like concat('%', #{searchParam.keyword}, '%')
+	</sql>	
+	
+	<delete id="deleteMemberByIdx"> <!-- dml이기 때문에 굳이 resultType을 붙이지 않아도 된다 -->
+	 delete from member where idx=#{idx}
+	</delete>
+	
+	
+	
+</mapper>

@@ -7,8 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <link rel="styleSheet" href="${pageContext.request.contextPath}/css/default.css"> --%>
-<link rel="styleSheet" href="${url_defaultCss}">
+<%-- <link rel="styleSheet"
+	href="${pageContext.request.contextPath}/css/default.css"> --%>
+	<%-- <link rel="styleSheet" href="<c:url value="/css/default.css"/>"> --%>
+<%@ include file="/WEB-INF/views/include/basicset.jsp" %>
 <style>
 </style>
 </head>

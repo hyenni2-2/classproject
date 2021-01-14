@@ -20,7 +20,7 @@
 			 </li>
 			<li> <a href="<c:url value="/member/mypage/myPage1.jsp"/>">mypage1</a>  </li>
 			<li> <a href="<c:url value="/member/mypage/myPage2.jsp"/>">mypage2</a>  </li>
-			<li> <a href="<c:url value="/member/manager/memberList.jsp"/>">회원 정보</a>  </li>
+			<li> <a href="<c:url value="/member/list"/>">회원 LIST</a>  </li>
 			<li> <a href="#">방명록</a>  </li>
 		</ul>
 	</nav>
