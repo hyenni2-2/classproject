@@ -1,5 +1,7 @@
 package com.aia.op.member.domain;
 
+
+// 로그인한 데이터 빈즈
 public class LoginInfo {
 	
 	private String memberid;

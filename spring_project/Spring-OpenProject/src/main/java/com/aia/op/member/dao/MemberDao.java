@@ -22,4 +22,8 @@ public interface MemberDao {
 	int selectSearchMemberCount(Map<String, Object> listMap);
 	// 회원 정보 삭제
 	int deleteMemberByIdx(int idx);
+	// 회원 정보 조회 : idx로 조회 
+	Member selectMemberByIdx(int idx);
+	// 회원 정보 update(수정) 
+	int updateMember(Member member);
 }

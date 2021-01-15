@@ -86,10 +86,11 @@ text-align: center;
                   <td><img height="30" width="30" alt="프사"
                      src="<c:url value="/fileupload/member/${member.memberphoto}"/>"></td>
                   <td>
-                   <fmt:formatDate value="${member.regdate}" pattern="yyyy.MM.dd."/>
+                   <fmt:formatDate value="${member.toDate}" pattern="yyyy.MM.dd."/>
                   </td>
-                  <td>
-                   <a href="javascript:deleteMember(${member.idx})">삭제</a>
+                  <td> 
+                  <a href="<c:url value="/member/edit?idx=${member.idx}"/>">수정</a>
+                   <a href="javascript:deleteMember(${member.idx});">삭제</a>
                   </td>
                </tr>
 

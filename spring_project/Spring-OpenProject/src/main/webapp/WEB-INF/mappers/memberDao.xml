@@ -26,8 +26,16 @@
 	<!-- 회원가입 -->
 	<insert id="insertMember"
 		parameterType="com.aia.op.member.domain.Member">
-		INSERT INTO member (memberid, password, membername, memberphoto) VALUES
+		INSERT INTO member 
+		<if test="memberphoto==null">
+		(memberid, password, membername) VALUES
+		(#{memberid},#{password},#{membername})
+		</if>
+		
+		<if test="memberphoto!=null">
+		(memberid, password, membername, memberphoto) VALUES
 		(#{memberid},#{password},#{membername},#{memberphoto})
+		</if>
 	</insert>
 
 	<!-- 로그인 -->
@@ -114,6 +122,16 @@
 	 delete from member where idx=#{idx}
 	</delete>
 	
+	<select id="selectMemberByIdx"
+	        resultMap="memberListResult"> <!-- 비밀번호 없이 만든 부분 -->
+	select * from member where idx=#{no} <!-- {}안 이름은 임의로 설정해도 됨(1개일 경우) -->
+	</select>
 	
+	<update id="updateMember"
+	        parameterType="com.aia.op.member.domain.Member"> <!-- 데이터 수정해서 전달해줘야할 때는 parameterType이 필요 -->
+	 update member 
+	 set membername=#{membername}, password=#{password}, memberphoto=#{memberphoto} 
+	 where idx=#{idx}
+	</update>
 	
 </mapper>
