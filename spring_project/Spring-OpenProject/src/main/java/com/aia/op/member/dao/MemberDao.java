@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.aia.op.member.domain.Member;
-import com.aia.op.member.domain.SearchParam;
 
 public interface MemberDao {
 	

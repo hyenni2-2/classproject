@@ -76,7 +76,6 @@
 		
 		<!-- where idx>0 -->
 
-
 		<where> <!-- 동적 쿼리를 만들어줌 -->
 			<if test="searchParam.searchType == 'id'">
 				<!-- memberid like concat('%', #{keyword}, '%')  -->

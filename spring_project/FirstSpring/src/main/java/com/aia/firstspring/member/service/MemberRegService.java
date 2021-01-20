@@ -27,7 +27,7 @@ public class MemberRegService {
 		
 		int result = 0;
 		try {
-			dao = template.getMapper(MemberInterfaceDao.class);
+			dao = template.getMapper(MemberInterfaceDao.class); // dao는 매핑 뿐만이 아니라 DB 연결도 해줌.(SqlSessionTemplate이)
 		    result = dao.insertMember(member);
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -21,6 +21,7 @@ public class MemberEditController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String editForm(
+			@RequestParam("idx") int idx, // 폼에서 /member/edit?idx= 이부분의 파라미터를 가져오는 것
 			Model model
 			) {
 		// Service -> MemberDao -> mapper 로 들어가고, mapper에서 Member를 반환 
