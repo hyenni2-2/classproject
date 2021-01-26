@@ -15,4 +15,15 @@
 		      p:password="aia"    
 		/>
 		
+		<bean id="sqlSessionFactory"
+              class="org.mybatis.spring.SqlSessionFactoryBean"
+              p:dataSource-ref="dataSource"
+              p:mapperLocations="/WEB-INF/mappers/*.xml"
+ 		/>
+ 		
+ 		<bean id="sqlSessionTemplate"
+ 		      class="org.mybatis.spring.SqlSessionTemplate"
+ 		      >
+ 		      <constructor-arg ref="sqlSessionFactory"/>
+ 		      </bean>
 </beans>

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:url value="/css/default.css"/> 
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%-- <link rel="styleSheet"
@@ -14,7 +14,7 @@
 <style>
 </style>
 </head>
-<body>
+<body class="bg-light">
 
 
 
@@ -23,6 +23,14 @@
 
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
 
+<main class="container">
+  <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+    <img class="me-3" src="../assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38">
+    <div class="lh-1">
+      <h1 class="h6 mb-0 text-white lh-1">Index</h1>
+      <small>Since 2011</small>
+    </div>
+  </div>
 	<!-- 각 페이지마다 콘텐츠는 다르기 때문에 남겨둔다. -->
 	<div class="contents">
 		<h2 class="content_title">index</h2>

@@ -26,6 +26,7 @@ public class MemberRegController {
 		
 	    System.out.println(member);
 		int resultCnt = regService.insertMember(member);
+
 		
 		System.out.println(member);
 		

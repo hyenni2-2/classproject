@@ -51,7 +51,8 @@ text-align: center;
       <hr>
       <div class="content">
       
-       <div class="searchBox">
+      
+      <div class="searchBox">
         <form>
          검색 타입
          <select name="searchType"> 
@@ -106,6 +107,9 @@ text-align: center;
                </c:forEach>
             </c:if>
          </div>
+      
+      
+       
 
       </div>
    </div>

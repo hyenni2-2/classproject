@@ -19,32 +19,27 @@
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
 
 	<!-- 각 페이지마다 콘텐츠는 다르기 때문에 남겨둔다. -->
-	<div class="contents">
-		<h2 class="content_title">Login Form</h2>
-		<hr>
-		<div class="content"> 
-			<form method="post">
-				<table>
-					<tr>
-						<th><label for="userid">아이디</label></th>
-						<td><input type="text" id="userid" name="userid"
-							value="${cookie.uid.value}"></td>
-					</tr>
-					<tr>
-						<th><label for="pw">비밀번호</label></th>
-						<td><input type="password" id="pw" name="pw"></td>
-					</tr>
-					<tr>
-						<th></th>
-						<td><input type="checkbox" name="chk" value="on"
-							${cookie.uid ne null ? 'checked':''} > 아이디 저장</td>
-					</tr>
-					<tr>
-						<th></th>
-						<td><input type="submit" value="로그인"></td>
-					</tr>
-				</table>
-			</form>
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h3 class="border-bottom pb-2 mb-0">Login Form</h3>
+    <div class="d-flex text-muted pt-3"> 
+			
+			
+			
+			 <form method="post" class="calign-items-center">
+    <label for="userid" class="visually-hidden">Email address</label>
+    <input type="email" id="inputEmail" name="userid" value="${cookie.uid.value} class="form-control" placeholder="Email address" required autofocus>
+    <label for="pw" class="visually-hidden">Password</label>
+    <input type="password" id="pw" name="pw" class="form-control" placeholder="Password" required>
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" name="chk" value="on" ${cookie.uid ne null ? 'checked':''}> Remember ID
+      </label>
+    </div>
+    <input type="submit" value="로그인" class="w-100 btn btn-lg btn-primary">
+  </form>
+  
+  
+			
 		</div>
 	</div>
 

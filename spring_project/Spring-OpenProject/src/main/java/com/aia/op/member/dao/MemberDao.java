@@ -25,4 +25,10 @@ public interface MemberDao {
 	Member selectMemberByIdx(int idx);
 	// 회원 정보 update(수정) 
 	int updateMember(Member member);
+	// id 존재 유무 확인
+	int selectMemberByIdCount(String id);
+	// idx, verify 조건으로 조회
+	int selectMemberByIdxVerify(int index);
+	// 인증처리 verify = 'Y'
+	int updateMemberVerify(int idx, String code);
 }

@@ -37,9 +37,13 @@ public class MemberLoginService {
 		System.out.println(member);
 		
 		if(member!=null) {
-			// 현재 세션의 속성에 LoginInfo 인스턴스를 저장
-			request.getSession().setAttribute("loginInfo", member.toLoginInfo());; // 만약 세션이 없다면 만들어줌(getSession())
-			loginChk = true;
+			
+			if(member.getVerify()== 'N') {
+				// 현재 세션의 속성에 LoginInfo 인스턴스를 저장
+				request.getSession().setAttribute("loginInfo", member.toLoginInfo());; // 만약 세션이 없다면 만들어줌(getSession())
+				loginChk = true;
+			}
+			
 			// 2. uid 쿠키 처리
 			if(chk != null & chk.equals("on")) {
 				// 쿠키 생성
@@ -52,6 +56,9 @@ public class MemberLoginService {
 				c.setMaxAge(0); 
 				response.addCookie(c);
 			}
+		} else {
+			loginChk = true;
+			request.setAttribute("msg", "인증되지 않은 이메일입니다. 인증 후 로그인 해주세요.");
 			
 		}
 		return loginChk;

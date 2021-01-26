@@ -20,6 +20,9 @@ public class MemberRegService {
 
 	@Autowired
 	private SqlSessionTemplate template;
+	
+	@Autowired
+	private MailSenderService mailSenderService;
 
 	// 파일을 업로드, db 저장
 	public int memberReg(MemberRegRequest regRequest, HttpServletRequest request) {
@@ -59,11 +62,16 @@ public class MemberRegService {
 			// DB 입력
 			dao = template.getMapper(MemberDao.class);
 			result = dao.insertMember(member);
+			
+			// 메일 발송 : 인증 처리를 하는 페이지 /op/member/verify?id=49&code=난수
+			int mailSendCnt = mailSenderService.send(member);
+			System.out.println("메일 발송 처리 횟수 : " + mailSendCnt);
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			// 현재 저장한 파일이 있다면? -> 삭제
-			if (newFile.exists()) {
+			if (newFile!=null && newFile.exists()) {
 				newFile.delete();
 			}
 		}
