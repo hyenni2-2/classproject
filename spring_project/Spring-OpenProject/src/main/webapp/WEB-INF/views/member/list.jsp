@@ -99,7 +99,27 @@ text-align: center;
 
          </table>
 
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+
          <div class="paging">
+            <c:if test="${listView.totalMemberCount>0}">
+               <c:forEach begin="1" end="${listView.totalPageCount}" var="num">
+                <li class="page-item"><a class="page-link" a href="<c:url value="/member/list"/>?p=${num}&searchType=${param.searchType}&keyword=${param.keyword}" 
+               class="${listView.pageNumber eq num? 'nowpage' : ''}">${num}</a>] 
+               </c:forEach>
+            </c:if>
+         </div>
+         
+         
+      <div class="paging">
             <c:if test="${listView.totalMemberCount>0}">
                <c:forEach begin="1" end="${listView.totalPageCount}" var="num">
                [<a href="<c:url value="/member/list"/>?p=${num}&searchType=${param.searchType}&keyword=${param.keyword}" 
@@ -107,7 +127,6 @@ text-align: center;
                </c:forEach>
             </c:if>
          </div>
-      
       
        
 

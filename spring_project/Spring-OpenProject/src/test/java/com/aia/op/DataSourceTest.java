@@ -19,13 +19,13 @@ import lombok.extern.log4j.Log4j;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-// @Log4j
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+@Log4j
 public class DataSourceTest {
 	
 	// @Autowired
-	// @Setter(onMethod_= {@Autowired} ) // setter메서드를 생성해줌
-	@Autowired
+	@Setter(onMethod_= {@Autowired} ) // setter메서드를 생성해줌
+	//@Autowired
 	private DataSource dataSource;
 	
 	@Autowired
