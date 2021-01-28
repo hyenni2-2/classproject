@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <footer> copyright @aiaacademy 2020 </footer>
 
- <c:url value="/js/bootstrap/bootstrap.bundle.min.js"/>
 
-    <script src="<c:url value="/js/bootstrap/bootstrap.bundle.min.js"/>"></script>
 
-      <script src="<c:url value="/js/bootstrap/offcanvas.js"/>"></script>
+<script src="<c:url value="/js/bootstrap/bootstrap.bundle.min.js"/>"></script>
+
+<script src="<c:url value="/js/bootstrap/offcanvas.js"/>"></script>
