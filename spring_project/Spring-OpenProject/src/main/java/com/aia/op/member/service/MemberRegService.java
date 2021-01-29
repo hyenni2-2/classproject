@@ -70,7 +70,7 @@ public class MemberRegService {
 		}
 		
 
-		try {
+		// try {
 
 			// DB 입력
 			dao = template.getMapper(MemberDao.class);
@@ -86,13 +86,10 @@ public class MemberRegService {
 			System.out.println("메일 발송 처리 횟수 : " + mailSendCnt);
 			
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			// 현재 저장한 파일이 있다면? -> 삭제
-			if (newFile!=null && newFile.exists()) {
-				newFile.delete();
-			}
-		}
+			/*
+			 * } catch (Exception e) { e.printStackTrace(); // 현재 저장한 파일이 있다면? -> 삭제 if
+			 * (newFile!=null && newFile.exists()) { newFile.delete(); } }
+			 */
 		return result;
 	}
 
