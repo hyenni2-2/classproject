@@ -4,12 +4,12 @@
 <mapper namespace="com.mw.closet.dao.ClosetDao">
 
 <resultMap type="com.mw.closet.domain.Closet" id="listResult">
- <id column="c_idx" property="c_idx"/>
- <result column="mem_idx" property="mem_idx"/>
-  <result column="c_name" property="c_name"/>
-   <result column="c_PhotoOut" property="c_PhotoOut"/>
-    <result column="c_Like" property="c_Like"/>
-     <result column="c_Bmk" property="c_Bmk"/>
+ <id column="cIdx" property="c_idx"/>
+ <result column="memIdx" property="memIdx"/>
+  <result column="cName" property="cName"/>
+   <result column="cPhotoOut" property="cPhotoOut"/>
+    <result column="cLike" property="cLike"/>
+     <result column="cBmk" property="cBmk"/>
 </resultMap>
 
 
