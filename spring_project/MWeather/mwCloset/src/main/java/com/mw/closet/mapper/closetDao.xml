@@ -4,17 +4,27 @@
 <mapper namespace="com.mw.closet.dao.ClosetDao">
 
 <resultMap type="com.mw.closet.domain.Closet" id="listResult">
- <id column="cIdx" property="c_idx"/>
+ <id column="cIdx" property="cIdx"/>
  <result column="memIdx" property="memIdx"/>
   <result column="cName" property="cName"/>
    <result column="cPhotoOut" property="cPhotoOut"/>
-    <result column="cLike" property="cLike"/>
-     <result column="cBmk" property="cBmk"/>
+    <result column="cLikeCnt" property="cLikeCnt"/>
+     <result column="cBmkCnt" property="cBmkCnt"/>
 </resultMap>
 
 
+
 <select id="selectAll" resultMap="listResult">
- select * from tbl_cList 
+ select cIdx, memIdx, cName, cPhotoOut, cLikeCnt, cBmkCnt from tbl_cList 
 </select>
+
+<select id="getCodiSet" resultType="com.mw.closet.domain.Codi">
+ select codiList, codiPho from tbl_Codi
+</select>
+
+
+
+
+
 
 </mapper>

@@ -20,6 +20,3 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"
 	width="100">
 </script>
-
-
-  

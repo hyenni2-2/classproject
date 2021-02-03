@@ -8,16 +8,11 @@
 
 	<!-- db -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
-		p:driverClassName="com.mysql.cj.jdbc.Driver"
-		p:jdbcUrl="jdbc:mysql://localhost:3306/open?serverTimezone=UTC"
+		p:driverClassName="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"
+		p:jdbcUrl="jdbc:log4jdbc:mysql://openproject.citj2eaykhdg.ap-northeast-2.rds.amazonaws.com:3306/open?serverTimezone=UTC"
 		p:username="aia" p:password="aia" />
 
-	<!-- jdbc class등록 -->
-	<bean id="jdbcTemplate"
-		class="org.springframework.jdbc.core.JdbcTemplate"
-		p:dataSource-ref="dataSource" />
 
-	<!-- jdbc Template 클래스 -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource"
@@ -30,6 +25,11 @@
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
+	
+<bean id="transactionManager"
+ class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+ <property name="dataSource" ref="dataSource"></property>
+ </bean>
 
 
 </beans>
