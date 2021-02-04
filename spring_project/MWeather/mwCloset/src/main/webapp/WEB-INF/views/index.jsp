@@ -17,6 +17,9 @@
 
 <%@ include file="/WEB-INF/views/include/basicset.jsp"%>
 
+<%-- <script src="<c:url value="/js/closet.js"/>"> </script> --%>
+<script src="<c:url value="/js/codiset.js"/>"> </script>      
+
 
 </head>
 
@@ -24,18 +27,20 @@
 
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	
-	<div class="content" id="content" name="content">
+	<div class="content" id="content" name="content" border="1">
 	  <!-- 리스트 출력 -->
-	  <script type="text/javascript" src="<c:url value="/js/closet.js"/>"> </script> 
-	  
+	  <div class="closetList">
+
+	  </div>
 	  <!-- 코디게시판 -->
-	  <div class="codipart" id="codipart" name="codipart">
+	  <div class="codipart" id="codipart" name="codipart" align="center">
 	  <div class="codibg" id="codibg" name="codibg">
 	  
 	  draggable js
 	  </div>
-	  <div class="codi" id="codi" name="codi">
-	   <script type="text/javascript" src="<c:url value="/js/codiset.js"/>"> </script> 
+	  <div class="codi" id="codi" name="codi" onclick="codiView()">
+	  <div class="codiView" id="codiView" name="codiView">
+	  </div>
 	  </div>
 	  </div>
 	  </div>
