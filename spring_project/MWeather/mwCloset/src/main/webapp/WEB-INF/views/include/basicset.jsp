@@ -6,6 +6,9 @@
 
 <!--제이쿼리 라이브러리 로드-->
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- 제이쿼리 ui로드 -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"

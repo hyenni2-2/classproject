@@ -93,3 +93,35 @@ footer {
     background-color: #ffffff;
 }
 
+.codiView {
+	height: 30%;
+	
+}
+
+.codi {
+	height: 30%;
+}
+
+#codipart {
+	align-content: center;
+}
+
+#content {
+	border: 1px;
+}
+
+#codiView {
+	height: 30%;
+}
+
+#codibg {
+	height: 500px;
+	border: 1px solid #ddd;
+	width: 800px;
+}
+
+#codiback {
+	width: 20px;
+	height: 20px;
+}
+

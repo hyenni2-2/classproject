@@ -22,10 +22,4 @@
  select codiList, codiPho from tbl_Codi
 </select>
 
-
-
-
-
-
-
 </mapper>
