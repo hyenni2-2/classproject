@@ -32,8 +32,6 @@ $(document).ready(function () {
     
 })
 
-
-
 // 코디 세부 리스트 출력
 function codiView(value) {
 
@@ -55,26 +53,59 @@ function codiView(value) {
     html += '</div>';
     $('#codiView').append(html).css('cursor:move','z-index:2');
     
+    var css_test_idx = 10;
+
+    // 이미지 드래그해서 끌어다놓기
     $('#codiView').on('mouseenter', 'img', function(){
-    // 드래그한 후 이미지 남겨두기 위한 helper
+    //드래그 시 clone 생성해서 '
     $(this).draggable({
-        helper:"clone"
+        helper:'clone',
+        cursor: 'move'
     });
+
+    console.log(this);
 
     // 드롭한 후에 이미지 남겨주기
     $('#codibg').droppable({
-        accept: 'img',
+        activeClass: 'ui-state-hover',
+        accept:'img',
         drop: function(e, ui){
-             var newImg = $(ui.helper).clone().remove('img');
-             newImg.draggable();
-             $(this).append(newImg);
+            if(!ui.draggable.hasClass('dropped'))
+                $(this).append($(ui.draggable).clone().addClass('dropped').draggable());
         }
     });
+   
+    $('img').mousedown(function () {
+        $(this).css('z-index', css_test_idx);
+        css_test_idx++;
+    });
+    console.log(css_test_idx);
+
 
     })
 
 }
 
+
+
+// // 드래그한 후 이미지 남겨두기 위한 helper
+// $(this).draggable({
+//     helper:"clone"
+// });
+
+// console.log(this);
+
+// // 드롭한 후에 이미지 남겨주기
+// $('#codibg').droppable({
+//     accept: 'img',
+//     drop: function(e, ui){
+//          var newImg = $(ui.helper).clone().remove('img');
+//          newImg.draggable();
+//          $(this).append(newImg);
+//     }
+// });
+
+// })
 
 
 
