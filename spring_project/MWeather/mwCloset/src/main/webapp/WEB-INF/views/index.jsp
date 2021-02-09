@@ -51,16 +51,14 @@ var c_name = ${c_name}
 	  <div class="codi" id="codi" name="codi">
 	  </div>
 	  </div>
-	  <!-- 코디조합 -->
+	  <!-- 코디조합버튼 -->
 	  <div class="codicon" id="codicon" name="codicon">
 	  <img src="<c:url value="/image/icon/back.png"/>" id="codiback">
 	  <img src="<c:url value="/image/icon/save.png"/>" id="codisave" onclick="saveDrag()">
-	  <!-- <button type="button" class="btn btn-light" onclick="saveDrag()">SAVE</button> -->
+	  <img src="<c:url value="/image/icon/reset.png"/>" id="codireset" onclick="resetDrag()">
 	  </div>
-	  <div class="codibg" id="codibg" name="codibg"  >
-	  
-	 
-	  
+	  <!-- 조합배경 -->
+	  <div class="codibg" id="codibg" name="codibg">
 	  </div>
 	  </div>
 	  </div>

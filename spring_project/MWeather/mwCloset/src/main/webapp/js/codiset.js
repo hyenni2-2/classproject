@@ -59,15 +59,7 @@ function codiView(value) {
         //드래그 시 clone 생성해서 이동
         $(this).draggable({
             helper: 'clone',
-            cursor: 'hand',
-            // 드래그 종료 시 xy좌표 얻는 함수
-            stop: function () {
-                var offset = $(this).offset();
-                var xPos = offset.left;
-                var yPos = offset.top;
-                console.log('xPos:' + xPos);
-                console.log('yPos:' + yPos);
-            }
+            cursor: 'hand'
         });
 
         // 드롭될 때 발생하는 이벤트
@@ -84,27 +76,33 @@ function codiView(value) {
         $('img').mousedown(function () {
             $(this).css('z-index', img_zidx);
             img_zidx++;
-            console.log('img_zidx:' + img_zidx);
         })
     })
-
 }
 
-// 버튼 누르면 저장하는 이벤트
+// 버튼 누르면 배열에 드래그 정보를 저장하는 이벤트:이미지경로, xy좌표, z-index
 function saveDrag() {
-
     $('#codibg img').each(function (index, item) {
         var dragsrc = $(item).attr('src');
         var dragoffleft = $(item).offset().left;
         var dragofftop = $(item).offset().top;
-        console.log('dragsrc:' + dragsrc, 'dragoffleft:' + dragoffleft, 'dragofftop:' + dragofftop);
-        dragList.push(dragsrc, dragoffleft, dragofftop);
+        var dragoffzidx = $(item).css('z-index');
+        console.log('dragsrc:' + dragsrc, 'dragoffleft:' + dragoffleft, 'dragofftop:' + dragofftop, 'zIdx:'+dragoffzidx);
+        dragList.push(dragsrc, dragoffleft, dragofftop, dragoffzidx);
         console.log('dragList:' + dragList);
 
-        var jsonDrag = JSON.stringify(dragList);
+        // 배열 JSON으로 변환
+        var jsonDrag = JSON.stringify(dragList); 
+        console.log('json : ' + jsonDrag);        
     })
 }
 
+// 리셋하는 함수
+function resetDrag(){
+    if($('#codibg').length > 0){
+        $('#codibg').empty();
+    }
+}
 
 
 
