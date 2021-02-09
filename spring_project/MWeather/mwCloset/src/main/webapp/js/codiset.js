@@ -1,6 +1,8 @@
-// 드래그 할 아이템, 파일이름, 드래그한 아이템 배열
-var item;
+// 드래그 할 아이템, 파일이름, 이미지의 zidx, 드래그한 아이템 배열
+var listItem;
 var i;
+var img_zidx = 0;
+var dragList = [];
 
 $(document).ready(function () {
     $.ajax({
@@ -27,64 +29,89 @@ $(document).ready(function () {
         }
 
     })
-    
 
-    
+
+
 })
 
 // 코디 세부 리스트 출력
 function codiView(value) {
 
-    item = value;
-
+    listItem = value;
     $('#codi').remove();
-    
+
     var html = '<table border="1" width="80%" height="auto">';
     html += '<tr>';
     for (i = 1; i < 4; i++) {
-        html += '<td>' +  '<div class="dragev" id="dragev'+item+i+'">' + '<img src="http://localhost:8080/closet/image/codi/' + value + '/' + i + '.png" width="70" height="70"  id="codiInfo'+item+i+'">' + '</div> </td>';
+        html += '<td class=' + i + '>' + '<div class="dragev" id="dragev' + listItem + i + '">' + '<img src="http://localhost:8080/closet/image/codi/' + value + '/' + i + '.png" width="70" height="70"  id="codiInfo' + listItem + i + '">' + '</div> </td>';
     }
     html += '</tr>';
     html += '<tr>';
     for (i = 4; i < 7; i++) {
-        html += '<td>' + '<div class="dragev" id="dragev'+item+i+'">' +  '<img src="http://localhost:8080/closet/image/codi/' + value + '/' + i + '.png" width="70" height="70" id="codiInfo'+item+i+'" >' + '</div> </td>';
+        html += '<td class=' + i + '>' + '<div class="dragev" id="dragev' + listItem + i + '">' + '<img src="http://localhost:8080/closet/image/codi/' + value + '/' + i + '.png" width="70" height="70" id="codiInfo' + listItem + i + '" >' + '</div> </td>';
     }
     html += '</div>';
     html += '</div>';
-    $('#codiView').append(html).css('cursor:move','z-index:2');
-    
-    var css_test_idx = 10;
+    $('#codiView').append(html).css('cursor:move', 'z-index:2');
 
-    // 이미지 드래그해서 끌어다놓기
-    $('#codiView').on('mouseenter', 'img', function(){
-    //드래그 시 clone 생성해서 '
-    $(this).draggable({
-        helper:'clone',
-        cursor: 'move'
-    });
+    // 이미지 드래그해서 끌어다놓고, x, y좌표 얻기
+    $('#codiView').on('mouseenter', 'img', function () {
+        //드래그 시 clone 생성해서 이동
+        $(this).draggable({
+            helper: 'clone',
+            cursor: 'hand',
+            // 드래그 종료 시 xy좌표 얻는 함수
+            stop: function () {
+                var offset = $(this).offset();
+                var xPos = offset.left;
+                var yPos = offset.top;
+                console.log('xPos:' + xPos);
+                console.log('yPos:' + yPos);
+            }
+        });
 
-    console.log(this);
+        // 드롭될 때 발생하는 이벤트
+        $('#codibg').droppable({
+            activeClass: 'ui-state-hover',
+            accept: 'img',
+            drop: function (e, ui) {
+                if (!ui.draggable.hasClass('dropped'))
+                    $(this).append($(ui.draggable).clone().addClass('dropped').draggable());
+            }
+        });
 
-    // 드롭한 후에 이미지 남겨주기
-    $('#codibg').droppable({
-        activeClass: 'ui-state-hover',
-        accept:'img',
-        drop: function(e, ui){
-            if(!ui.draggable.hasClass('dropped'))
-                $(this).append($(ui.draggable).clone().addClass('dropped').draggable());
-        }
-    });
-   
-    $('img').mousedown(function () {
-        $(this).css('z-index', css_test_idx);
-        css_test_idx++;
-    });
-    console.log(css_test_idx);
-
-
+        // 이미지 클릭하면 항상 위로 오게 만들기
+        $('img').mousedown(function () {
+            $(this).css('z-index', img_zidx);
+            img_zidx++;
+            console.log('img_zidx:' + img_zidx);
+        })
     })
 
 }
+
+// 버튼 누르면 저장하는 이벤트
+function saveDrag() {
+
+    $('#codibg img').each(function (index, item) {
+        var dragsrc = $(item).attr('src');
+        var dragoffleft = $(item).offset().left;
+        var dragofftop = $(item).offset().top;
+        console.log('dragsrc:' + dragsrc, 'dragoffleft:' + dragoffleft, 'dragofftop:' + dragofftop);
+        dragList.push(dragsrc, dragoffleft, dragofftop);
+        console.log('dragList:' + dragList);
+
+        var jsonDrag = JSON.stringify(dragList);
+    })
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -107,6 +134,48 @@ function codiView(value) {
 
 // })
 
+
+
+
+    // // 이미지 드래그해서 끌어다놓고, x, y좌표 얻기
+    // $('#codiView').on('mouseenter', 'img', function () {
+    //     //드래그 시 clone 생성해서 이동
+    //     $(this).draggable({
+    //         helper: 'clone',
+    //         cursor: 'hand',
+    //         // 드래그 종료 시 xy좌표 얻는 함수
+    //         stop: function () {
+    //             var offset = $(this).offset();
+    //             var xPos = offset.left;
+    //             var yPos = offset.top;
+    //             console.log('xPos:' + xPos);
+    //             console.log('yPos:' + yPos);
+    //             // dragList 배열에 경로와 xy좌표 넣기
+    //             dragList.push(this.src, xPos, yPos);
+    //             console.log('dragList:' + dragList);
+
+    //         }
+    //     });
+
+    //     console.log('img 정보:' + this.src);
+    //     var tdClass = this.src.substr((this.src.length-5), 1);
+    //     console.log(tdClass);
+    //     console.log('.'+tdClass);
+
+
+
+
+    //     // 드롭한 후에 이미지 남겨주기
+    //     $('#codibg').droppable({
+    //         activeClass: 'ui-state-hover',
+    //         accept: 'img',
+    //         drop: function (e, ui) {
+    //             var newImg = $(ui.helper).clone().offset({left:0,top:0});
+    //             console.log('newImg:' + newImg)
+    //             newImg.append('.'+tdClass);
+
+
+    //         }
 
 
 

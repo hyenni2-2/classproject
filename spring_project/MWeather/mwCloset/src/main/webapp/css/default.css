@@ -116,12 +116,18 @@ footer {
 
 #codibg {
 	height: 500px;
-	border: 1px solid #ddd;
-	width: 800px;
+	width: 600px;
+	position: absolute;
 }
 
 #codiback {
 	width: 20px;
 	height: 20px;
 }
+
+#codisave {
+	width: 30px;
+	height: 30px;
+}
+
 
