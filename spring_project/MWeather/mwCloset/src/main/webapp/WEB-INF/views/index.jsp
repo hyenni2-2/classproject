@@ -27,7 +27,6 @@ var c_name = ${c_name}
 </script> -->
 
 <%-- <script src="<c:url value="/js/closet.js"/>"> </script> --%>
-<%-- <script src="<c:url value="/js/codidrag.js"/>"> </script> --%>
 <script src="<c:url value="/js/codiset.js"/>"> </script>
       
 
@@ -41,15 +40,13 @@ var c_name = ${c_name}
 	
 	<div class="content" id="content" name="content">
 	  <!-- 리스트 출력 -->
-	  <div class="closetList">
-
-	  </div>
+	  <div class="closetList"></div>
 	  <!-- 코디게시판 -->
 	  <div class="codipart" id="codipart" name="codipart">
 	  <!-- 코디선택 -->
 	  <div class="codiView" id="codiView" name="codiView">
-	  <div class="codi" id="codi" name="codi">
-	  </div>
+	  <!-- 코디 대분류 리스트 -->
+	  <div class="codi" id="codi" name="codi"></div>
 	  </div>
 	  <!-- 코디조합버튼 -->
 	  <div class="codicon" id="codicon" name="codicon">
@@ -59,7 +56,12 @@ var c_name = ${c_name}
 	  </div>
 	  <!-- 조합배경 -->
 	  <div class="codibg" id="codibg" name="codibg">
+	   <!-- 클로젯 글쓰기 게시판 -->
+	  <div class="closetReg" id="closetReg" name="closetReg">
 	  </div>
+	  </div>
+	 
+	  
 	  </div>
 	  </div>
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>

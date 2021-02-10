@@ -93,6 +93,21 @@ footer {
     background-color: #ffffff;
 }
 
+.regFormButton {
+    background-image: url(http://localhost:8080/closet/image/icon/write.png);
+    width: 50px;
+    height: 50px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100px;
+    border: 0px;
+    background-color: #64c2eb;
+    position: fixed;
+    bottom: 80px;
+    right: 15px;
+}
+
 .codiView {
 	height: 30%;
 	
@@ -103,7 +118,7 @@ footer {
 }
 
 #codipart {
-	align-content: center;
+
 }
 
 #content {
@@ -112,11 +127,12 @@ footer {
 
 #codiView {
 	height: 30%;
+	padding-left: 60px;
 }
 
 #codibg {
-	height: 500px;
-	width: 600px;
+	height: 60%;
+	width: 80%;
 	position: absolute;
 }
 
@@ -135,4 +151,28 @@ footer {
 	height: 27px;
 }
 
+#codicon {
+	display: none;
+}
+
+#closetReg {
+	width: 80%;
+	height: 30%;
+	bottom: 30%;
+	position: absolute; 
+	
+}
+
+#savebtn {
+	display:block;
+	bottom-right: 30px;
+	width: 30px;
+	height: 30px;
+}
+
+#closetReg {
+	margin: 20px auto;
+	padding: 20px auto;
+	
+}
 

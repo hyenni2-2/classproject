@@ -13,6 +13,5 @@ public interface ClosetDao {
     // 코디 메인화면 출력
 	List<Codi> getCodiSet();
 	
-	
 
 }
