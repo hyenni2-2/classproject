@@ -134,6 +134,7 @@ footer {
 	height: 60%;
 	width: 80%;
 	position: absolute;
+	border: 1px solid #fff;
 }
 
 #codiback {
@@ -171,8 +172,19 @@ footer {
 }
 
 #closetReg {
-	margin: 20px auto;
-	padding: 20px auto;
-	
+	margin: 1-
 }
 
+#codilist {
+	width: 25px;
+	height: 25px;
+}
+
+#codiforward {
+	width: 32px;
+	height: 32px;
+}
+
+.clickNo{
+	pointe-events: none;
+}

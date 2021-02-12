@@ -44,15 +44,19 @@ var c_name = ${c_name}
 	  <!-- 코디게시판 -->
 	  <div class="codipart" id="codipart" name="codipart">
 	  <!-- 코디선택 -->
-	  <div class="codiView" id="codiView" name="codiView">
+	  <div class="codiView" id="codiView" name="codiView"></div>
 	  <!-- 코디 대분류 리스트 -->
 	  <div class="codi" id="codi" name="codi"></div>
-	  </div>
+	  
 	  <!-- 코디조합버튼 -->
 	  <div class="codicon" id="codicon" name="codicon">
-	  <img src="<c:url value="/image/icon/back.png"/>" id="codiback">
+	  <img src="<c:url value="/image/icon/back.png"/>" id="codiback" onclick="backDrag(1)">
+	  <img src="<c:url value="/image/icon/forward.png"/>" id="codiforward" onclick="backDrag()">
+	  <img src="<c:url value="/image/icon/list.png"/>" id="codilist" onclick="showList()">
 	  <img src="<c:url value="/image/icon/save.png"/>" id="codisave" onclick="saveDrag()">
 	  <img src="<c:url value="/image/icon/reset.png"/>" id="codireset" onclick="resetDrag()">
+	  
+	  
 	  </div>
 	  <!-- 조합배경 -->
 	  <div class="codibg" id="codibg" name="codibg">
