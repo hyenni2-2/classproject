@@ -7,7 +7,6 @@ var dragList = [];
 // 잊지말고 펑션 다 짠 후에 document.ready로 호출하기 - 페이지가 열렸을 때 반드시 표시되어야 하는 것만 함수 호출
 $(document).ready(function () {
     bigCategory();
-    saveArr();
 })
 
 // 대분류 호출하는 펑션
@@ -108,24 +107,10 @@ function saveArr() {
 }
 
 // 아이템 클릭 동작 뒤로가는(기존 아이템을 삭제하는)함수
-function backDrag(index) {
-    saveArr();
-    // 배열에서 마지막에 저장한 값 삭제 
-    dragList.splice(dragList.length - 4, 4);
-    console.log('dragList pop :' + dragList);
-    var jsonDrag = JSON.stringify(dragList);
-    console.log('제이슨드래그:' + jsonDrag);
-    $('#codibg img').last().detach();
-    console.log('배열의 길이' + dragList.length);
-    index++;
-    if (index > 1) {
-        dragList.splice(dragList.length - 4, 4);
-        console.log('dragList pop :' + dragList);
-        var jsonDrag = JSON.stringify(dragList);
-        console.log('제이슨드래그:' + jsonDrag);
+function backDrag() {
         $('#codibg img').last().detach();
-        console.log('배열의 길이' + dragList.length);
-    } 
+        dragList.push($('#codibg img').attr('src'), $('#codibg img').offset().left, $('#codibg img').offset().top, $('#codibg img').css('z-index'));
+        console.log(dragList);
 }
 
 // 클릭안되게 하는 함수
@@ -166,28 +151,28 @@ function showList() {
 }
 
 // 아이템 클릭 동작 뒤로가는(기존 아이템을 삭제하는)함수
-function backDrag(index) {
-    if(index == 1){
-        saveArr();
-        // 배열에서 마지막에 저장한 값 삭제 
-        dragList.splice(dragList.length - 4, 4);
-        console.log('dragList pop :' + dragList);
-        var jsonDrag = JSON.stringify(dragList);
-        console.log('제이슨드래그:' + jsonDrag);
-        $('#codibg img').last().detach();
-        console.log('배열의 길이' + dragList.length);
-    }
-    index++;
-    if (index > 1) {
-        dragList.splice(dragList.length - 4, 4);
-        console.log('dragList pop :' + dragList);
-        var jsonDrag = JSON.stringify(dragList);
-        console.log('제이슨드래그:' + jsonDrag);
-        $('#codibg img').last().detach();
-        console.log('배열의 길이' + dragList.length);
-    } 
-    return dragList;
-}
+// function backDrag(index) {
+//     if(index == 1){
+//         saveArr();
+//         // 배열에서 마지막에 저장한 값 삭제 
+//         dragList.splice(dragList.length - 4, 4);
+//         console.log('dragList pop :' + dragList);
+//         var jsonDrag = JSON.stringify(dragList);
+//         console.log('제이슨드래그:' + jsonDrag);
+//         $('#codibg img').last().detach();
+//         console.log('배열의 길이' + dragList.length);
+//     }
+//     index++;
+//     if (index > 1) {
+//         dragList.splice(dragList.length - 4, 4);
+//         console.log('dragList pop :' + dragList);
+//         var jsonDrag = JSON.stringify(dragList);
+//         console.log('제이슨드래그:' + jsonDrag);
+//         $('#codibg img').last().detach();
+//         console.log('배열의 길이' + dragList.length);
+//     } 
+//     return dragList;
+// }
 
 // 앞으로가기 기능
 // function forwardDrag(){

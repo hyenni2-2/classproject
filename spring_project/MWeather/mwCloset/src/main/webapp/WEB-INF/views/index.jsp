@@ -50,7 +50,7 @@ var c_name = ${c_name}
 	  
 	  <!-- 코디조합버튼 -->
 	  <div class="codicon" id="codicon" name="codicon">
-	  <img src="<c:url value="/image/icon/back.png"/>" id="codiback" onclick="backDrag(1)">
+	  <img src="<c:url value="/image/icon/back.png"/>" id="codiback" onclick="backDrag()">
 	  <img src="<c:url value="/image/icon/forward.png"/>" id="codiforward" onclick="backDrag()">
 	  <img src="<c:url value="/image/icon/list.png"/>" id="codilist" onclick="showList()">
 	  <img src="<c:url value="/image/icon/save.png"/>" id="codisave" onclick="saveDrag()">
