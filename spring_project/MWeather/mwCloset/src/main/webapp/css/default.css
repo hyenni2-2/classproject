@@ -29,6 +29,20 @@
     font-family: 'Nanum Gothic', sans-serif;
 }
 
+a{
+    text-decoration: none;
+    color: #757575;
+}
+
+a:link, a:visited, a:active, a:hover{
+    text-decoration: none;
+    color: #757575;
+}
+
+button:link, button:visited, button:active, button:hover, button:focus{
+    border: none;
+    outline:none;     
+}
 
 ::-webkit-scrollbar {
     display: none;
@@ -108,26 +122,21 @@ footer {
     right: 15px;
 }
 
-.codiView {
-	height: 30%;
-	
-}
-
-.codi {
-	height: 30%;
-}
-
 #codipart {
+	margin: 20px auto;
+	padding: 20px auto;
 
-}
-
-#content {
-	border: 1px;
 }
 
 #codiView {
-	height: 30%;
-	padding-left: 60px;
+	height: 20%;
+	margin: 20px auto;
+	padding: 20px auto;
+}
+
+#codi table {
+	margin: 20px auto;
+	padding: 20px auto;
 }
 
 #codibg {
@@ -136,6 +145,7 @@ footer {
 	position: absolute;
 	border: 1px solid #fff;
 }
+
 
 #codiback {
 	width: 20px;
@@ -158,10 +168,11 @@ footer {
 
 #closetReg {
 	width: 80%;
-	height: 30%;
-	bottom: 30%;
+	height: 20%;
+	bottom: 30%
 	position: absolute; 
-	
+	margin: 20px auto;
+	padding: 20px auto;
 }
 
 #savebtn {
@@ -172,7 +183,9 @@ footer {
 }
 
 #closetReg {
-	margin: 1-
+	margin: 20px auto;
+	padding: 20px auto;
+	position: relative;
 }
 
 #codilist {
@@ -188,3 +201,11 @@ footer {
 .clickNo{
 	pointe-events: none;
 }
+
+#closetWrite {
+	position: absolute;
+	margin: 20px auto;
+	padding: 20px auto;
+	bottom: 20%;
+}
+

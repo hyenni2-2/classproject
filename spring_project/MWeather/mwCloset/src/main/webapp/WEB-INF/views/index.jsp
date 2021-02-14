@@ -55,17 +55,12 @@ var c_name = ${c_name}
 	  <img src="<c:url value="/image/icon/list.png"/>" id="codilist" onclick="showList()">
 	  <img src="<c:url value="/image/icon/save.png"/>" id="codisave" onclick="saveDrag()">
 	  <img src="<c:url value="/image/icon/reset.png"/>" id="codireset" onclick="resetDrag()">
-	  
-	  
 	  </div>
 	  <!-- 조합배경 -->
 	  <div class="codibg" id="codibg" name="codibg">
 	   <!-- 클로젯 글쓰기 게시판 -->
-	  <div class="closetReg" id="closetReg" name="closetReg">
+	  <div class="closetReg" id="closetReg" name="closetReg"></div>
 	  </div>
-	  </div>
-	 
-	  
 	  </div>
 	  </div>
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>

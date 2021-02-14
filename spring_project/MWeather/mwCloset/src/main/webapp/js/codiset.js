@@ -131,6 +131,8 @@ function saveDrag() {
     $('#codi').remove();
     // 코디아이콘 디스플레이 없애기
     $('#codicon').css('display', 'none');
+    // 코디 드래거블 해제
+    $('#codibg img').draggable({disabled:true});
     // 텍스트에리어 만들어주기
     var cHtml = '<form action="POST" id="closetRegForm">';
     cHtml += '<textarea name="closetWrite" id="closetWrite" rows="10" cols="20">';

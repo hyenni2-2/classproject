@@ -23,5 +23,7 @@ public class ClosetListController {
 	public List<Closet> getClosetList(){
 		return listService.getList();
 	}
+	
+	
 
 }
