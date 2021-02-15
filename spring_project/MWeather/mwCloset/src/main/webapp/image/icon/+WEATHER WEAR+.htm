@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://localhost:8080/closet/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>+WEATHER WEAR+</title>
+
+<link rel="styleSheet" href="./+WEATHER WEAR+_files/default.css">
+<link rel="styleSheet" href="./+WEATHER WEAR+_files/bootstrap.min.css">
+<link rel="styleSheet" href="./+WEATHER WEAR+_files/closet.css">
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--제이쿼리 라이브러리 로드-->
+<script src="./+WEATHER WEAR+_files/jquery-1.12.4.min.js"></script>
+<!-- 제이쿼리 ui로드 -->
+<script src="./+WEATHER WEAR+_files/jquery-ui.js"></script>
+
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="./+WEATHER WEAR+_files/bootstrap.min(1).css">
+	
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="./+WEATHER WEAR+_files/bootstrap-theme.min.css">
+	
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="./+WEATHER WEAR+_files/bootstrap.min.js" width="100">
+</script>
+
+<!-- <script> 
+var mem_idx = 1
+var c_name = 메이웨더
+</script> -->
+
+
+<script src="./+WEATHER WEAR+_files/codiset.js"> </script>
+      
+
+
+
+</head>
+
+<body bgcolor="#f5f5f5" style="cursor: auto;">
+
+	
+
+    
+    <header>
+		<img src="./+WEATHER WEAR+_files/mwlogo.png" width="119px" class="logoimage">
+	</header>
+	
+	
+	
+	<div class="content" id="content" name="content">
+	  <!-- 리스트 출력 -->
+	  <div class="closetList"></div>
+	  <!-- 코디게시판 -->
+	  <div class="codipart" id="codipart" name="codipart">
+		  <!-- 코디선택 -->
+		  <div class="codiView" id="codiView" name="codiView" style="display: none;"><div class="container"><div class="row"><div class="col-6 col-sm-3" onclick="codiView(&#39;top&#39;)" id="top" style="border:1px solid;">TOP<br><img src="./+WEATHER WEAR+_files/1.png" width="100" height="100"></div><div class="col-6 col-sm-3" onclick="codiView(&#39;outer&#39;)" id="outer" style="border:1px solid;">OUTER<br><img src="./+WEATHER WEAR+_files/2.png" width="100" height="100"></div><div class="w-100"></div><div class="col-6 col-sm-3" onclick="codiView(&#39;bottom&#39;)" id="bottom" style="border:1px solid;">BOTTOM<br><img src="./+WEATHER WEAR+_files/3.png" width="100" height="100"></div><div class="col-6 col-sm-3" onclick="codiView(&#39;shoes&#39;)" id="shoes" style="border:1px solid;">SHOES<br><img src="./+WEATHER WEAR+_files/4.png" width="100" height="100"></div></div></div></div>
+		  <!-- 코디 대분류 리스트 -->
+		  
+		  
+		  <!-- 코디조합버튼 -->
+		  <div class="codicon" id="codicon" name="codicon" style="display: none;">
+			  <img src="./+WEATHER WEAR+_files/back.png" id="codiback" onclick="backDrag()">
+			  <img src="./+WEATHER WEAR+_files/list.png" id="codilist" onclick="showList()">
+			  <img src="./+WEATHER WEAR+_files/save.png" id="codisave" onclick="saveDrag()" style="z-index: 9;">
+			  <img src="./+WEATHER WEAR+_files/reset.png" id="codireset" onclick="resetDrag()">
+		  </div>
+		  <!-- 조합배경 -->
+		  <div class="codibg ui-droppable" id="codibg" name="codibg" style="height: 100px;"><img src="./+WEATHER WEAR+_files/2(1).png" width="70" height="70" id="codiInfotop2" class="ui-draggable ui-draggable-handle dropped ui-draggable-disabled" style="z-index: 1; position: relative;"></div>
+		    <!-- 클로젯 글쓰기 게시판 -->
+		 <div class="closetReg" id="closetReg" name="closetReg"><form action="http://localhost:8080/closet/POST" id="closetRegForm"><div class="form-floating"><textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea><label for="floatingTextarea2">Comments</label></div><button type="button" class="btn btn-light">SAVE</button></form></div>
+   		</div>
+	  </div>
+	 
+	
+	
+
+
+    <footer>
+
+
+
+
+		<table border="0" class="footer_menu_table">
+			<tbody><tr>
+				<td><img src="./+WEATHER WEAR+_files/home2.png" width="30" class="menuicons"></td>
+				<td><img src="./+WEATHER WEAR+_files/ootd.png" width="30" class="menuicons">
+				</td>
+				<td><img src="./+WEATHER WEAR+_files/closet.png" width="23" class="menuicons"></td>
+				<td><img src="./+WEATHER WEAR+_files/market.png" width="30" class="menuicons"></td>
+				<td><img src="./+WEATHER WEAR+_files/mypage2.png" width="23" class="menuicons"></td>
+			</tr>
+			<tr>
+				<td>HOME</td>
+				<td>OOTD</td>
+				<td>CLOSET</td>
+				<td>MARKET</td>
+				<td>MY</td>
+			</tr>
+		</tbody></table>
+
+	</footer>
+
+
+
+
+
+</body></html>

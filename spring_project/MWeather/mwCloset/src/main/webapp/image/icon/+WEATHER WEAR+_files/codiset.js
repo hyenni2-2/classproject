@@ -63,7 +63,8 @@ function codiView(value) {
         //드래그 시 clone 생성해서 이동
         $('#codi img').draggable({
             helper: 'clone',
-            cursor: 'hand'
+            cursor: 'hand',
+            containment: '#codibg'
         });
 
         // 드롭될 때 발생하는 이벤트
@@ -128,12 +129,14 @@ function saveDrag() {
     $('#codibg img').draggable({ disabled: true });
     $('#codibg').css('height', '100px');
     // 텍스트에리어 만들어주기
-    $('#closetReg').css('display','block');
     var cHtml = '<form action="POST" id="closetRegForm">';
-    cHtml += '<div class="form-floating">';
-    cHtml += '  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>';
-    cHtml += '  <label for="floatingTextarea2"></label>';
-    cHtml +='</div>';
+   // cHtml += '<textarea name="closetWrite" id="closetWrite" rows="20" cols="10">';
+   // cHtml += '</textarea><br>';
+
+   cHtml +=   '<div class="form-floating">';
+ cHtml += '<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>';
+ cHtml += '<label for="floatingTextarea2">Comments</label>';
+ cHtml +='</div>';
     cHtml += '<button type="button" class="btn btn-light">SAVE</button>';
     cHtml += '</div>';
     $('#closetReg').append(cHtml);

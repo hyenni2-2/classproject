@@ -124,7 +124,7 @@ footer {
 
 #codipart {
 	max-width: 500px; 
-	height: 600px;
+	height: 650px;
 	margin: 20px auto;
 	padding: 20px auto;
 
@@ -143,13 +143,12 @@ footer {
 }
 
 #codibg {
-    height:50%;
-   	width: 100%;
+    height:55%;
+   	width: 500px;
 	position: absolute;
 	border: 1px solid #ddd;
-	margin: 20px auto;
-	padding: 20px auto;
 }
+
 
 #codiback {
 	width: 20px;
@@ -171,7 +170,12 @@ footer {
 }
 
 #closetReg {
-	
+	position : absolute;
+	top : 100;
+	width: 300px;
+	height: 40%;
+	margin: 20px auto;
+	padding: 20px auto;
 }
 
 #savebtn {

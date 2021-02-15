@@ -6,21 +6,19 @@ import java.util.List;
 
 import lombok.Data;
 
-
-// tbl_closet DB 정보
+// form 데이터 빈즈
 @Data
-public class Closet {
-
+public class ClosetWriteRequest {
+	
 	private int memIdx;
 	private String cName;
-	private String cSrc;
-	private int xPos;
-	private int yPos;
-	private int zPos;
+	private List<Closet> cPhotoOut;
 	private Timestamp cRegdate;
-	private String cText;
-	
+	private String cText; 
+		
 	public Date getToDate() {
 		return new Date(this.cRegdate.getTime());
 	}
+	
 }
+	
