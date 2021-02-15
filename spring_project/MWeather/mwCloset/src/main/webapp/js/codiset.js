@@ -131,7 +131,7 @@ function saveDrag() {
     $('#closetReg').css('display','block');
     var cHtml = '<form action="POST" id="closetRegForm">';
     cHtml += '<div class="form-floating">';
-    cHtml += '  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>';
+    cHtml += '  <textarea class="form-control" placeholder="Leave a comment here" id="closetText" style="height: 100px"></textarea>';
     cHtml += '  <label for="floatingTextarea2"></label>';
     cHtml +='</div>';
     cHtml += '<button type="button" class="btn btn-light">SAVE</button>';
@@ -147,4 +147,34 @@ function showList() {
     $('#codiView').css('display', 'block');
 }
 
+// 이미지 리스트 넘겨주는 ajax
+$('#codibg').submit(function(){
+    
+    $.ajax({
+        url:'/write',
+        type: 'POST',
+        dataType:'JSON',
+        data : jsonDrag,
+        contentType: 'application/json; charset=utf-8',
+        success: function(jsonDrag){
+            // 성공 시 jsonDrag 콘솔에 찍기
+            console.log('jsonDrag:'+jsonDrag);
+        },     
+        error: function(e){
+            console.log('에러'+e);
+        }
 
+    })
+})
+
+// 글쓰기 데이터 넘겨주는 ajax
+$('#closetRegForm').submit(function(){
+    var closetData = {
+        cText = $('#closetText').val()
+    }
+
+    $.ajax({
+        url:'/'
+    })
+
+})

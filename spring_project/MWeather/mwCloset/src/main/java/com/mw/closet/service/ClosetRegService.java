@@ -48,12 +48,12 @@ public class ClosetRegService {
 						result = dao.insertClosetWrite(regRequest);
 				}
 			} 
+		}
 			catch (Exception e) {
 						e.printStackTrace();
 					}
 				return result;
-			}
-					
+			}		
 		}
 
 // 이미지 배열 저장
