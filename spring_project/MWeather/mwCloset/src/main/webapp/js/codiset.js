@@ -5,27 +5,97 @@ var img_zidx = 0;
 var dragList = [];
 
 // 잊지말고 펑션 다 짠 후에 document.ready로 호출하기 - 페이지가 열렸을 때 반드시 표시되어야 하는 것만 함수 호출
-$(document).ready(function () {
-    bigCategory();
+// $(document).ready(function () {
+//     bigCategory();
+// })
+// 리스트 부르는 함수
+// function list() {
+//     $.ajax({
+//         url: '/closet/list',
+//         type: 'GET',
+//         success: function (listData) {
+//             for (var i = 0; i < listData.length; i++) {
+//                 var listhtml = '<table class="list">';
+//                 listhtml += '<tr>';
+//                 listhtml += '<td>';
+//                 listhtml += '<div class="clist" id="clist" height="130" width="130">'+;
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+//                 listhtml += '';
+
+
+//                 $('.closetList').append(html);
+//             }
+//         },
+//         error: function (e) {
+//             console.log("에러 발생 : " + e);
+//         }
+//     })
+// }
+
+$(document).ready(function(){
+    list();
+   // bigCategory();
 })
 
+// 리스트 부르는 함수
+function list() {
+    $.ajax({
+        url: '/closet/list',
+        type: 'GET',
+        success: function (listData) {
+            for (var i = 0; i < listData.length; i++) {
+                var html = '<div class="col">';
+                html += '<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">';
+                html += '<title>Placeholder</title>';
+                //html += '<rect width="100%" height="100%" fill="#55595c"/>'+data[i].cPhotoOut+'<text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>';
+                html += '<rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">' + listData[i].photo + '</text></svg>';
+                html += '<div class="card-body">';
+                html += '<div class="d-flex justify-content-between align-items-center">';
+                html += '<div class="btn-group">';
+                html += '<button type="button" class="btn btn-sm btn-outline-secondary">좋아요' + listData[i].clikeCnt + '</button>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+
+                $('.closetList').append(html);
+            }
+        },
+        error: function (e) {
+            console.log("에러 발생 : " + e);
+        }
+    })
+}
 
 
 // 대분류 호출하는 펑션
 function bigCategory() {
     $.ajax({
-        url: 'http://localhost:8080/closet/codi',
+        url: '/closet/codi',
         type: 'get',
         async: false,
         success: function (data) {
             var html = '<div class="container">';
             html += '<div class="row">';
-            html += '<div class="col-6 col-sm-3" onclick="codiView(\'top\')" id="top" style="border:1px solid;">' + data[3].codiList + '<br>' + data[3].codiPho + '</td>' + '</div>';
-            html += '<div class="col-6 col-sm-3" onclick="codiView(\'outer\')" id="outer" style="border:1px solid;" >' + data[1].codiList + '<br>' + data[1].codiPho + '</td>' + '</div>';
+            html += '<div class="col-6 col-sm-3" onclick="codiView(\'top\')" id="top" style="color:grey;">' + data[3].codiList + '<br>' + data[3].codiPho + '</td>' + '</div>';
+            html += '<div class="col-6 col-sm-3" onclick="codiView(\'outer\')" id="outer" style="color:grey;" >' + data[1].codiList + '<br>' + data[1].codiPho + '</td>' + '</div>';
             html += '<div class="w-100"></div>';
             html += '<tr>';
-            html += '<div class="col-6 col-sm-3" onclick="codiView(\'bottom\')" id="bottom" style="border:1px solid;">' + data[0].codiList + '<br>' + data[0].codiPho + '</td>' + '</div>';
-            html += '<div class="col-6 col-sm-3" onclick="codiView(\'shoes\')" id="shoes" style="border:1px solid;">' + data[2].codiList + '<br>' + data[2].codiPho + '</td>' + '</div>';
+            html += '<div class="col-6 col-sm-3" onclick="codiView(\'bottom\')" id="bottom" style="color:grey;">' + data[0].codiList + '<br>' + data[0].codiPho + '</td>' + '</div>';
+            html += '<div class="col-6 col-sm-3" onclick="codiView(\'shoes\')" id="shoes" style="color:grey;">' + data[2].codiList + '<br>' + data[2].codiPho + '</td>' + '</div>';
             html += '</tr>';
             html += '</div>';
             html += '</div>';
@@ -44,7 +114,7 @@ function codiView(value) {
 
     $('#codicon').css('display', 'block');
 
-    var html = '<table border="1" width="80%" height="auto">';
+    var html = '<table width="80%" height="auto" style="color:#FDF1AE;">';
     html += '<tr>';
     for (i = 1; i < 4; i++) {
         html += '<td class=' + i + '>' + '<div class="dragev" id="dragev' + listItem + i + '">' + '<img src="http://localhost:8080/closet/image/codi/' + value + '/' + i + '.png" width="70" height="70" id="codiInfo' + listItem + i + '">' + '</div> </td>';
@@ -109,15 +179,12 @@ function saveDrag() {
         // console.log('dragsrc:' + dragsrc, 'dragoffleft:' + dragoffleft, 'dragofftop:' + dragofftop, 'zIdx:' + dragoffzidx);
         dragList.push({ src: dragsrc, x: dragoffleft, y: dragofftop, z: dragoffzidx });
         // 배열 위치 확인
-        console.log('dragList:' + dragList.src + dragList.x + dragList.y + dragList.z);
-       
+        // console.log('dragList:' + dragList.src + dragList.x + dragList.y + dragList.z);
+
     })
-	console.log(dragList);
-    if (dragList.length > 0) {
-        // 배열 JSON으로 변환
-        var jsonDrag = JSON.stringify(dragList);
-        //console.log('json : ' + jsonDrag);
-    } else {
+    console.log(dragList);
+
+    if (dragList.length < 0) {
         alert('저장된 조합이 없습니다. 다시 시도해주세요.');
     }
     // 글쓰기 화면 보여주기 -> 세부 리스트 내용 비워주기
@@ -128,53 +195,57 @@ function saveDrag() {
     $('#codibg img').draggable({ disabled: true });
     $('#codibg').css('height', '100px');
     // 텍스트에리어 만들어주기
-    $('#closetReg').css('display','block');
+    $('#closetReg').css('display', 'block');
     var cHtml = '<form action="POST" id="closetRegForm">';
     cHtml += '<div class="form-floating">';
     cHtml += '  <textarea class="form-control" placeholder="Leave a comment here" id="closetText" style="height: 100px"></textarea>';
     cHtml += '  <label for="floatingTextarea2"></label>';
-    cHtml +='</div>';
-    cHtml += '<button type="button" class="btn btn-light">SAVE</button>';
+    cHtml += '</div>';
+    cHtml += '<button type="button" class="btn btn-light" id="savebuttn">SAVE</button>';
     cHtml += '</div>';
     $('#closetReg').append(cHtml);
+
+    // 이미지 리스트 넘겨주는 ajax
+    $('#savebuttn').on('click', function () {
+        // db로 보내주기 위한 객체
+        var img = {
+            memIdx: memIdx,
+            name: cName,
+            photo: dragList,
+            text: $('#closetText').val()
+        };
+        console.log(img);
+        // 배열 JSON으로 변환
+        var jsonDrag = JSON.stringify(img);
+        console.log('json : ' + jsonDrag);
+        console.log('jsonDrag length:' + jsonDrag.length);
+        $.ajax({
+            url: '/closet/write',
+            type: 'POST',
+            dataType: 'JSON',
+            data: jsonDrag,
+            contentType: 'application/json; charset=utf-8',
+            success: function (jsonDrag) {
+                // 성공 시 jsonDrag 콘솔에 찍기
+                console.log('jsonDrag:' + jsonDrag);
+                // 텍스트에리어 지워주기
+                $('#closetRegForm').remove();
+            },
+            error: function (e) {
+                console.log('에러' + e);
+            }
+        })
+
+    })
 }
 
 // 리스트로 돌아가는 함수
 function showList() {
     // 코디div 비우기
     $('#codi').empty();
+    // 코디아이콘 css none
+    $('#codicon').css('display', 'none');
     // 대분류리스트 부르기
     $('#codiView').css('display', 'block');
 }
 
-// 이미지 리스트 넘겨주는 ajax
-$('#codibg').submit(function(){
-    
-    $.ajax({
-        url:'/write',
-        type: 'POST',
-        dataType:'JSON',
-        data : jsonDrag,
-        contentType: 'application/json; charset=utf-8',
-        success: function(jsonDrag){
-            // 성공 시 jsonDrag 콘솔에 찍기
-            console.log('jsonDrag:'+jsonDrag);
-        },     
-        error: function(e){
-            console.log('에러'+e);
-        }
-
-    })
-})
-
-// 글쓰기 데이터 넘겨주는 ajax
-$('#closetRegForm').submit(function(){
-    var closetData = {
-        cText = $('#closetText').val()
-    }
-
-    $.ajax({
-        url:'/'
-    })
-
-})

@@ -137,16 +137,17 @@ footer {
 }
 
 
-#codi {
+#codi table {
 	margin: 20px auto;
 	padding: 20px auto;
+	left: 50px;
+	background-color: #d1d0c7;
 }
 
 #codibg {
     height:50%;
    	width: 100%;
 	position: absolute;
-	border: 1px solid #ddd;
 	margin: 20px auto;
 	padding: 20px auto;
 }
@@ -171,7 +172,11 @@ footer {
 }
 
 #closetReg {
-	
+	position: absolute;
+	top: 200px;
+	left: 60px;
+	margin: 20px auto;
+	padding: 20px auto;
 }
 
 #savebtn {

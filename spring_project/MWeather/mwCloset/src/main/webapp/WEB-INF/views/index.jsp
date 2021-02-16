@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% 
-   session.setAttribute("memIdx", "1");
+   session.setAttribute("memIdx", 1);
    session.setAttribute("cName", "메이웨더");
-   
 %>
 
 
@@ -39,15 +38,14 @@
 	crossorigin="anonymous"></script>
 <!-- bootstrap END -->
 
+<!-- db에 보낼 전역변수 js값 -->
+<script>
+var memIdx = ${memIdx};
+var cName = '${cName}';
+</script>
 
 <%@ include file="/WEB-INF/views/include/basicset.jsp"%>
 
-<!-- <script> 
-var mem_idx = ${mem_idx}
-var c_name = ${c_name}
-</script> -->
-
-<%-- <script src="<c:url value="/js/closet.js"/>"> </script> --%>
 <script src="<c:url value="/js/codiset.js"/>"> </script>
 
 

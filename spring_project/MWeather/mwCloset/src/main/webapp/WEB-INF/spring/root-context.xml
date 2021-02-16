@@ -19,7 +19,6 @@
 		p:mapperLocations="classpath:com/mw/closet/mapper/*.xml" />
 
 	<!-- p:mapperLocations="/WEB-INF/mapper/*.xml" -->
-
 	<!-- SqlSessionTemplate 빈 등록 -->
 	<bean id="sqlSessionTemplate"
 		class="org.mybatis.spring.SqlSessionTemplate">

@@ -3,18 +3,17 @@
 
 <mapper namespace="com.mw.closet.dao.ClosetDao">
 
-<resultMap type="com.mw.closet.domain.Closet" id="listResult">
+<resultMap type="com.mw.closet.domain.ClosetWriteRequest" id="listResult">
  <id column="cIdx" property="cIdx"/>
  <result column="memIdx" property="memIdx"/>
-  <result column="cName" property="cName"/>
-   <result column="cPhotoOut" property="cPhotoOut"/>
-    <result column="cLikeCnt" property="cLikeCnt"/>
-     <result column="cBmkCnt" property="cBmkCnt"/>
-</resultMap>
+  <result column="cName" property="name"/>
+   <result column="photo" property="imgData"/>
+    <result column="cLikeCnt" property="like"/>
+</resultMap> 
 
 <!-- 리스트 출력 -->
- <select id="selectAll" resultMap="listResult">
-   	select cIdx, memIdx, cName, cPhotoOut, cLikeCnt, cBmkCnt from tbl_cList 
+<select id="selectAll" resultMap="listResult">
+   	select cIdx, memIdx, cName, photo, cLikeCnt from tbl_cList 
  </select>
 
 <!-- 코디 대분류 출력 -->
@@ -24,8 +23,8 @@
 
 <!-- 클로젯 글 저장 -->
  <insert id="insertClosetWrite" parameterType="com.mw.closet.domain.ClosetWriteRequest" useGeneratedKeys="true" keyProperty="cIdx">
- 	INSERT INTO tbl_cList (memIdx, cName, cPhotoOut, cText) VALUES
- 		(#{memIdx},#{cName},#{cPhotoOut},#{cText}) 
+ 	INSERT INTO tbl_cList (memIdx, cName, photo, cText) VALUES
+ 		(#{memIdx},#{name},#{imgData},#{text}) 
  </insert>
 	
 

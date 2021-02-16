@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.mw.closet.dao.ClosetDao;
 import com.mw.closet.domain.Closet;
+import com.mw.closet.domain.ClosetWriteRequest;
 
 @Service
 public class ClosetListService {
@@ -19,15 +20,14 @@ public class ClosetListService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public List<Closet> getList(HttpServletRequest request){
+	public List<ClosetWriteRequest> getList(){
 		
-		List<Closet> list = null; 
-		try {
+		List<ClosetWriteRequest> list = null; 
+
 			dao = template.getMapper(ClosetDao.class);
 			list = dao.selectAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			System.out.println(list);
+
 		return list;
 	}
 

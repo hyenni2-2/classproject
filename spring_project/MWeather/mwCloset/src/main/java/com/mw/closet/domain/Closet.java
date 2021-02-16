@@ -11,16 +11,9 @@ import lombok.Data;
 @Data
 public class Closet {
 
-	private int memIdx;
-	private String cName;
-	private String cSrc;
-	private int xPos;
-	private int yPos;
-	private int zPos;
-	private Timestamp cRegdate;
-	private String cText;
-	
-	public Date getToDate() {
-		return new Date(this.cRegdate.getTime());
-	}
+	private String src;
+	private int x;
+	private int y;
+	private String z;
+
 }
