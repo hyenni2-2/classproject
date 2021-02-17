@@ -132,6 +132,7 @@ function codiView(value) {
     function viewclick(value){
         i=value;
         $('.closetList').remove();
+        location.href = '/list/'+viewlist[i].cIdx;
         var viewhtml = '<h3>'+viewlist[i].name+'님의 옷장 </h3>';
         viewhtml += '<div class="closetView" id="closetView">'+i+'</div>';
         viewhtml += '<img src="http://localhost:8080/closet/image/icon/emptyheart.png" id="heartview">'+viewlist[i].likecnt;

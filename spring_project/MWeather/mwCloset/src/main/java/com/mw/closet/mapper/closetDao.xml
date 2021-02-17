@@ -14,7 +14,7 @@
 
 <!-- 리스트 출력 -->
 <select id="selectAll" resultMap="listall">
-   	select cIdx, memIdx, name, photo,likecnt,text from tbl_cList 
+   	select cIdx, memIdx, name, cphoto,clikecnt,ctext from tbl_cList 
  </select>
  
 <!-- 코디 대분류 출력 -->
@@ -29,8 +29,8 @@
  </insert>
  
  <!-- 클로젯 게시물 삭제 -->
- <delete id="deleteCloset">
+<!--  <delete id="deleteCloset">
  	delete from tbl_cList where memidx=#{idx}
  </delete>
-	
+	 -->
 </mapper>

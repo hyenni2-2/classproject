@@ -14,11 +14,11 @@ public class ClosetDeleteService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public int closetDelete(int idx) {
+	public int closetDelete(int cIdx) {
 		
 		dao = template.getMapper(ClosetDao.class);
 		
-		return dao.deleteCloset(idx);
+		return dao.deleteCloset(cIdx);
 		
 	}
 	
