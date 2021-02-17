@@ -139,6 +139,9 @@ function codiView(value) {
         $('.content').append(viewhtml);
 }
 
+
+
+
 // 리셋하는 함수
 function resetDrag() {
     if ($('#codibg').length > 0) {
