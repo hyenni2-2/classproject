@@ -3,19 +3,20 @@
 
 <mapper namespace="com.mw.closet.dao.ClosetDao">
 
-<resultMap type="com.mw.closet.domain.ClosetWriteRequest" id="listResult">
- <id column="cIdx" property="cIdx"/>
- <result column="memIdx" property="memIdx"/>
-  <result column="cName" property="name"/>
-   <result column="photo" property="imgData"/>
-    <result column="cLikeCnt" property="like"/>
-</resultMap> 
+<resultMap type="com.mw.closet.domain.ClosetListRequest" id="listall">
+	<id column="cIdx" property="idx"/>
+	 <result column="memIdx" property="memIdx"/>
+	 <result column="name" property="name"/>
+	 <result column="cphoto" property="photo"/>
+	 <result column="clikecnt" property="likecnt"/>
+	 <result column="ctext" property="text"/>
+</resultMap>
 
 <!-- 리스트 출력 -->
-<select id="selectAll" resultMap="listResult">
-   	select cIdx, memIdx, cName, photo, cLikeCnt from tbl_cList 
+<select id="selectAll" resultMap="listall">
+   	select cIdx, memIdx, name, photo,likecnt,text from tbl_cList 
  </select>
-
+ 
 <!-- 코디 대분류 출력 -->
  <select id="getCodiSet" resultType="com.mw.closet.domain.Codi">
  	select codiList, codiPho from tbl_Codi
@@ -23,10 +24,13 @@
 
 <!-- 클로젯 글 저장 -->
  <insert id="insertClosetWrite" parameterType="com.mw.closet.domain.ClosetWriteRequest" useGeneratedKeys="true" keyProperty="cIdx">
- 	INSERT INTO tbl_cList (memIdx, cName, photo, cText) VALUES
+ 	INSERT INTO tbl_cList (memIdx, name, cphoto, ctext) VALUES
  		(#{memIdx},#{name},#{imgData},#{text}) 
  </insert>
+ 
+ <!-- 클로젯 게시물 삭제 -->
+ <delete id="deleteCloset">
+ 	delete from tbl_cList where memidx=#{idx}
+ </delete>
 	
-
-
 </mapper>

@@ -14,6 +14,8 @@ public interface ClosetDao {
 	List<Codi> getCodiSet();
 	// 클로젯 게시판 등록
 	int insertClosetWrite(ClosetWriteRequest regRequest);
+	// 게시물 삭제
+	int deleteCloset(int idx);
 	
 	
 

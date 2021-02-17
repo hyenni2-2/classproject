@@ -29,20 +29,6 @@
     font-family: 'Nanum Gothic', sans-serif;
 }
 
-a{
-    text-decoration: none;
-    color: #757575;
-}
-
-a:link, a:visited, a:active, a:hover{
-    text-decoration: none;
-    color: #757575;
-}
-
-button:link, button:visited, button:active, button:hover, button:focus{
-    border: none;
-    outline:none;     
-}
 
 ::-webkit-scrollbar {
     display: none;
@@ -69,12 +55,11 @@ footer {
     height: 60px;
     clear:both;
     width: 100%;
-     position: fixed;
+   position: fixed;
 
- bottom: 0;
-
- left: 0;
-    
+   bottom: 0;
+   left: 0;
+   z-index : 1000;    
 }
 
 
@@ -107,89 +92,85 @@ footer {
     background-color: #ffffff;
 }
 
-.regFormButton {
-    background-image: url(http://localhost:8080/closet/image/icon/write.png);
-    width: 50px;
-    height: 50px;
-    background-size: 30px;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 100px;
-    border: 0px;
+
+
+.ootd_hashtag{
+    width: 33%;
+    overflow: hidden;
+    color : #ffffff;
+    float: left;
     background-color: #64c2eb;
-    position: fixed;
-    bottom: 80px;
-    right: 15px;
+    border: 2px solid #ffffff;
+    padding : 10px 10px;
+    text-align: center;
 }
 
-#codipart {
-	max-width: 500px; 
-	height: 600px;
-	margin: 20px auto;
-	padding: 20px auto;
-
+.ootd_hs{
+    padding-left: 5px;
+    overflow: hidden;
 }
 
-#codiView {
-	height: 35%;
-	margin: 20px auto;
-	padding: 20px auto;
+#ootdtext{
+    border: 1px solid #757575;
+    width: 100%;
+    height: 100px;
 }
 
-
-#codi table {
-	margin: 20px auto;
-	padding: 20px auto;
-	left: 50px;
-	background-color: #d1d0c7;
+.ootd_hasktag_true{
+    background-color : #30b0e7;
 }
 
-#codibg {
-    height:50%;
-   	width: 100%;
-	position: absolute;
-	margin: 20px auto;
-	padding: 20px auto;
-}
-
-#codiback {
-	width: 20px;
-	height: 20px;
-}
-
-#codisave {
-	width: 30px;
-	height: 30px;
-}
-
-#codireset {
-	width: 22px;
-	height: 27px;
-}
-
-#codicon {
-	display: none;
-}
-
-#closetReg {
-	position: absolute;
-	top: 200px;
-	left: 60px;
-	margin: 20px auto;
-	padding: 20px auto;
-}
-
-#savebtn {
-	display:block;
-	bottom-right: 30px;
-	width: 30px;
-	height: 30px;
-}
-
-#codilist {
-	width: 25px;
-	height: 25px;
+.ootd_hashtag_false{    
+    background-color: #64c2eb;
 }
 
 
+/*ootd리스트 출력 CSS*/
 
+.ootdlistarea{
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+.ootdposttable {
+    margin-top: 20px;
+    width: 30%;
+    float: left;
+    margin-left: 2.5%;
+    border-spacing: -3px;
+    line-height: 14px;
+    
+}
+
+
+.postthumnail {
+    width: 100%;
+    height: width;
+    border-radius: 3px;
+    margin-bottom: 6px;
+}
+
+.ootdwriter {
+    color: #424242;
+    font-weight: bold;
+    font-size: 12px;
+    
+}
+
+.ootdlocation {
+    color: #757575;
+    font-size: 12px;
+}
+
+.ootdlistlike {
+    color: #ee7f7b;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+a1 {
+    letter-spacing: -1px;
+
+}
