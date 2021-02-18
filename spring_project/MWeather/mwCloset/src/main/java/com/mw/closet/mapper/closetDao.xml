@@ -3,6 +3,7 @@
 
 <mapper namespace="com.mw.closet.dao.ClosetDao">
 
+<!-- 간단 리스트 -->
 <resultMap type="com.mw.closet.domain.ClosetListRequest" id="listall">
 	<id column="cIdx" property="idx"/>
 	 <result column="memIdx" property="memIdx"/>
@@ -10,6 +11,16 @@
 	 <result column="cphoto" property="photo"/>
 	 <result column="clikecnt" property="likecnt"/>
 	 <result column="ctext" property="text"/>
+</resultMap>
+
+<!-- 페이징한 리스트 -->
+<resultMap type="com.mw.closet.domain.ClosetListRequest" id="pageList">
+	<id column="cIdx" property="cidx"/>
+	 <result column="memIdx" property="memIdx"/>
+	 <result column="name" property="name"/>
+	 <result column="cphoto" property="cphoto"/>
+	 <result column="clikecnt" property="clikecnt"/>
+	 <result column="ctext" property="ctext"/>
 </resultMap>
 
 <!-- 리스트 출력 -->
@@ -25,12 +36,22 @@
 <!-- 클로젯 글 저장 -->
  <insert id="insertClosetWrite" parameterType="com.mw.closet.domain.ClosetWriteRequest" useGeneratedKeys="true" keyProperty="cIdx">
  	INSERT INTO tbl_cList (memIdx, name, cphoto, ctext) VALUES
- 		(#{memIdx},#{name},#{imgData},#{text}) 
+ 		(#{memIdx},#{name},#{imgData},#{ctext}) 
  </insert>
  
  <!-- 클로젯 게시물 삭제 -->
 <!--  <delete id="deleteCloset">
- 	delete from tbl_cList where memidx=#{idx}
- </delete>
-	 -->
+ 	delete from tbl_cList where cIdx=#{#cIdx}
+ </delete> -->
+ 
+<!-- 클로젯 게시물 총 개수 -->
+ <select id="selectAllCount" resultType="int">
+ 	select count(*) from tbl_cList
+ </select>
+ 
+ <!-- 클로젯 게시물 페이징한 리스트 출력 -->
+ <select id="selectClosetList" parameterType="map" resultMap="pageList">
+ 	select * from tbl_cList order by cIdx desc limit #{start}, #{count} 
+ </select>
+	 
 </mapper>

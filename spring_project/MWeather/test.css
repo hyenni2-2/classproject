@@ -1,0 +1,13 @@
+.closetTest {
+    background-color: red;
+    overflow: hidden;
+    width: 350px;
+    height: 350px;
+}
+
+#testCanvas {
+    background-color: aqua;
+    overflow: hidden;
+    width: 350px;
+    height: 350px;
+}

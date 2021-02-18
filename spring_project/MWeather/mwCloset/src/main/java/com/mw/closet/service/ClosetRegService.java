@@ -37,7 +37,7 @@ public class ClosetRegService {
 			regRequest.setName(cName);
 			// 나머지 요소 받아오기
 			regRequest.getimgData();
-			regRequest.getText();
+			regRequest.getCtext();
 			
 			dao = template.getMapper(ClosetDao.class);
 		    result = dao.insertClosetWrite(regRequest);

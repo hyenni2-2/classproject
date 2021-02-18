@@ -1,6 +1,8 @@
 package com.mw.closet.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.mw.closet.dao.ClosetDao;
 import com.mw.closet.domain.Closet;
+import com.mw.closet.domain.ClosetListRequest;
 import com.mw.closet.domain.ClosetPage;
 import com.mw.closet.domain.ClosetWriteRequest;
 
@@ -33,22 +36,41 @@ public class ClosetListService {
 	}
 	
 	// 페이지네이션 처리
-//	public ClosetPage closetPaging(ClosetPage page) {
-//		ClosetPage paging = null;
-//		
-//		try {
-//			dao = template.getMapper(ClosetDao.class);
-//			
-//			int nowPage = 1;
-//			int onePageCnt = 9;
-//			int startRow = (nowPage-1)*onePageCnt;
-//			int eneRow = (startRow+onePageCnt)-1;
-//			
-//		} catch(Exception e) {
-//			
-//		}
-//		
-//	}
+	public ClosetPage closetPaging(int page) {
+		ClosetPage paging = null;
+		
+		try {
+			dao = template.getMapper(ClosetDao.class);
+			
+			int onePageCnt = 30;
+			int startRow = (page-1)*onePageCnt;
+			int endRow = (startRow+onePageCnt)-1;
+			
+			// 맵에 저장할 정보 : 시작열, 한페이지당 게시물개수, 현재 페이지
+			Map<String, Object>listMap = new HashMap<String, Object>();
+			listMap.put("start", startRow);
+			listMap.put("count", onePageCnt);
+			listMap.put("nowPage", page);
+			System.out.println(startRow);
+			System.out.println(onePageCnt);
+			System.out.println(page);
+			
+			// 총 게시물 개수
+			int totalClosetCount = dao.selectAllCount(listMap);
+			System.out.println("게시물 총 개수:"+totalClosetCount);
+			
+			// 페이지에 맞는 리스트
+			List<ClosetListRequest> closetList = dao.selectClosetList(listMap);
+			System.out.println("클로제ㅅ리스트 페이지:"+closetList);
+			
+			// 매개변수로 넣기
+			paging = new ClosetPage(page, totalClosetCount, onePageCnt, closetList, startRow, endRow);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return paging;
+	}
 	
 
 }

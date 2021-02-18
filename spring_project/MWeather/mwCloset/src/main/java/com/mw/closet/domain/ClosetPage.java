@@ -14,16 +14,15 @@ public class ClosetPage {
 	
 	// 페이징할 조건이 담긴 생성자
 	public ClosetPage(int nowPage, int totalListCnt, int onePageCnt,List<ClosetListRequest> closetList,
-			int startRow, int endRow, int totalPageCnt) {
+			int startRow, int endRow) {
 		this.nowPage = nowPage;
 		this.totalListCnt = totalListCnt;
 		this.onePageCnt = onePageCnt;
 		this.closetList = closetList;
 		this.startRow = startRow;
 		this.endRow = endRow;
-		this.totalPageCnt = totalPageCnt;
 	}
-	// 총 페이지계수 계산하는 부분
+	// 총 페이지수 계산하는 부분
 	private void calTotalPageCnt() {
 		// 전체 페이지 개수 = 총 게시물 개수 / 한 페이지 게시물 개수
 		totalPageCnt = (totalListCnt/onePageCnt);

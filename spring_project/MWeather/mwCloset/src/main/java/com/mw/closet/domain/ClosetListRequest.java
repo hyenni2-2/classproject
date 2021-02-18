@@ -5,11 +5,13 @@ import lombok.Data;
 @Data
 public class ClosetListRequest {
 	
-	private int idx;
+	private int cidx;
 	private String memIdx;
 	private String name;
-	private String photo;
-	private int likecnt;
-	private String text;
+	private String cphoto;
+	private int clikecnt;
+	private String ctext;
+	
+	
 	
 }
