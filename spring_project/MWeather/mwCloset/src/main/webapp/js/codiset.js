@@ -7,48 +7,31 @@ var dragList = [];
 var viewlist;
 var page = 1;
 
+
 // 잊지말고 펑션 다 짠 후에 document.ready로 호출하기 - 페이지가 열렸을 때 반드시 표시되어야 하는 것만 함수 호출
 $(document).ready(function () {
-    //list(page);
-   bigCategory();
+    list(page);
+   //bigCategory();
 })
 
+// window.onscroll = function(e){
+//     var view = $('.closetList');
+//     if(view) {
+//          //window height + window scrollY 값이 document height보다 클 경우,
+//          if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+//                 list(page);
+//                 page++;
+//     }
+// }
+// }
 
-// 리스트 부르는 함수
-function list(page) {
-    $.ajax({
-        url: '/closet/list/' + page,
-        type: 'GET',
-        success: function (listData) {
-            viewlist = listData;
-            // 데이터가 들어왔을 때
-            console.log(listData.closetList.length);
-            var pnoonmool = JSON.parse(listData.closetList[9].cphoto);
-            console.log('제이슨:',pnoonmool);
-            console.log('제이슨:',pnoonmool[0].src);
-
-            var listhtml = '<div class="card mb-3" style="max-width: 300px;">';
-                listhtml += '<div class="row g-0">';
-                listhtml += '<div class="col-md-4">';
-                listhtml += '<img src="'+pnoonmool[0].src+'">';
-                listhtml +=
-                listhtml += '</div>';
-                listhtml += '<div class="col-md-8">';
-                listhtml += '<div class="card-body">';
-                listhtml += '<p class="card-text">'+listData.closetList[9].ctext+'</p>';
-                listhtml += '</div>';
-                listhtml += '</div>';
-                listhtml += '</div>';
-                listhtml += '</div>';
-                $('.closet').append(listhtml);
-            },
-            error: function (e) {
-                console.log("에러 발생 : " + e);
-            }  
-        })
-
-
-
+                 //    console.log(listData.closetList);
+                    // var noonmool = JSON.parse(listData.closetList[9].cphoto);
+                    // console.log('제이슨:',noonmool);
+                    // console.log('제이슨:',noonmool[0].src);
+                    // var listphoto = (listData.closetList[9].cphoto[0]);
+                    // console.log('리스트'+listphoto);
+                    // 3으로 나눠서 나머지가 0일때, 열만들기 
 
 // 리스트 부르는 함수
 function list(page) {
@@ -62,17 +45,10 @@ function list(page) {
             if (listData.closetList.length > 0) {
                 var listhtml = '<table class="closetList" id="closetList">';
                 for (var i = 0; i < listData.closetList.length; i++) {
-                    console.log(listData.closetList);
-                    var noonmool = JSON.parse(listData.closetList[9].cphoto);
-                    console.log('제이슨:',noonmool);
-                    console.log('제이슨:',noonmool[0].src);
-                    var listphoto = (listData.closetList[9].cphoto[0]);
-                    console.log('리스트'+listphoto);
-                    // 3으로 나눠서 나머지가 0일때, 열만들기 
                     if ((i == 0) || (i % 3 == 0)) {
                         listhtml += '<tr>';
                     }
-                    listhtml += '<td> <div class="clist" id="clist' + i + '"onclick="viewclick(' + i + ',' + listData.closetList[i].cidx + listData.closetList[i].memIdx+')">' +  + '</div> <img src="http://localhost:8080/closet/image/icon/emptyheart.png" id="emptyheart">' + listData.closetList[i].clikecnt + '</td>';
+                    listhtml += '<td> <div class="clist" id="clist' + i + '"onclick="viewclick(' + i + ',' + listData.closetList[i].cidx +',' +listData.closetList[i].memIdx+')">' + listData.closetList[i].ctext + '</div> <img src="http://localhost:8080/closet/image/icon/emptyheart.png" id="emptyheart">' + listData.closetList[i].clikecnt + '</td>';
                     if ((i == 2) || (i % 3 == 2)) {
                         listhtml += '</tr>';
                     }
@@ -87,40 +63,92 @@ function list(page) {
     })
 }
 
+
 // 게시물 세부 페이지
-function viewclick(value, cIdx, memIdx) {
+function viewclick(value, cIdx) {
     i = value;
-    $('.closetList').remove();
+    console.log('자스:'+cIdx);
+    console.log('멤버:'+memIdx);
+    // 리스트 페이지 비우기
+    $('.closet').empty();
     var viewhtml = '<h3>' + viewlist.closetList[i].name + '님의 옷장 </h3>';
-    viewhtml += '<div class="closetView" id="closetView">' + i + '</div>';
-    viewhtml += '<img src="http://localhost:8080/closet/image/icon/emptyheart.png" id="heartview">' + viewlist.closetList[i].likecnt;
-    viewhtml += '<input type="button" onclick="del(' + cIdx + ',' + memIdx + ')" value="삭제">'
-    viewhtml += '<div class="closetText" id="closetText"> <h5>' + viewlist.closetList[i].text + '</h5> </div>';
+    viewhtml += '<div class="closetView" id="closetView">'+i+'</div>';
+    viewhtml += '<div class="viewbtns">';
+    viewhtml += '<img src="http://localhost:8080/closet/image/icon/emptyheart.png" id="heartview">'+viewlist.closetList[i].clikecnt;
+    // memIdx가 현재 로그인한 사람과 같을 경우 삭제,편집 페이지 보여주기
+    if(viewlist.closetList[i].memIdx==memIdx){
+       viewhtml += '<button type="button" class="btn btn-light" id="del" onclick="del('+cIdx+')">삭제</button>';
+       viewhtml += '<button type="button" class="btn btn-light" id="edit" onclick="edit('+cIdx+')">수정</button>';
+    }
+    // 삭제, 편집 페이지 종료
+    viewhtml += '</div>';
+    viewhtml += '<div class="closetText" id="closetText"> <h5>' + viewlist.closetList[i].ctext + '</h5> </div>';
     $('.closet').append(viewhtml);
 }
 
-// 수정 & 삭제 버튼
-// function delEdit() {
 
+
+// 수정 & 삭제 메뉴 띄우기 
+// function editdel(cIdx){
+//     console.log(cIdx);
+//     var btnhtml = '<div class="edbtn" id="edbtn">';
+//     btnhtml += '<ul class="edlist">';
+//     btnhtml += '<li id="edit" onclick="edit('+cIdx+')">수정</li>';
+//     btnhtml += '<li id="del" onclick="del('+cIdx+')">삭제</li>';
+//     btnhtml += '</ul>';
+//     btnhtml += '</div>';
+//     $('#editdel').css('display','none');
+//     $('.closet').append(btnhtml);
 // }
+
+//  수정하기
+function edit(cIdx){
+    $('.closet').empty();
+    // 수정 폼 만들어주기
+    var edithtml ='<div class="editCloset" id="editCloset">'+viewlist.closetList[i].cphoto+'</div>';
+    edithtml += '<div class="form-floating" id="editText">';
+    edithtml += ' <form action="POST" id="closetEditForm">';
+    edithtml += '  <textarea class="form-control" id="closetText" style="height: 100px">'+viewlist.closetList[i].ctext+'</textarea>';
+    edithtml += '  <label for="floatingTextarea2"></label>';
+    edithtml += '</div>';
+    edithtml += '<button type="button" class="btn btn-light" id="editView">수정</button>';
+    edithtml += '<button type="button" class="btn btn-light" id="edit" onclick="redirect()">취소</button>';
+    $('.closet').append(edithtml);
+    // 
+    // $.ajax({
+    //     url: '/closet/edit/'+cIdx,
+    //     type: 'GET',
+    //     success: function(viewlist){
+           
+    //     }
+
+
+    // })
+}
+
+// 페이지 뒤로 가기
+function redirect(){
+    $('.closet').empty();
+    list(page);
+}
 
 // // 삭제하기
-// function del(cIdx, memIdx) {
-//     $.ajax ({
-//         url:'/closet/delete'+cIdx,
-//         type:'GET',
-//         if(viewlist.closetList[i].memIdx!=memIdx){
-//             alert('')
-
-//         }
-
-
-//     })
-
-    
-// }
-
-
+function del(cIdx) {
+    var delConfirm = confirm('정말로 삭제하시겠습니까?');
+    if(delConfirm){
+        $.ajax ({
+            url:'/closet/delete/'+cIdx,
+            type:'GET',
+            success: function(delData){
+                alert('삭제되었습니다.');
+                $('.closet').empty();
+                list(page);                
+            }, error: function(e){
+                console.log("에러 발생" + e);
+            }      
+        })
+    }
+}
 
 // 대분류 호출하는 펑션
 function bigCategory() {
@@ -204,10 +232,6 @@ function codiView(value) {
     })
 }
 
-
-
-
-
 // 리셋하는 함수
 function resetDrag() {
     if ($('#codibg').length > 0) {
@@ -251,7 +275,7 @@ function saveDrag() {
     // 텍스트에리어 만들어주기
     var cHtml = '<form action="POST" id="closetRegForm">';
     cHtml += '<div class="form-floating">';
-    cHtml += '  <textarea class="form-control" placeholder="Leave a comment here" id="closetText" style="height: 100px"></textarea>';
+    cHtml += '  <textarea class="form-control" id="closetText" style="height: 100px"></textarea>';
     cHtml += '  <label for="floatingTextarea2"></label>';
     cHtml += '</div>';
     cHtml += '<button type="button" class="btn btn-light" id="savebuttn">SAVE</button>';
@@ -301,4 +325,3 @@ function showList() {
     bigCategory();
 }
 
-}

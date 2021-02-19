@@ -28,6 +28,7 @@ public class ClosetWriteRequest {
 		String json = gson.toJson(cphoto);
 		return json;
 	}
+
 	
 }
 	

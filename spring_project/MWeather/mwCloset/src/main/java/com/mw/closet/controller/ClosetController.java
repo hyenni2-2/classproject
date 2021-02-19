@@ -2,6 +2,7 @@ package com.mw.closet.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,9 +26,9 @@ public class ClosetController {
 	//페이징한 List 가져오기
 	@GetMapping("/list/{page}")     // /closet/list
 	@CrossOrigin
-	public ClosetPage getClosetList(@PathVariable("page") int page){
-		System.out.println("page:"+page);
-		return listService.closetPaging(page);
+	public ClosetPage getClosetList(@PathVariable("page") int page, HttpServletRequest request){
+		System.out.println("page:"+page+", "+request);
+		return listService.closetPaging(page, request);
 	}
 	
 	

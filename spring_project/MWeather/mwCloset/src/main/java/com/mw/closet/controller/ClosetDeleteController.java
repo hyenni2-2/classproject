@@ -19,6 +19,7 @@ public class ClosetDeleteController {
 	@GetMapping("/delete/{cIdx}")
 	@CrossOrigin
 	public int deleteClosetList(@PathVariable(name="cIdx") int cIdx) {
+		System.out.println("cIdx : "+cIdx);
 		return delService.closetDelete(cIdx);
 	}
 

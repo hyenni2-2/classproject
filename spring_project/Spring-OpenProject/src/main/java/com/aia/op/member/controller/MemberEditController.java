@@ -31,7 +31,7 @@ public class MemberEditController {
 		return "member/editForm";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST) 	
 	public String editMember(
 			MemberEditRequest editRequest,
 			HttpServletRequest request,

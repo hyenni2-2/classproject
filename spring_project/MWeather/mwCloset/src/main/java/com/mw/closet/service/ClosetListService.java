@@ -36,7 +36,7 @@ public class ClosetListService {
 	}
 	
 	// 페이지네이션 처리
-	public ClosetPage closetPaging(int page) {
+	public ClosetPage closetPaging(int page, HttpServletRequest request) {
 		ClosetPage paging = null;
 		
 		try {

@@ -3,15 +3,6 @@
 
 <mapper namespace="com.mw.closet.dao.ClosetDao">
 
-<!-- 간단 리스트 -->
-<resultMap type="com.mw.closet.domain.ClosetListRequest" id="listall">
-	<id column="cIdx" property="idx"/>
-	 <result column="memIdx" property="memIdx"/>
-	 <result column="name" property="name"/>
-	 <result column="cphoto" property="photo"/>
-	 <result column="clikecnt" property="likecnt"/>
-	 <result column="ctext" property="text"/>
-</resultMap>
 
 <!-- 페이징한 리스트 -->
 <resultMap type="com.mw.closet.domain.ClosetListRequest" id="pageList">
@@ -23,8 +14,9 @@
 	 <result column="ctext" property="ctext"/>
 </resultMap>
 
+
 <!-- 리스트 출력 -->
-<select id="selectAll" resultMap="listall">
+<select id="selectAll" resultMap="pageList">
    	select cIdx, memIdx, name, cphoto,clikecnt,ctext from tbl_cList 
  </select>
  
@@ -40,9 +32,9 @@
  </insert>
  
  <!-- 클로젯 게시물 삭제 -->
-<!--  <delete id="deleteCloset">
- 	delete from tbl_cList where cIdx=#{#cIdx}
- </delete> -->
+<delete id="deleteCloset">
+ 	delete from tbl_cList where cIdx=#{cidx}
+ </delete>
  
 <!-- 클로젯 게시물 총 개수 -->
  <select id="selectAllCount" resultType="int">
@@ -53,5 +45,15 @@
  <select id="selectClosetList" parameterType="map" resultMap="pageList">
  	select * from tbl_cList order by cIdx desc limit #{start}, #{count} 
  </select>
+ 
+ <!-- cIdx로 회원 조회 -->
+ <select id="getClosetMember" resultMap="pageList">
+ 	select * from tbl_cList where cIdx=#{cIdx}
+ </select> 
+ 
+ <!-- 게시물 수정하기 -->
+ <update id="updateCloset" parameterType="com.mw.closet.domain.ClosetWriteRequest">
+ 	update tbl_cList set cphoto=#{imgData}, ctext=#{ctext} where cidx=#{cidx}
+ </update>
 	 
 </mapper>

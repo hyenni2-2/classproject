@@ -2,8 +2,8 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% 
-   session.setAttribute("memIdx", 1);
-   session.setAttribute("cName", "메이웨더");
+   session.setAttribute("memIdx", 2);
+   session.setAttribute("cName", "테스터");
 %>
 
 
