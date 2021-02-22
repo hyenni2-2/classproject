@@ -25,13 +25,14 @@ public class ClosetEditService {
 	}
 	
 	// 수정하는 기능 구현
-	public int getEditCloset(int cIdx,ClosetEditRequest edit) {
+	public int getEditCloset(ClosetEditRequest edit) {
 		int result = 0;
 		// 수정한 데이터를 저장하는 부분 (set으로)
-		ClosetWriteRequest write = edit.getToCloset();
+		ClosetWriteRequest writere = edit.getToCloset();
+		System.out.println("edit:"+writere);
 		try {
 			dao = template.getMapper(ClosetDao.class);
-			result = dao.updateCloset(write);
+			result = dao.updateCloset(writere);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

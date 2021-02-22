@@ -26,8 +26,9 @@ public interface ClosetDao {
 	// 회원 정보 조회 : cIdx로 조회
 	ClosetWriteRequest getClosetMember(int cIdx);
 	// 게시글 업데이트
-	int updateCloset(ClosetWriteRequest write);
-	
+	int updateCloset(ClosetWriteRequest writere);
+	// 상세페이지 가져오기
+	List<ClosetWriteRequest> getListView(int cIdx,ClosetListRequest list);
 	
 
 }

@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mw.closet.domain.ClosetListRequest;
 import com.mw.closet.domain.ClosetPage;
 import com.mw.closet.domain.ClosetWriteRequest;
 import com.mw.closet.service.ClosetListService;
@@ -31,8 +33,12 @@ public class ClosetController {
 		return listService.closetPaging(page, request);
 	}
 	
-	
-	
-	
+	// 상세페이지 보여주는 메서드
+	@GetMapping("/list/view/{cidx}")
+	public List<ClosetWriteRequest> closetView(@PathVariable("cidx") int cidx, ClosetListRequest list) {
+		System.out.println("cIdx:"+cidx+","+"list:"+list);
+		return listService.getClosetView(cidx, list);
+	}
+		
 
 }

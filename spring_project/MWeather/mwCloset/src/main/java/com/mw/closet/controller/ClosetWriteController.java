@@ -13,18 +13,17 @@ import com.mw.closet.domain.ClosetWriteRequest;
 import com.mw.closet.service.ClosetRegService;
 
 @RestController
-@RequestMapping("/write")
+@RequestMapping
 public class ClosetWriteController {
 	@Autowired
 	ClosetRegService writeService;
 	
 	// 글쓰기
-	@PostMapping  // /closet/write
+	@PostMapping("/write")  // /closet/write
 	@CrossOrigin
 	public int closetWrite(@RequestBody ClosetWriteRequest regRequest,HttpServletRequest request) {
 		System.out.println(regRequest);
 		return writeService.insertClosetWrite(regRequest, request);
 	}
-	
 
 }

@@ -61,7 +61,7 @@ public class ClosetListService {
 			
 			// 페이지에 맞는 리스트
 			List<ClosetListRequest> closetList = dao.selectClosetList(listMap);
-			System.out.println("클로제ㅅ리스트 페이지:"+closetList);
+			System.out.println("클로젯리스트 페이지:"+closetList);
 			
 			// 매개변수로 넣기
 			paging = new ClosetPage(page, totalClosetCount, onePageCnt, closetList, startRow, endRow);
@@ -71,6 +71,21 @@ public class ClosetListService {
 		}
 		return paging;
 	}
+	
+	// 게시물 상세페이지 불러오는 메서드
+	public List<ClosetWriteRequest> getClosetView(int cidx, ClosetListRequest list) {
+			List<ClosetWriteRequest> listView = null;
+			
+			try {
+				dao = template.getMapper(ClosetDao.class);
+				listView = dao.getListView(cidx, list);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return listView;
+	}
+
 	
 
 }

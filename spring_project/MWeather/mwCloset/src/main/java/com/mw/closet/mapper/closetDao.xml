@@ -53,7 +53,12 @@
  
  <!-- 게시물 수정하기 -->
  <update id="updateCloset" parameterType="com.mw.closet.domain.ClosetWriteRequest">
- 	update tbl_cList set cphoto=#{imgData}, ctext=#{ctext} where cidx=#{cidx}
+ 	update tbl_cList set ctext=#{ctext} where cIdx=#{cidx}
  </update>
+ 
+<!-- 상세 페이지 출력하기 -->
+<select id="getListView" resultMap="pageList">
+	select memIdx, name, cphoto, ctext where cIdx=#{param1} 
+</select>
 	 
 </mapper>

@@ -14,13 +14,13 @@ import lombok.Data;
 @Data
 public class ClosetWriteRequest {
 	
-	private int cIdx;
+	private int cidx;
 	private int memIdx;
 	private String name;
 	private List<Closet> cphoto; // ajax 통해 받을 데이터
 	private String ctext; 
 	private String imgData; // db로 보낼 데이터
-	private String like;
+	private int like;
 
 	 // db로 보낼 데이터(직렬화)
 	public String getimgData() {
