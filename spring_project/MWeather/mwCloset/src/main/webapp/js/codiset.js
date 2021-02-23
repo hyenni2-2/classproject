@@ -110,11 +110,9 @@ function viewclick(cIdx) {
 // 좋아요 늘려주는 카운트(likeChk=1:등록, 2:삭제)
 function clickLike(cIdx, likeChk) {
     if(likeChk==1){
-        $('#emptyheart'+cIdx).attr('src','http://localhost:8080/closet/image/icon/heart.png');
-        redirect();
+        $('#heartview').attr('src','http://localhost:8080/closet/image/icon/heart.png');
     } else {
-        $('#emptyheart'+cIdx).attr('src','http://localhost:8080/closet/image/icon/emptyheart.png');
-        redirect();
+        $('#heartview').attr('src','http://localhost:8080/closet/image/icon/emptyheart.png');
     }
     var like = {
         memIdx:memIdx,

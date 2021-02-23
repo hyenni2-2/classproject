@@ -22,6 +22,8 @@ public class ClosetListService {
 	
 	private ClosetDao dao;
 	
+	private ClosetListRequest listRe;
+	
 	@Autowired
 	private SqlSessionTemplate template;
 	// 전체 리스트 불러오기
@@ -47,7 +49,6 @@ public class ClosetListService {
 			int startRow = (page-1)*onePageCnt;
 			int endRow = (startRow+onePageCnt)-1;
 			int memIdx = (int) request.getSession().getAttribute("memIdx");
-			
 			
 			// 맵에 저장할 정보 : 시작열, 한페이지당 게시물개수, 현재 페이지, 게시물 당 좋아요 개수
 			Map<String, Object>listMap = new HashMap<String, Object>();
