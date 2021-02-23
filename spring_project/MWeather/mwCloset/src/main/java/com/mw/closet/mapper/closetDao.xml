@@ -48,7 +48,7 @@
  
  <!-- cIdx로 회원 조회 -->
  <select id="getClosetMember" resultMap="pageList">
- 	select * from tbl_cList where cIdx=#{cIdx}
+ 	select * from tbl_cList where cIdx=#{cidx}
  </select> 
  
  <!-- 게시물 수정하기 -->
@@ -56,9 +56,32 @@
  	update tbl_cList set ctext=#{ctext} where cIdx=#{cidx}
  </update>
  
-<!-- 상세 페이지 출력하기 -->
-<select id="getListView" resultMap="pageList">
-	select memIdx, name, cphoto, ctext where cIdx=#{param1} 
-</select>
+ <!-- 상세 페이지 출력하기 -->
+ <select id="getListView" resultMap="pageList">
+	select memIdx, name, cphoto, clikecnt, ctext from tbl_cList where cIdx=#{cidx}
+ </select>
+
+ <!-- 게시물 좋아요 개수 입력 -->
+ <insert id="insertLike" parameterType="com.mw.closet.domain.ClosetListRequest">
+ 	INSERT INTO tbl_cLike (memidx,cidx) VALUES (#{memIdx}, #{cidx})
+ </insert>
+ 
+ <!-- 게시물 좋아요 개수 업데이트 -->
+ <update id="updateClosetLike">
+ 	update tbl_cList set clikecnt = clikecnt+#{param1} where cIdx=#{param2}
+ </update>
+
+ <!-- 게시물 좋아요 개수 삭제 -->
+ <delete id="deleteLike">
+ 	delete from tbl_cLike where cIdx=#{param1} and memIdx=#{param2}
+ </delete> 
+ 
+ <!-- 나의 좋아요 개수 출력 -->
+ <select id="getMyLikeCnt" resultType="int">
+ 	select count(*) from tbl_cLike where cIdx=#{param1} and memIdx=#{param2}
+ </select> 
+
+ 
+ 
 	 
 </mapper>

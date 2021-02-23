@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mw.closet.domain.ClosetLike;
 import com.mw.closet.domain.ClosetListRequest;
 import com.mw.closet.domain.ClosetPage;
 import com.mw.closet.domain.ClosetWriteRequest;
@@ -35,9 +37,19 @@ public class ClosetController {
 	
 	// 상세페이지 보여주는 메서드
 	@GetMapping("/list/view/{cidx}")
-	public List<ClosetWriteRequest> closetView(@PathVariable("cidx") int cidx, ClosetListRequest list) {
-		System.out.println("cIdx:"+cidx+","+"list:"+list);
-		return listService.getClosetView(cidx, list);
+	@CrossOrigin
+	public ClosetListRequest closetView(@PathVariable("cidx") int cidx, HttpServletRequest request) {
+		System.out.println("cIdx:"+cidx);
+		return listService.getClosetView(cidx, request);
+	}
+	
+	
+	// 좋아요 처리하는 메서드
+	@PostMapping("/list/like")
+	@CrossOrigin
+	public String insertLike(ClosetLike likeRequest) {
+		System.out.println("리퀘스트값:"+likeRequest);
+		return listService.likeInsert(likeRequest);
 	}
 		
 

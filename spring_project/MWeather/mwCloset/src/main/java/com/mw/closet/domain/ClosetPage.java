@@ -11,16 +11,19 @@ public class ClosetPage {
 	private int startRow; // 게시물 시작 범위
 	private int endRow; // 게시물 종료 범위(mysql에서는 안쓰지만 연습용)
 	private int totalPageCnt; // 전체 페이지 개수
+	private int clikecnt; // 내 좋아요개수
+	
 	
 	// 페이징할 조건이 담긴 생성자
 	public ClosetPage(int nowPage, int totalListCnt, int onePageCnt,List<ClosetListRequest> closetList,
-			int startRow, int endRow) {
+			int startRow, int endRow, int clikecnt) {
 		this.nowPage = nowPage;
 		this.totalListCnt = totalListCnt;
 		this.onePageCnt = onePageCnt;
 		this.closetList = closetList;
 		this.startRow = startRow;
 		this.endRow = endRow;
+		this.clikecnt = clikecnt;
 	}
 	// 총 페이지수 계산하는 부분
 	private void calTotalPageCnt() {
@@ -55,11 +58,19 @@ public class ClosetPage {
 		return totalPageCnt;
 	}
 	
+	public int getClikecnt() {
+		return clikecnt;
+	}
+	public void setClikecnt(int clikecnt) {
+		this.clikecnt = clikecnt;
+	}
+	
 	@Override
 	public String toString() {
 		return "ClosetPage [nowPage=" + nowPage + ", totalListCnt=" + totalListCnt + ", onePageCnt=" + onePageCnt
 				+ ", closetList=" + closetList + ", startRow=" + startRow + ", endRow=" + endRow + ", totalPageCnt="
-				+ totalPageCnt + "]";
+				+ totalPageCnt + ", clikecnt=" + clikecnt + "]";
 	}
+	
 		
 }

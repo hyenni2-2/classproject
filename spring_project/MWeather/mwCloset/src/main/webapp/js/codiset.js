@@ -4,7 +4,6 @@ var cIdx;
 var img_zidx = 0;
 var dragList = [];
 var page = 1;
-var likeCnt;
 var likeChk;
 
 
@@ -14,16 +13,16 @@ $(document).ready(function () {
     //bigCategory();
 })
 
-// window.onscroll = function(e){
-//     var view = $('.closetList');
-//     if(view) {
-//          //window height + window scrollY 값이 document height보다 클 경우,
-//          if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-//                 list(page);
-//                 page++;
-//     }
-// }
-// }
+window.onscroll = function(e){
+    var view = $('.closetList');
+    if(view) {
+         //window height + window scrollY 값이 document height보다 클 경우,
+         if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                list(page);
+                page++;
+    }
+}
+ }
 
 //    console.log(listData.closetList);
 // var noonmool = JSON.parse(listData.closetList[9].cphoto);
@@ -47,7 +46,13 @@ function list(page) {
                     if ((i == 0) || (i % 3 == 0)) {
                         listhtml += '<tr>';
                     }
-                    listhtml += '<td> <div class="clist" id="clist' + i + '"onclick="viewclick(' + listData.closetList[i].cidx + ')">' + listData.closetList[i].ctext + '</div> <img src="http://localhost:8080/closet/image/icon/emptyheart.png" id="emptyheart">' + listData.closetList[i].clikecnt + '</td>';
+                    listhtml += '<td> <div class="clist" id="clist' + i + '"onclick="viewclick(' + listData.closetList[i].cidx + ')">' + listData.closetList[i].ctext + '</div>';
+                    // 좋아요 클릭 여부에 따른 하트 변화 = 내 좋아요 카운트 기준
+                    if(listData.closetList[i].myLikeCnt==0){
+                        listhtml += '<img src="http://localhost:8080/closet/image/icon/emptyheart.png" onclick="clickLike(' + listData.closetList[i].cidx + ',' +1+ ')" id="emptyheart">' + listData.closetList[i].clikecnt + '</td>';
+                    } else {
+                        listhtml += '<img src="http://localhost:8080/closet/image/icon/heart.png" onclick="clickLike(' + listData.closetList[i].cidx + ',' +2+ ')" id="emptyheart">' + listData.closetList[i].clikecnt + '</td>';
+                    }
                     if ((i == 2) || (i % 3 == 2)) {
                         listhtml += '</tr>';
                     }
@@ -76,8 +81,14 @@ function viewclick(cIdx) {
         success: function (viewData) {
             var viewhtml = '<h3>' + viewData.name + '님의 옷장 </h3>';
             viewhtml += '<div class="closetView" id="closetView">' + viewData.cphoto + '</div>';
+            viewhtml += '<input type=hidden id="memIdx" name="memIdx" value="' + viewData.memIdx + '">';
             viewhtml += '<div class="viewbtns">';
-            viewhtml += '<img src="http://localhost:8080/closet/image/icon/emptyheart.png" id="heartview" onclick="clickLike(' + memIdx + ')">';
+            // 좋아요 하트 클릭 유무에 따른 다른 이미지 보여주기
+            if(viewData.myLikeCnt==0){
+                viewhtml += '<img src="http://localhost:8080/closet/image/icon/emptyheart.png" id="heartview'+cIdx+'" onclick="clickLike(' + cIdx + ','+1+')">'+viewData.clikecnt;
+            } else {
+                viewhtml += '<img src="http://localhost:8080/closet/image/icon/heart.png" id="heartview'+cIdx+'" onclick="clickLike(' + cIdx + ','+2+')">'+viewData.clikecnt;
+            }
             // memIdx가 현재 로그인한 사람과 같을 경우 삭제,편집 페이지 보여주기
             if (viewData.memIdx == memIdx) {
                 viewhtml += '<button type="button" class="btn btn-light" id="del" onclick="del(' + cIdx + ')">삭제</button>';
@@ -96,27 +107,35 @@ function viewclick(cIdx) {
 }
 
 
-// 좋아요 늘려주는 카운트
-function clickLike() {
-
-    if (like)
-        $('#heartview').attr('src', 'http://localhost:8080/closet/image/icon/heart.png');
-    $('#heartview').on('click', function () {
-        $('#heartview').attr('src', 'http://localhost:8080/closet/image/icon/emptyheart.png');
-    })
+// 좋아요 늘려주는 카운트(likeChk=1:등록, 2:삭제)
+function clickLike(cIdx, likeChk) {
+    if(likeChk==1){
+        $('#emptyheart'+cIdx).attr('src','http://localhost:8080/closet/image/icon/heart.png');
+        redirect();
+    } else {
+        $('#emptyheart'+cIdx).attr('src','http://localhost:8080/closet/image/icon/emptyheart.png');
+        redirect();
+    }
     var like = {
-        cidx: cIdx,
-        like: likeCnt
+        memIdx:memIdx,
+        cidx:cIdx,
+        likeChk: likeChk
     };
     $.ajax({
-        url: '/closet/list/' + cIdx,
-        type: 'GET',
-        success: function (like) {
-
+        url: '/closet/list/like',
+        type: 'post',
+        data:like,
+        success: function (data) {
+            console.log('데이터값'+data);
+        }, 
+        error: function(e){
+            console.log('에러:'+e);
         }
     })
+}
 
-
+// 좋아요 빼주는 기능
+function delLike(){
 
 }
 

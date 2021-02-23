@@ -3,8 +3,11 @@ package com.mw.closet.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mw.closet.domain.Closet;
 import com.mw.closet.domain.ClosetEditRequest;
+import com.mw.closet.domain.ClosetLike;
 import com.mw.closet.domain.ClosetListRequest;
 import com.mw.closet.domain.ClosetWriteRequest;
 import com.mw.closet.domain.Codi;
@@ -28,7 +31,15 @@ public interface ClosetDao {
 	// 게시글 업데이트
 	int updateCloset(ClosetWriteRequest writere);
 	// 상세페이지 가져오기
-	List<ClosetWriteRequest> getListView(int cIdx,ClosetListRequest list);
-	
+	ClosetListRequest getListView(int cidx);
+	// 좋아요 입력
+	int insertLike(ClosetLike likeRequest);
+	// 공통 테이블에 좋아요 수 update
+	int updateClosetLike(int i, int cidx);
+	// 좋아요 삭제
+	int deleteLike(@Param("cidx") int cidx, @Param("memIdx") int memIdx);
+	// 내 좋아요 수 가져오기
+	int getMyLikeCnt(@Param("cidx") int cidx, @Param("memIdx") int memIdx);
+
 
 }
