@@ -85,9 +85,9 @@ function viewclick(cIdx) {
             viewhtml += '<div class="viewbtns">';
             // 좋아요 하트 클릭 유무에 따른 다른 이미지 보여주기
             if(viewData.myLikeCnt==0){
-                viewhtml += '<img src="http://localhost:8080/closet/image/icon/emptyheart.png" id="heartview'+cIdx+'" onclick="clickLike(' + cIdx + ','+1+')">'+viewData.clikecnt;
+                viewhtml += '<img src="http://localhost:8080/closet/image/icon/emptyheart.png" id="heartview" onclick="clickLike(' + cIdx + ','+1+')" >'+viewData.clikecnt;
             } else {
-                viewhtml += '<img src="http://localhost:8080/closet/image/icon/heart.png" id="heartview'+cIdx+'" onclick="clickLike(' + cIdx + ','+2+')">'+viewData.clikecnt;
+                viewhtml += '<img src="http://localhost:8080/closet/image/icon/heart.png" id="heartview" onclick="clickLike(' + cIdx + ','+2+')" >'+viewData.clikecnt;
             }
             // memIdx가 현재 로그인한 사람과 같을 경우 삭제,편집 페이지 보여주기
             if (viewData.memIdx == memIdx) {

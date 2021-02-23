@@ -64,7 +64,8 @@ public class ClosetListService {
 			System.out.println("게시물 총 개수:"+totalClosetCount);
 			
 			// 내 좋아요 개수
-			//int myLikeCnt=dao.getMyLikeCnt(cidx, memIdx);
+			// int myLikeCnt=dao.getMyLikeCnt(cidx, memIdx);
+			// listMap.put("myLikeCnt", myLikeCnt);
 			int myLikeCnt = 0;
 			
 			// 페이지에 맞는 리스트
