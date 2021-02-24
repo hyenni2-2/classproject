@@ -274,7 +274,8 @@ function codiView(value) {
         //드래그 시 clone 생성해서 이동
         $('#codi img').draggable({
             helper: 'clone',
-            cursor: 'hand'
+            cursor: 'hand',
+            containment:'codibg'
         });
 
         // 드롭될 때 발생하는 이벤트
