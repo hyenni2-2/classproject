@@ -43,7 +43,9 @@
  
  <!-- 클로젯 게시물 페이징한 리스트 출력 -->
  <select id="selectClosetList" parameterType="map" resultMap="pageList">
- 	select * from tbl_cList order by cIdx desc limit #{start}, #{count} 
+ 	select cIdx, memIdx, name, cphoto,clikecnt,ctext, 
+ 	(select count(*) from tbl_cLike where tbl_cList.cIdx=tbl_cLike.cIdx ) 
+ 	from tbl_cList order by cIdx desc limit #{start}, #{count} 
  </select>
  
  <!-- cIdx로 회원 조회 -->
@@ -80,8 +82,5 @@
  <select id="getMyLikeCnt" resultType="int">
  	select count(*) from tbl_cLike where cIdx=#{param1} and memIdx=#{param2}
  </select> 
-
- 
- 
 	 
 </mapper>

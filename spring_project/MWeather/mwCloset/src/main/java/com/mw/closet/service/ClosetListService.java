@@ -22,8 +22,6 @@ public class ClosetListService {
 	
 	private ClosetDao dao;
 	
-	private ClosetListRequest listRe;
-	
 	@Autowired
 	private SqlSessionTemplate template;
 	// 전체 리스트 불러오기
@@ -106,23 +104,26 @@ public class ClosetListService {
 		String like ="N";
 		
 		try {
+			
 			int cidx = likeRequest.getCidx();
 			int memIdx = likeRequest.getMemIdx();
+			int likeChk = likeRequest.getLikeChk();
 			
 			dao = template.getMapper(ClosetDao.class);
-			// 좋아요 등록(1:등록, 2:삭제)
-			if(likeRequest.getLikeChk()==1) {
+			// 좋아요 등록(1:등록, 2:삭제) -> 리스트 테이블에 좋아요 여부 입력
+			if(likeChk==1) {
 				// 좋아요 테이블에 insert
 				if(dao.insertLike(likeRequest)>0) {
 					// 게시물 좋아요 수 update
-					if(dao.updateClosetLike(1,likeRequest.getCidx())> 0) {
+					if(dao.updateClosetLike(1,cidx)> 0) {
+						// 리스트 테이블에 좋아요 체크 입력
 						like = "submit:Y";
 					}
 				}
 			// 좋아요 삭제(뒤에 -1로 해서 xml에서 update할 때 더함
 			} else {
 				if(dao.deleteLike(cidx,memIdx) > 0) {
-					if(dao.updateClosetLike(-1,likeRequest.getCidx()) > 0) {
+					if(dao.updateClosetLike(-1,cidx) > 0) {
 						 like = "delete:Y";
 					}
 				}

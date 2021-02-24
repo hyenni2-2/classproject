@@ -1,15 +1,32 @@
 
+.bigCategory {
+	margin: 100px 0 0 40px;
+	position: fixed;
+	height: 300px;
+}
+
+#bottom {
+	margin-top: 20px;
+}
+
+#shoes {
+	margin-top: 20px;
+}
 
 #codi table {
-	margin: 20px auto;
+	margin: 30px auto;
 	padding: 20px auto;
 	left: 50px;
-	background-color: #d1d0c7;
+}
+
+.dragev img {
+	background-color: transparent !important;
 }
 
 #codibg {
-    height:375px;
-   	width: 375px;
+    height:300px;
+   	width: 300px;
+   	margin-left: 30px;
 	position: absolute;
 	top: 300px;
 }
@@ -75,8 +92,8 @@
 }
 
 #heartview {
-	width: 25px;
-	height: 25px;
+	width: 20px;
+	height: 20px;
 	margin-left: 30px;
 	margin-top: 6px;
 }
@@ -106,5 +123,32 @@
 #closetImg {
 	width: 70px;
 	height: 70px;
+}
+
+#closetWrite {
+	float : right;
+	width: 50px;
+	height: 50px;
+	margin-right: 30px;
+	margin-top: 20px;
+	color: #757575;
+}
+
+
+#writebtn {
+	background-image: url(/closet/image/icon/write.png);
+    width: 50px;
+    height: 50px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100px;
+    border: 0px;
+    background-color: #64c2eb;
+    position: fixed;
+    bottom: 80px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 10;
 }
 
