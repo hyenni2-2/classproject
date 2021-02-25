@@ -14,7 +14,6 @@ import lombok.Data;
 @Data
 public class ClosetWriteRequest {
 	
-	private int cidx;
 	private int memIdx;
 	private String name;
 	private List<Closet> cphoto; // ajax 통해 받을 데이터
