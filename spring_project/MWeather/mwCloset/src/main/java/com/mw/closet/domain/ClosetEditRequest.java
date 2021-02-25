@@ -47,7 +47,7 @@ public class ClosetEditRequest {
 
 	public ClosetWriteRequest getToCloset() {
 		ClosetWriteRequest write = new ClosetWriteRequest();
-		write.setCidx(cIdx);
+		write.setCIdx(cIdx);
 		write.setImgData(imgData);
 		write.setCtext(ctext);
 		return write;
