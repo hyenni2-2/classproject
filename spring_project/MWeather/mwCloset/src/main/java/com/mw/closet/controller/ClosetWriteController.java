@@ -22,7 +22,7 @@ public class ClosetWriteController {
 	@PostMapping("/write")  // /closet/write
 	@CrossOrigin
 	public int closetWrite(@RequestBody ClosetWriteRequest regRequest,HttpServletRequest request) {
-		System.out.println(regRequest);
+		System.out.println("레그리퀘스트:"+regRequest);
 		return writeService.insertClosetWrite(regRequest, request);
 	}
 

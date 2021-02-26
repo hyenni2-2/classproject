@@ -81,18 +81,18 @@ public class ClosetListService {
 	}
 	
 	// 게시물 상세페이지 불러오는 메서드
-	public ClosetListRequest getClosetView(int cidx, HttpServletRequest request) {
+	public ClosetListRequest getClosetView(int cIdx, HttpServletRequest request) {
 		
 		ClosetListRequest getList = null;
 		int memIdx = (int) request.getSession().getAttribute("memIdx");
-		System.out.println("상세페이지:"+cidx+","+memIdx);
+		System.out.println("상세페이지:"+cIdx+","+memIdx);
 			try {
 				dao = template.getMapper(ClosetDao.class);
-				getList = dao.getListView(cidx);
+				getList = dao.getListView(cIdx);
 				// 내 좋아요 개수 카운트하기
-				int myLikeCnt = dao.getMyLikeCnt(cidx, memIdx);
+				int myLikeCnt = dao.getMyLikeCnt(cIdx, memIdx);
 				getList.setMyLikeCnt(myLikeCnt);
-				
+				System.out.println("겟리스트:"+getList);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

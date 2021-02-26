@@ -6,7 +6,7 @@
 
 <!-- 페이징한 리스트 -->
 <resultMap type="com.mw.closet.domain.ClosetListRequest" id="pageList">
-	<id column="cIdx" property="cidx"/>
+	<id column="cIdx" property="cIdx"/>
 	 <result column="memIdx" property="memIdx"/>
 	 <result column="name" property="name"/>
 	 <result column="cphoto" property="cphoto"/>
@@ -33,7 +33,7 @@
  
  <!-- 클로젯 게시물 삭제 -->
 <delete id="deleteCloset">
- 	delete from tbl_cList where cIdx=#{cidx}
+ 	delete from tbl_cList where cIdx=#{cIdx}
  </delete>
  
 <!-- 클로젯 게시물 총 개수 -->
@@ -50,22 +50,22 @@
  
  <!-- cIdx로 회원 조회 -->
  <select id="getClosetMember" resultMap="pageList">
- 	select * from tbl_cList where cIdx=#{cidx}
+ 	select * from tbl_cList where cIdx=#{cIdx}
  </select> 
  
  <!-- 게시물 수정하기 -->
  <update id="updateCloset" parameterType="com.mw.closet.domain.ClosetWriteRequest">
- 	update tbl_cList set ctext=#{ctext} where cIdx=#{cidx}
+ 	update tbl_cList set ctext=#{ctext} where cIdx=#{cIdx}
  </update>
  
  <!-- 상세 페이지 출력하기 -->
  <select id="getListView" resultMap="pageList">
-	select memIdx, name, cphoto, clikecnt, ctext from tbl_cList where cIdx=#{cidx}
+	select cIdx, memIdx, name, cphoto, clikecnt, ctext from tbl_cList where cIdx=#{cIdx}
  </select>
 
  <!-- 게시물 좋아요 개수 입력 -->
  <insert id="insertLike" parameterType="com.mw.closet.domain.ClosetListRequest">
- 	INSERT INTO tbl_cLike (memidx,cidx) VALUES (#{memIdx}, #{cidx})
+ 	INSERT INTO tbl_cLike (memidx,cIdx) VALUES (#{memIdx}, #{cIdx})
  </insert>
  
  <!-- 게시물 좋아요 개수 업데이트 -->

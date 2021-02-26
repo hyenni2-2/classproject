@@ -36,11 +36,12 @@ public class ClosetController {
 	}
 	
 	// 상세페이지 보여주는 메서드
-	@GetMapping("/list/view/{cidx}")
+	@GetMapping("/list/view/{cIdx}")
 	@CrossOrigin
-	public ClosetListRequest closetView(@PathVariable("cidx") int cidx, HttpServletRequest request) {
-		System.out.println("cIdx:"+cidx);
-		return listService.getClosetView(cidx, request);
+	public ClosetListRequest closetView(@PathVariable("cIdx") int cIdx, HttpServletRequest request) {
+		System.out.println("cIdx:"+cIdx);
+		
+		return listService.getClosetView(cIdx, request);
 	}
 	
 	
