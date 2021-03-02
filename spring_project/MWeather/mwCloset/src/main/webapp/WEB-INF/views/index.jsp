@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% 
-   session.setAttribute("memIdx", 2);
-   session.setAttribute("cName", "테스터");
-%>
+
 
 
 <!DOCTYPE html>
@@ -28,11 +25,6 @@
 	crossorigin="anonymous">
 
 
-<!-- db에 보낼 전역변수 js값 -->
-<script>
-var memIdx = ${memIdx};
-var cName = '${cName}';
-</script>
 <!-- js 파일 -->
 <script src="<c:url value="/js/codiset.js"/>"> </script>
 

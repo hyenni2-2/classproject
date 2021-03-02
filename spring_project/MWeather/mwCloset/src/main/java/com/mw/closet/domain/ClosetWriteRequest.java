@@ -21,6 +21,7 @@ public class ClosetWriteRequest {
 	private String ctext; 
 	private String imgData; // db로 보낼 데이터
 	private int like;
+	private String jsessionId; // js에서 받을 memIdx
 
 	 // db로 보낼 데이터(직렬화)
 	public String getimgData() {

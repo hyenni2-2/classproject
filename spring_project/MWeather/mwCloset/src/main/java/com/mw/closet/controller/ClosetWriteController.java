@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mw.closet.domain.ClosetWriteRequest;
 import com.mw.closet.service.ClosetRegService;
+import com.mw.closet.service.RedisService;
 
 @RestController
 @RequestMapping
 public class ClosetWriteController {
 	@Autowired
 	ClosetRegService writeService;
+	
+	@Autowired
+	RedisService redisService;
 	
 	// 글쓰기
 	@PostMapping("/write")  // /closet/write
@@ -25,5 +29,7 @@ public class ClosetWriteController {
 		System.out.println("레그리퀘스트:"+regRequest);
 		return writeService.insertClosetWrite(regRequest, request);
 	}
+	
+
 
 }

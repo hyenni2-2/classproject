@@ -65,7 +65,7 @@
 
  <!-- 게시물 좋아요 개수 입력 -->
  <insert id="insertLike" parameterType="com.mw.closet.domain.ClosetListRequest">
- 	INSERT INTO tbl_cLike (memidx,cIdx) VALUES (#{memIdx}, #{cIdx})
+ 	INSERT INTO tbl_cLike (memIdx,cIdx) VALUES (#{memIdx}, #{cIdx})
  </insert>
  
  <!-- 게시물 좋아요 개수 업데이트 -->

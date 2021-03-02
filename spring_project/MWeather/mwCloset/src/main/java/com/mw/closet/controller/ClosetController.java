@@ -19,6 +19,7 @@ import com.mw.closet.domain.ClosetListRequest;
 import com.mw.closet.domain.ClosetPage;
 import com.mw.closet.domain.ClosetWriteRequest;
 import com.mw.closet.service.ClosetListService;
+import com.mw.closet.service.RedisService;
 
 @RestController
 @RequestMapping
@@ -26,6 +27,9 @@ public class ClosetController {
 	
 	@Autowired
 	ClosetListService listService;
+	
+	@Autowired
+	RedisService redisService;
 
 	//페이징한 List 가져오기
 	@GetMapping("/list/{page}")     // /closet/list
@@ -38,12 +42,11 @@ public class ClosetController {
 	// 상세페이지 보여주는 메서드
 	@GetMapping("/list/view/{cIdx}")
 	@CrossOrigin
-	public ClosetListRequest closetView(@PathVariable("cIdx") int cIdx, HttpServletRequest request) {
+	public ClosetListRequest closetView(@PathVariable("cIdx") int cIdx, ClosetWriteRequest writeRequest) {
 		System.out.println("cIdx:"+cIdx);
 		
-		return listService.getClosetView(cIdx, request);
+		return listService.getClosetView(cIdx, writeRequest);
 	}
-	
 	
 	// 좋아요 처리하는 메서드
 	@PostMapping("/list/like")
@@ -52,6 +55,15 @@ public class ClosetController {
 		System.out.println("리퀘스트값:"+likeRequest);
 		return listService.likeInsert(likeRequest);
 	}
-		
+	
+	// 댓글 입력 메서드
+	@PostMapping("/list/view/")
+	@CrossOrigin
+	public int insertComment(ClosetWriteRequest writeRequest) {
+		return listService.insertClosetComment(writeRequest);
+	}
+	
 
+	
+	
 }

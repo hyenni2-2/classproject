@@ -5,44 +5,25 @@ var img_zidx = 0;
 var dragList = [];
 var page = 1;
 var viewlist;
-var myUrl = 'http://ec2-54-180-82-31.ap-northeast-2.compute.amazonaws.com:8080';
+var myUrl = 'http://localhost:8080';
+// var myUrl = 'http://ec2-54-180-82-31.ap-northeast-2.compute.amazonaws.com:8080';
+var totalPage = 1;
 
-
-// 잊지말고 펑션 다 짠 후에 document.ready로 호출하기 - 페이지가 열렸을 때 반드시 표시되어야 하는 것만 함수 호출
 $(document).ready(function () {
     list(page);
     //bigCategory();
 })
 
 window.onscroll = function (e) {
-    var view = $('.closetList');
-    if (view) {
-        //window height + window scrollY 값이 document height보다 클 경우,
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            list(page);
-            page++;
+        if (page <= totalPage) {
+            //window height + window scrollY 값이 document height보다 클 경우,
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                page++;
+                list(page);
+            }
         }
     }
-}
 
-//    console.log(listData.closetList);
-// var noonmool = JSON.parse(listData.closetList[9].cphoto);
-// console.log('제이슨:',noonmool);
-// console.log('제이슨:',noonmool[0].src);
-// var listphoto = (listData.closetList[9].cphoto[0]);
-// console.log('리스트'+listphoto);
-// 3으로 나눠서 나머지가 0일때, 열만들기 
-
- //  listhtml += '<td> <div class="clist" id="clist" onclick="viewclick('+listData.closetList[i].cidx+')">';
-                //     var listPhoto = JSON.parse(listData.closetList[i].cphoto);
-                //     // console.log(listPhoto);
-                //     for(var j=0; j<listPhoto.length; j++){
-                //         listhtml += '<img src="';
-                //         listhtml += listPhoto[j].src;
-                //         console.log(listPhoto[j].x)
-                //         console.log(listPhoto[j].y)
-                //         listhtml += '" style="z-index:' + listPhoto[j].z + '; position:absolute; left:' + ((listPhoto[j].x/2)+((j+1)*25)) + 'px; top:' + ((listPhoto[j].y/2)-((i+1)*20)) + 'px;" width=50 height=50>';
-                //    }
 
 // 리스트 부르는 함수
 function list(page) {
@@ -51,22 +32,22 @@ function list(page) {
         type: 'GET',
         success: function (listData) {
             // 데이터가 들어왔을 때
+            // 총 페이지 개수 불러오기
+            totalPage = listData.totalPageCnt;
             console.log(listData.closetList.length);
             if (listData.closetList.length > 0) {
-                
-
                 var listhtml = '<table class="closetList" id="closetList">';
                  for (var i = 0; i < listData.closetList.length; i++) {
                     if ((i == 0) || (i % 3 == 0)) {
                         listhtml += '<tr>';
                     }
-                    listhtml += '<td> <div class="clist" id="clist' + i + '"onclick="viewclick(' + listData.closetList[i].cidx + ')"><h3>' + listData.closetList[i].ctext + '</h3></div>';
+                    listhtml += '<td> <div class="clist" id="clist' + i + '"onclick="viewclick(' + listData.closetList[i].cidx + ')"><p><span class="title">#' + listData.closetList[i].ctext + '</span></p></div>';
                     // 좋아요 클릭 여부에 따른 하트 변화 = 내 좋아요 카운트 기준
                     if (listData.closetList[i].myLikeCnt == 0) {
-                        listhtml += '<img src="'+myUrl+'closet/image/icon/heart.png" onclick="clickLike(' + listData.closetList[i].cidx + ',' + 1 + ')" id="emptyheart">' + listData.closetList[i].clikecnt;
+                        listhtml += '<img src="'+myUrl+'/closet/image/icon/heart.png" onclick="clickLike(' + listData.closetList[i].cidx + ',' + 1 + ')" id="emptyheart"><span class="likeSpan">' + listData.closetList[i].clikecnt+'</span>';
                         listhtml +=  '</td>';
                     } else {
-                        listhtml += '<img src="'+myUrl+'closet/image/icon/heart.png" onclick="clickLike(' + listData.closetList[i].cidx + ',' + 2 + ')" id="emptyheart">' + listData.closetList[i].clikecnt ;
+                        listhtml += '<img src="'+myUrl+'/closet/image/icon/heart.png" onclick="clickLike(' + listData.closetList[i].cidx + ',' + 2 + ')" id="emptyheart"><span class="likeSpan">' + listData.closetList[i].clikecnt+'</span>';
                         listhtml += '</td>';
                     }
                     if ((i == 2) || (i % 3 == 2)) {
@@ -97,9 +78,9 @@ function viewclick(cIdx) {
         url: myUrl+'/closet/list/view/' + cIdx,
         type: 'GET',
         success: function (viewData) {
-
-            var viewhtml = '<h1>' + viewData.name + '님의 옷장 <br><div id="viewBack"><img src="'+myUrl+'closet/image/icon/wardrobe.png" onclick="redirect()"></div></h1>';
-            viewhtml += '<div class="closetView" id="closetView">';
+            var viewhtml = '<div id="viewBack"><img src="'+myUrl+'/closet/image/icon/back.png" onclick="redirect()">';
+            viewhtml += '       <span class="closetTitle" onclick="getGbookList('+viewData.memIdx+')">' + viewData.name + '님의 옷장</span></div>';
+            viewhtml += '           <div class="closetView" id="closetView">';
             console.log('viewData'+viewData);
             // 사진 정보 데이터 파싱
             var viewPhoto = JSON.parse(viewData.cphoto);
@@ -109,10 +90,10 @@ function viewclick(cIdx) {
                 console.log('내용확인:'+viewPhoto[i].src);
                 viewhtml += '<img src="';
                 viewhtml += viewPhoto[i].src;
-                viewhtml += '" style="z-index:' + viewPhoto[i].z + '; position:absolute; left:' + (viewPhoto[i].x+20) + 'px; top:' + (viewPhoto[i].y-150) + 'px;" width=100 height=100 >';
+                viewhtml += '" style="z-index:' + viewPhoto[i].z + '; position:absolute; left:' + (viewPhoto[i].x+20) + 'px; top:' + (viewPhoto[i].y-100) + 'px;" width=100 height=100 >';
             }
             // 이미지 for문 종료
-            viewhtml += '</div>';
+            viewhtml += '  </div>';
             viewhtml += '<input type=hidden id="memIdx" name="memIdx" value="' + viewData.memIdx + '">';
             viewhtml += '<div class="viewbtns">';
 
@@ -123,10 +104,10 @@ function viewclick(cIdx) {
 
             if (viewData.myLikeCnt == 0) {
                 heartImg = "emptyheart.png"
-                viewhtml += '<img src="'+myUrl+'closet/image/icon/' + heartImg + '" id="heartview" onclick="clickLike(' + cIdx + ',' + likeChk + ')" >' + viewData.clikecnt;
+                viewhtml += '<img src="'+myUrl+'/closet/image/icon/' + heartImg + '" id="heartview" onclick="clickLike(' + cIdx + ',' + likeChk + ')" ><span class="viewLike">' + viewData.clikecnt+'</span>';
             } else {
                 likeChk = 2;
-                viewhtml += '<img src="'+myUrl+'closet/image/icon/' + heartImg + '" id="heartview" onclick="clickLike(' + cIdx + ',' + likeChk + ')" >' + viewData.clikecnt;
+                viewhtml += '<img src="'+myUrl+'/closet/image/icon/' + heartImg + '" id="heartview" onclick="clickLike(' + cIdx + ',' + likeChk + ')" ><span class="viewLike">' + viewData.clikecnt+'</span>';
             }
 
             // memIdx가 현재 로그인한 사람과 같을 경우 삭제,편집 페이지 보여주기
@@ -136,7 +117,7 @@ function viewclick(cIdx) {
             }
             // 삭제, 편집 페이지 종료
             viewhtml += '</div>';
-            viewhtml += '<div class="closetTextView" id="closetTextView"> <h5>' + viewData.ctext + '</h5> </div>';
+            viewhtml += '<div class="closetTextView" id="closetTextView"> <h2>' + viewData.ctext + '</h2> </div>';
             $('.closet').append(viewhtml);
         },
         error: function (e) {
@@ -146,12 +127,14 @@ function viewclick(cIdx) {
     })
 }
 
+// 방명록 이동하는 함수
+
 
 // 좋아요 늘려주는 카운트(likeChk=1:등록, 2:삭제)
 function clickLike(cIdx, likeChk) {
     var like = {
-        memIdx: memIdx,
-        cidx: cIdx,
+        memIdx: jsessionId,
+        cIdx: cIdx,
         likeChk: likeChk
     };
     $.ajax({
@@ -293,21 +276,21 @@ function codiView(value) {
     html += '<table width="80%">';
     html += '<tr>';
     for (i = 1; i < 4; i++) {
-        html += '<td class=' + i + '>' + '<div class="dragev" id="dragev' + listItem + i + '">' + '<img src="'+myUrl+'closet/image/codi/' + value + '/' + i + '.png" width="100" height="100" id="codiInfo' + listItem + i + '">' + '</div> </td>';
+        html += '<td class=' + i + '>' + '<div class="dragev" id="dragev' + listItem + i + '">' + '<img src="'+myUrl+'/closet/image/codi/' + value + '/' + i + '.png" width="100" height="100" id="codiInfo' + listItem + i + '">' + '</div> </td>';
     }
     html += '</tr>';
     html += '<tr>';
     for (i = 4; i < 7; i++) {
-        html += '<td class=' + i + '>' + '<div class="dragev" id="dragev' + listItem + i + '">' + '<img src=""'+myUrl+'closet/image/codi/' + value + '/' + i + '.png" width="100" height="100" id="codiInfo' + listItem + i + '" >' + '</div> </td>';
+        html += '<td class=' + i + '>' + '<div class="dragev" id="dragev' + listItem + i + '">' + '<img src="'+myUrl+'/closet/image/codi/' + value + '/' + i + '.png" width="100" height="100" id="codiInfo' + listItem + i + '" >' + '</div> </td>';
     }
     html += '</tr>';
     html += '</table>';
     html += '</div>';
     html += '<div class="codicon" id="codicon" name="codicon">';
-    html += '<img src="'+myUrl+'closet/image/icon/back.png" id="codiback" onclick="backDrag()">';
-    html += '<img src="'+myUrl+'closet/image/icon/list.png" id="codilist" onclick="showList()">';
-    html += '<img src="'+myUrl+'closet/image/icon/save.png" id="codisave" onclick="saveDrag()">';
-    html += '<img src="'+myUrl+'closet/image/icon/reset.png" id="codireset" onclick="resetDrag()">';
+    html += '<img src="'+myUrl+'/closet/image/icon/back.png" id="codiback" onclick="backDrag()">';
+    html += '<img src="'+myUrl+'/closet/image/icon/list.png" id="codilist" onclick="showList()">';
+    html += '<img src="'+myUrl+'/closet/image/icon/save.png" id="codisave" onclick="saveDrag()">';
+    html += '<img src="'+myUrl+'/closet/image/icon/reset.png" id="codireset" onclick="resetDrag()">';
     html += '</div>';
     if ($('#codibg').length == 0) {
         html += '<div class="codibg" id="codibg" name="codibg"></div>';
@@ -404,7 +387,7 @@ function saveDrag() {
     $('#savebuttn').on('click', function () {
         // db로 보내주기 위한 객체
         var img = {
-            memIdx: memIdx,
+            memIdx: sessionId,
             name: cName,
             cphoto: dragList,
             ctext: $('#closetText').val()

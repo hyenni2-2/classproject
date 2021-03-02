@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.mw.closet.dao.ClosetDao;
 import com.mw.closet.domain.Closet;
 import com.mw.closet.domain.ClosetWriteRequest;
+import com.mw.closet.domain.LoginInfo;
 
 @Service
 public class ClosetRegService {
@@ -25,16 +26,18 @@ public class ClosetRegService {
 	@Autowired
 	private SqlSessionTemplate template;
 
+	@Autowired
+	RedisService redis;
+	
 	// 글 저장(멤버idx, 닉네임, 글내용)
 	public int insertClosetWrite(ClosetWriteRequest regRequest, HttpServletRequest request) {
 		int result = 0;
 		try {
-			// memidx, cname session에서 가져오기
-			int memIdx = (int) request.getSession().getAttribute("memIdx");
-			String cName = (String) request.getSession().getAttribute("cName");
+			// memidx, cname JSESSION ID로 가져오기
+			LoginInfo redisLogin = redis.getUserInformation(regRequest.getJsessionId());	
 
-			regRequest.setMemIdx(memIdx);
-			regRequest.setName(cName);
+			regRequest.setMemIdx(redisLogin.getMemIdx());
+			regRequest.setName(redisLogin.getMemName());
 			// 나머지 요소 받아오기
 			regRequest.getimgData();
 			regRequest.getCtext();
