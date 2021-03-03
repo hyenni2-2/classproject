@@ -5,14 +5,24 @@ var img_zidx = 0;
 var dragList = [];
 var page = 1;
 var viewlist;
-var myUrl = 'http://localhost:8080';
+// var myUrl = 'http://localhost:8080';
 // var myUrl = 'http://ec2-54-180-82-31.ap-northeast-2.compute.amazonaws.com:8080';
-var totalPage = 1;
+ var myUrl = 'https://maycloset.tk';
 
-$(document).ready(function () {
-    list(page);
-    //bigCategory();
-})
+ var totalPage = 1;
+
+
+ // div 생성
+function closetDiv(){
+    var listhtml = '<div class="closet" id="closet"></div>';
+    $('.content').append(listhtml);
+}
+
+
+
+// $(document).ready(function () {
+//     list(page);
+// })
 
 window.onscroll = function (e) {
         if (page <= totalPage) {
@@ -27,6 +37,9 @@ window.onscroll = function (e) {
 
 // 리스트 부르는 함수
 function list(page) {
+    
+    $('.content').empty();
+
     $.ajax({
         url: myUrl+'/closet/list/' + page,
         type: 'GET',
@@ -36,6 +49,7 @@ function list(page) {
             totalPage = listData.totalPageCnt;
             console.log(listData.closetList.length);
             if (listData.closetList.length > 0) {
+                
                 var listhtml = '<table class="closetList" id="closetList">';
                  for (var i = 0; i < listData.closetList.length; i++) {
                     if ((i == 0) || (i % 3 == 0)) {
@@ -56,8 +70,9 @@ function list(page) {
                 }
                 listhtml += '</table>';
                 listhtml += '<div class="writebtn" id="writebtn" onclick="bigCategory()"></div>';
+
             }
-            $('.closet').append(listhtml);
+            $('.content').append(listhtml);
         },
         error: function (e) {
             console.log("에러 발생 : " + e);
@@ -69,13 +84,14 @@ function list(page) {
 // 게시물 세부 페이지
 function viewclick(cIdx) {
     console.log('게시물번호:' + cIdx);
-    console.log('멤버:' + memIdx);
     // 리스트 페이지 비우기
-    $('.closet').empty();
+    $('.content').empty();
+
+    closetDiv();
 
     // 세부페이지 호출하기
     $.ajax({
-        url: myUrl+'/closet/list/view/' + cIdx,
+        url: myUrl+'/closet/list/view/' + cIdx+'/'+jsessionId,
         type: 'GET',
         success: function (viewData) {
             var viewhtml = '<div id="viewBack"><img src="'+myUrl+'/closet/image/icon/back.png" onclick="redirect()">';
@@ -118,7 +134,7 @@ function viewclick(cIdx) {
             // 삭제, 편집 페이지 종료
             viewhtml += '</div>';
             viewhtml += '<div class="closetTextView" id="closetTextView"> <h2>' + viewData.ctext + '</h2> </div>';
-            $('.closet').append(viewhtml);
+            $('.content').append(viewhtml);
         },
         error: function (e) {
             console.log('에러' + e);
@@ -127,13 +143,12 @@ function viewclick(cIdx) {
     })
 }
 
-// 방명록 이동하는 함수
 
 
 // 좋아요 늘려주는 카운트(likeChk=1:등록, 2:삭제)
 function clickLike(cIdx, likeChk) {
     var like = {
-        memIdx: jsessionId,
+        jsessionId: jsessionId,
         cIdx: cIdx,
         likeChk: likeChk
     };
@@ -154,6 +169,9 @@ function clickLike(cIdx, likeChk) {
 //  수정하기
 function edit(cIdx) {
     $('.closet').empty();
+
+    closetDiv();
+
     console.log(cIdx);
     // 수정 폼 만들어주기 -> ajax로 불러오기
     $.ajax({
@@ -179,7 +197,7 @@ function edit(cIdx) {
             edithtml += '<button type="button" class="btn btn-light" id="editView" onclick="editCall(' + cIdx + ')">수정</button>';
             edithtml += '<button type="button" class="btn btn-light" id="cancel" onclick="redirect()">취소</button>';
             edithtml += '</div>';
-            $('.closet').append(edithtml);
+            $('.content').append(edithtml);
         }
     })
 }
@@ -211,10 +229,7 @@ function editCall(cIdx) {
 
 // 페이지 뒤로 가기
 function redirect() {
-    $('.closet').empty();
-    $('.closet').css('margin-top', '0');
-    $('.closet').css('margin-left', '0');
-    $('.closet').css('margin-right', '0');
+    $('.content').empty();
     list(page);
 }
 
@@ -227,7 +242,7 @@ function del(cIdx) {
             type: 'GET',
             success: function (delData) {
                 alert('삭제되었습니다.');
-                $('.closet').empty();
+                $('.content').empty();
                 list(page);
             }, error: function (e) {
                 console.log("에러 발생" + e);
@@ -239,12 +254,17 @@ function del(cIdx) {
 
 // 대분류 호출하는 펑션
 function bigCategory() {
-    $('.closet').empty();
+    $('.content').empty();
+
+    closetDiv();
+
     $.ajax({
         url: myUrl+'/closet/codi',
         type: 'get',
         async: false,
         success: function (data) {
+            console.log('데이터확인:'+data[1].codiPho);
+            console.log('데이터확인:'+data[3].codiPho);
             var html = '<div class="bigCategory">';
             html += '       <div class="row" id="bigCategoryMenu">';
             html += '           <div class="col-6 col-sm-3" onclick="codiView(\'top\')" id="top">' + data[3].codiList + '<br>' + data[3].codiPho + '</td>' + '</div>';
@@ -256,7 +276,7 @@ function bigCategory() {
             html += '   </tr>';
             html += '       </div>';
             html += '</div>';
-            $('.closet').append(html);
+            $('.content').append(html);
         },
         error: function (e) {
             console.log("에러 발생 :" + e);
@@ -271,6 +291,7 @@ function codiView(value) {
     $('.bigCategory').css('display', 'none');
     // 다시 돌아왔을 때 codibg 출력
     $('#codibg').css('display', 'block');
+
 
     var html = '<div class="codi" id="codi" name="codi">';
     html += '<table width="80%">';
@@ -295,15 +316,14 @@ function codiView(value) {
     if ($('#codibg').length == 0) {
         html += '<div class="codibg" id="codibg" name="codibg"></div>';
     }
-    $('.closet').append(html);
+    $('.content').append(html);
 
     // 이미지 드래그해서 끌어다놓고, x, y좌표 얻기
     $('#codi').on('mouseenter', 'img', function () {
         //드래그 시 clone 생성해서 이동
         $('#codi img').draggable({
             helper: 'clone',
-            cursor: 'hand',
-
+            cursor: 'hand'
         });
 
         // 드롭될 때 발생하는 이벤트
@@ -340,6 +360,7 @@ function backDrag() {
 
 // 버튼 누르면 배열에 드래그 정보를 저장하는 이벤트:이미지경로, xy좌표, z-index
 function saveDrag() {
+
     $('#codibg img').each(function (index, item) {
             var dragsrc = $(item).attr('src');
             var dragoffleft = $(item).offset().left;
@@ -364,10 +385,10 @@ function saveDrag() {
     // 코디 드래거블 해제
     $('#codibg img').draggable({ disabled: true });
     // closet, codibg css 수정
-    $('.closet').css('margin-top', '100px');
-    $('.closet').css('margin-left', '30px');
-    $('.closet').css('margin-right', '30px');
-    $('.closet').prepend('<div class="writeTitle"><h2>글쓰기</h2></div>')
+    $('.content').css('margin-top', '100px');
+    $('.content').css('margin-left', '30px');
+    $('.content').css('margin-right', '30px');
+    $('.content').prepend('<div class="writeTitle"><h2>글쓰기</h2></div>')
     $('#codibg').css('top', '150px');
     $('#codibg').css('margin-left', '0');
     $('#codibg').css('background-color', '#EDEDED');
@@ -381,7 +402,7 @@ function saveDrag() {
     cHtml += '<button type="button" class="btn btn-light" id="savebuttn">SAVE</button>';
     cHtml += '<button type="button" class="btn btn-light" id="cancelbuttn" onclick="redirect()">CANCEL</button>';
     cHtml += '</div>';
-    $('.closet').append(cHtml);
+    $('.content').append(cHtml);
 
     // 이미지 리스트 넘겨주는 ajax
     $('#savebuttn').on('click', function () {
@@ -405,7 +426,7 @@ function saveDrag() {
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 // 보낸 후 리스트로 돌아가기
-                $('.closet').empty();
+                $('.content').empty();
                 $('.closet').css('margin-top', '0');
                 $('.closet').css('margin-left', '0');
                 $('.closet').css('margin-right', '0');
@@ -430,6 +451,6 @@ function showList() {
     $('#codibg').css('display', 'none');
     // 대분류리스트 부르기
     $('.bigCategory').css('display', 'block');
-
+    
 }
 

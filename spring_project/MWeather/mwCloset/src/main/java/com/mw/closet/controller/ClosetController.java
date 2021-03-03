@@ -3,6 +3,7 @@ package com.mw.closet.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,12 +41,12 @@ public class ClosetController {
 	}
 	
 	// 상세페이지 보여주는 메서드
-	@GetMapping("/list/view/{cIdx}")
+	@GetMapping("/list/view/{cIdx}/{jsessionId}")
 	@CrossOrigin
-	public ClosetListRequest closetView(@PathVariable("cIdx") int cIdx, ClosetWriteRequest writeRequest) {
+	public ClosetListRequest closetView(@PathVariable("cIdx") int cIdx, @PathVariable("jsessionId") String jsessionId, ClosetWriteRequest writeRequest) {
 		System.out.println("cIdx:"+cIdx);
 		
-		return listService.getClosetView(cIdx, writeRequest);
+		return listService.getClosetView(cIdx, jsessionId, writeRequest);
 	}
 	
 	// 좋아요 처리하는 메서드
@@ -55,15 +56,5 @@ public class ClosetController {
 		System.out.println("리퀘스트값:"+likeRequest);
 		return listService.likeInsert(likeRequest);
 	}
-	
-	// 댓글 입력 메서드
-	@PostMapping("/list/view/")
-	@CrossOrigin
-	public int insertComment(ClosetWriteRequest writeRequest) {
-		return listService.insertClosetComment(writeRequest);
-	}
-	
-
-	
 	
 }

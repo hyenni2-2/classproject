@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import com.mw.closet.domain.ClosetListRequest;
 import com.mw.closet.domain.ClosetPage;
 import com.mw.closet.domain.ClosetWriteRequest;
 import com.mw.closet.domain.LoginInfo;
+
+
 
 @Service
 public class ClosetListService {
@@ -50,10 +53,10 @@ public class ClosetListService {
 		try {
 			dao = template.getMapper(ClosetDao.class);
 			
+			
 			int onePageCnt = 30;
 			int startRow = (page-1)*onePageCnt;
 			int endRow = (startRow+onePageCnt)-1;
-			int memIdx = (int) request.getSession().getAttribute("memIdx");
 			
 			// 맵에 저장할 정보 : 시작열, 한페이지당 게시물개수, 현재 페이지, 게시물 당 좋아요 개수
 			Map<String, Object>listMap = new HashMap<String, Object>();
@@ -84,23 +87,23 @@ public class ClosetListService {
 	}
 	
 	// 게시물 상세페이지 불러오는 메서드
-	public ClosetListRequest getClosetView(int cIdx, ClosetWriteRequest writeRequest) {
+	public ClosetListRequest getClosetView(int cIdx, String jsessionId, ClosetWriteRequest writeRequest) {
 		
 		ClosetListRequest getList = null;
 		
 		// jsessionid로 memIdx 가져오기
-		//LoginInfo redisLogin = redisService.getUserInformation(writeRequest.getJsessionId());
+		LoginInfo redisLogin = redisService.getUserInformation(jsessionId);
 		
 		int memIdx = 0;
 		
 		// 로그인 체크하기
-//		if(redisLogin!=null ) {
-//			memIdx = redisLogin.getMemIdx();
-//			String cName = redisLogin.getMemName();
-//			
-//			writeRequest.setMemIdx(redisLogin.getMemIdx());
-//			writeRequest.setName(redisLogin.getMemName());
-//		}
+		if(redisLogin!=null ) {
+			memIdx = redisLogin.getMemIdx();
+			String cName = redisLogin.getMemName();
+			
+			writeRequest.setMemIdx(redisLogin.getMemIdx());
+			writeRequest.setName(redisLogin.getMemName());
+		}
 
 		System.out.println("상세페이지:"+cIdx+","+ memIdx);
 			try {
@@ -160,26 +163,6 @@ public class ClosetListService {
 		}
 		return like;
 	}
-
-	// 댓글 입력하는 메서드 
-	public int insertClosetComment(ClosetWriteRequest writeRequest) {
-		int result = 0;
-		int memIdx = 0;
-		String cName = "";
-		
-		//jsessionId로 memIdx 가져오기
-		LoginInfo redisLogin = redisService.getUserInformation(writeRequest.getJsessionId());
-		
-		if(redisLogin!=null) {
-			memIdx = redisLogin.getMemIdx();
-			cName = redisLogin.getMemName();
-		}
-		writeRequest.setMemIdx(memIdx);
-		writeRequest.setName(cName);
-		
-		
-	}
-	
 	
 
 }
