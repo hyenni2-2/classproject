@@ -19,7 +19,7 @@ public class ClosetEditService {
 	private SqlSessionTemplate template;
 
 	// cIdx로 멤버 셀렉해서 불러오기 -> 수정할 정보가 필요하므로
-	public ClosetWriteRequest getClosetMember(int cIdx) {
+	public ClosetListRequest getClosetMember(int cIdx) {
 		dao = template.getMapper(ClosetDao.class);
 		return dao.getClosetMember(cIdx);
 	}

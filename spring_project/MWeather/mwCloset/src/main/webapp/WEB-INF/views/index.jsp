@@ -37,7 +37,6 @@
    <%@ include file="/WEB-INF/views/include/header.jsp"%>
 
    <div class="content" id="content" name="content">
-   	<div class="closet" id="closet" name="closet"></div>
    </div>
    	
    

@@ -54,7 +54,7 @@ public class ClosetListService {
 			dao = template.getMapper(ClosetDao.class);
 			
 			
-			int onePageCnt = 30;
+			int onePageCnt = 15;
 			int startRow = (page-1)*onePageCnt;
 			int endRow = (startRow+onePageCnt)-1;
 			
@@ -87,12 +87,12 @@ public class ClosetListService {
 	}
 	
 	// 게시물 상세페이지 불러오는 메서드
-	public ClosetListRequest getClosetView(int cIdx, String jsessionId, ClosetWriteRequest writeRequest) {
+	public ClosetListRequest getClosetView(int cIdx, String OriginJsessionId, ClosetWriteRequest writeRequest) {
 		
 		ClosetListRequest getList = null;
 		
 		// jsessionid로 memIdx 가져오기
-		LoginInfo redisLogin = redisService.getUserInformation(jsessionId);
+		LoginInfo redisLogin = redisService.getUserInformation(OriginJsessionId);
 		
 		int memIdx = 0;
 		

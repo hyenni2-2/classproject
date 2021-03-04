@@ -27,7 +27,7 @@ public interface ClosetDao {
 	// 페이지에 맞는 리스트 출력
 	List<ClosetListRequest> selectClosetList(Map<String, Object> listMap);
 	// 회원 정보 조회 : cIdx로 조회
-	ClosetWriteRequest getClosetMember(int cIdx);
+	ClosetListRequest getClosetMember(int cIdx);
 	// 게시글 업데이트
 	int updateCloset(ClosetWriteRequest writere);
 	// 상세페이지 가져오기

@@ -15,5 +15,5 @@ public class ClosetListRequest {
 	private String ctext;
 	private int myLikeCnt; // 내가 좋아요 한 개수
 	private int likeChk; // 좋아요 여부 체크
-
+	private String jsessionId; // redis
 }

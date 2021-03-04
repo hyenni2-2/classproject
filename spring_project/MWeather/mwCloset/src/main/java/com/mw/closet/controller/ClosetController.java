@@ -41,12 +41,12 @@ public class ClosetController {
 	}
 	
 	// 상세페이지 보여주는 메서드
-	@GetMapping("/list/view/{cIdx}/{jsessionId}")
+	@GetMapping("/list/view/{cIdx}/{OriginJsessionId}")
 	@CrossOrigin
-	public ClosetListRequest closetView(@PathVariable("cIdx") int cIdx, @PathVariable("jsessionId") String jsessionId, ClosetWriteRequest writeRequest) {
+	public ClosetListRequest closetView(@PathVariable("cIdx") int cIdx, @PathVariable("OriginJsessionId") String OriginJsessionId, ClosetWriteRequest writeRequest) {
 		System.out.println("cIdx:"+cIdx);
 		
-		return listService.getClosetView(cIdx, jsessionId, writeRequest);
+		return listService.getClosetView(cIdx, OriginJsessionId, writeRequest);
 	}
 	
 	// 좋아요 처리하는 메서드
