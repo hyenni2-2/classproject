@@ -2,6 +2,7 @@ package com.mw.closet.service;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.net.Inet4Address;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +48,7 @@ public class ClosetListService {
 	}
 	
 	// 페이지네이션 처리
-	public ClosetPage closetPaging(int page, HttpServletRequest request) {
+	public ClosetPage closetPaging(int cPage, HttpServletRequest request) {
 		ClosetPage paging = null;
 		
 		try {
@@ -55,17 +56,17 @@ public class ClosetListService {
 			
 			
 			int onePageCnt = 15;
-			int startRow = (page-1)*onePageCnt;
+			int startRow = (cPage-1)*onePageCnt;
 			int endRow = (startRow+onePageCnt)-1;
 			
 			// 맵에 저장할 정보 : 시작열, 한페이지당 게시물개수, 현재 페이지, 게시물 당 좋아요 개수
 			Map<String, Object>listMap = new HashMap<String, Object>();
 			listMap.put("start", startRow);
 			listMap.put("count", onePageCnt);
-			listMap.put("nowPage", page);
+			listMap.put("nowPage",cPage);
 			System.out.println(startRow);
 			System.out.println(onePageCnt);
-			System.out.println(page);
+			System.out.println(cPage);
 			// System.out.println(likeCnt);
 			
 			// 총 게시물 개수
@@ -78,7 +79,7 @@ public class ClosetListService {
 			System.out.println("클로젯리스트 페이지:"+closetList);
 			
 			// 매개변수로 넣기
-			paging = new ClosetPage(page, totalClosetCount, onePageCnt, closetList, startRow, endRow);
+			paging = new ClosetPage(cPage, totalClosetCount, onePageCnt, closetList, startRow, endRow);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -87,7 +88,7 @@ public class ClosetListService {
 	}
 	
 	// 게시물 상세페이지 불러오는 메서드
-	public ClosetListRequest getClosetView(int cIdx, String OriginJsessionId, ClosetWriteRequest writeRequest) {
+	public ClosetListRequest getClosetView(int cIdx, String OriginJsessionId, ClosetListRequest listRequest,HttpServletRequest request) {
 		
 		ClosetListRequest getList = null;
 		
@@ -101,13 +102,17 @@ public class ClosetListService {
 			memIdx = redisLogin.getMemIdx();
 			String cName = redisLogin.getMemName();
 			
-			writeRequest.setMemIdx(redisLogin.getMemIdx());
-			writeRequest.setName(redisLogin.getMemName());
+			listRequest.setMemIdx(redisLogin.getMemIdx());
+			listRequest.setName(redisLogin.getMemName());
+			// ip 주소 저장하기
+			listRequest.setCIp(getClosetIp(request));
+			System.out.println("ip확인:"+listRequest.getCIp());
 		}
 
 		System.out.println("상세페이지:"+cIdx+","+ memIdx);
 			try {
 				dao = template.getMapper(ClosetDao.class);
+				
 				getList = dao.getListView(cIdx);
 			
 				// 내 좋아요 개수 카운트하기
@@ -164,5 +169,29 @@ public class ClosetListService {
 		return like;
 	}
 	
+	
+	// 사용자 ip 주소 저장하기
+	public String getClosetIp(HttpServletRequest request) {
+		String cIp = null;
+		cIp = request.getHeader("X-Forwarded-For");
+		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
+			cIp = request.getHeader("Proxy-Client-IP");
+		}
+		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
+			cIp = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
+			cIp = request.getHeader("HTTP_CLIENT_IP");
+		}
+		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
+			cIp = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
+			cIp = request.getRemoteAddr();
+		}
+		return cIp;
+		
+		
+	}
 
 }

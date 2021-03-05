@@ -41,5 +41,4 @@ public interface ClosetDao {
 	// 내 좋아요 수 가져오기
 	int getMyLikeCnt(@Param("cidx") int cidx, @Param("memIdx") int memIdx);
 
-
 }

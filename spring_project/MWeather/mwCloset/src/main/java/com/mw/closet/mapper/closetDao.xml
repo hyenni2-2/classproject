@@ -60,7 +60,7 @@
  
  <!-- 상세 페이지 출력하기 -->
  <select id="getListView" resultMap="pageList">
-	select cIdx, memIdx, name, cphoto, clikecnt, ctext from tbl_cList where cIdx=#{cIdx}
+	select cIdx, memIdx, name, cphoto, clikecnt, ctext,cRegdate from tbl_cList where cIdx=#{cIdx}
  </select>
 
  <!-- 게시물 좋아요 개수 입력 -->

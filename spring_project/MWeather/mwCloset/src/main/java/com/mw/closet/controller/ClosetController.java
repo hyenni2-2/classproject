@@ -33,20 +33,20 @@ public class ClosetController {
 	RedisService redisService;
 
 	//페이징한 List 가져오기
-	@GetMapping("/list/{page}")     // /closet/list
+	@GetMapping("/list/{cPage}")     // /closet/list
 	@CrossOrigin
-	public ClosetPage getClosetList(@PathVariable("page") int page, HttpServletRequest request){
-		System.out.println("page:"+page+", "+request);
-		return listService.closetPaging(page, request);
+	public ClosetPage getClosetList(@PathVariable("cPage") int cPage, HttpServletRequest request){
+		System.out.println("page:"+cPage+", "+request);
+		return listService.closetPaging(cPage, request);
 	}
 	
 	// 상세페이지 보여주는 메서드
 	@GetMapping("/list/view/{cIdx}/{OriginJsessionId}")
 	@CrossOrigin
-	public ClosetListRequest closetView(@PathVariable("cIdx") int cIdx, @PathVariable("OriginJsessionId") String OriginJsessionId, ClosetWriteRequest writeRequest) {
+	public ClosetListRequest closetView(@PathVariable("cIdx") int cIdx, @PathVariable("OriginJsessionId") String OriginJsessionId, ClosetListRequest listRequest,HttpServletRequest request) {
 		System.out.println("cIdx:"+cIdx);
 		
-		return listService.getClosetView(cIdx, OriginJsessionId, writeRequest);
+		return listService.getClosetView(cIdx, OriginJsessionId, listRequest,request);
 	}
 	
 	// 좋아요 처리하는 메서드
