@@ -2,6 +2,9 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+ <% session.setAttribute("memIdx",3);
+   session.setAttribute("name", "테스트용1"); %>  
+
 
 
 <!DOCTYPE html>
@@ -26,6 +29,12 @@
 
 
 <!-- js 파일 -->
+<script>
+var memIdx = ${memIdx};
+var name = '${name}';
+
+</script>
+
 <script src="<c:url value="/js/codiset.js"/>"> </script>
 
 

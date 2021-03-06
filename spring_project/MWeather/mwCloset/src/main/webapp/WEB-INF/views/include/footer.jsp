@@ -15,7 +15,7 @@
 				<td><img src="<c:url value="/image/icon/ootd.png"/>" width="30" class="menuicons">
 				</td>
 				<td><img src="<c:url value="/image/icon/closet.png"/>" width="23"
-					class="menuicons" onclick="scrollList(page)"></td>
+					class="menuicons" onclick="listView(cPage)"></td>
 				<td><img src="<c:url value="/image/icon/market.png"/>" width="30"
 					class="menuicons"></td>
 				<td><img src="<c:url value="/image/icon/mypage2.png"/>" width="23"

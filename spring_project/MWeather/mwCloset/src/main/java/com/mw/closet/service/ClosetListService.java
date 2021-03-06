@@ -88,44 +88,45 @@ public class ClosetListService {
 	}
 	
 	// 게시물 상세페이지 불러오는 메서드
-	public ClosetListRequest getClosetView(int cIdx, String OriginJsessionId, ClosetListRequest listRequest,HttpServletRequest request) {
-		
-		ClosetListRequest getList = null;
-		
-		// jsessionid로 memIdx 가져오기
-		LoginInfo redisLogin = redisService.getUserInformation(OriginJsessionId);
-		
-		int memIdx = 0;
-		
-		// 로그인 체크하기
-		if(redisLogin!=null ) {
-			memIdx = redisLogin.getMemIdx();
-			String cName = redisLogin.getMemName();
+		public ClosetListRequest getClosetView(int cIdx, String OriginJsessionId, ClosetListRequest listRequest,HttpServletRequest request) {
 			
-			listRequest.setMemIdx(redisLogin.getMemIdx());
-			listRequest.setName(redisLogin.getMemName());
-			// ip 주소 저장하기
-			listRequest.setCIp(getClosetIp(request));
-			System.out.println("ip확인:"+listRequest.getCIp());
+			ClosetListRequest getList = null;
+			
+			// jsessionid로 memIdx 가져오기
+			LoginInfo redisLogin = redisService.getUserInformation(OriginJsessionId);
+			
+			int memIdx = 0;
+			
+			// 로그인 체크하기
+			if(redisLogin!=null ) {
+				memIdx = redisLogin.getMemIdx();
+				String cName = redisLogin.getMemName();
+				
+				listRequest.setMemIdx(redisLogin.getMemIdx());
+				listRequest.setName(redisLogin.getMemName());
+				// ip 주소 저장하기
+				// listRequest.setCIp(getClosetIp(request));
+				// System.out.println("ip확인:"+listRequest.getCIp());
+			}
+
+			System.out.println("상세페이지:"+cIdx+","+ memIdx);
+				try {
+					dao = template.getMapper(ClosetDao.class);
+					
+					getList = dao.getListView(cIdx);
+				
+					// 내 좋아요 개수 카운트하기
+					if(memIdx>0) {
+						int myLikeCnt = dao.getMyLikeCnt(cIdx, memIdx);
+						getList.setMyLikeCnt(myLikeCnt);
+						System.out.println("겟리스트:"+getList);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return getList;
 		}
 
-		System.out.println("상세페이지:"+cIdx+","+ memIdx);
-			try {
-				dao = template.getMapper(ClosetDao.class);
-				
-				getList = dao.getListView(cIdx);
-			
-				// 내 좋아요 개수 카운트하기
-				if(memIdx>0) {
-					int myLikeCnt = dao.getMyLikeCnt(cIdx, memIdx);
-					getList.setMyLikeCnt(myLikeCnt);
-					System.out.println("겟리스트:"+getList);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return getList;
-	}
 	
 	// 게시물 좋아요 입력하는 메서드
 	public String likeInsert(ClosetLike likeRequest) {
@@ -136,12 +137,14 @@ public class ClosetListService {
 		
 		try {
 			int cIdx = likeRequest.getCIdx();
-			int memIdx = 0;
+			//int memIdx = 0;
+			int memIdx = likeRequest.getMemIdx();
 			
 		if(redisLogin!=null) {
 			memIdx = redisLogin.getMemIdx();
 		}
 			likeRequest.setMemIdx(memIdx);
+			
 			int likeChk = likeRequest.getLikeChk();
 			
 			dao = template.getMapper(ClosetDao.class);
@@ -171,27 +174,25 @@ public class ClosetListService {
 	
 	
 	// 사용자 ip 주소 저장하기
-	public String getClosetIp(HttpServletRequest request) {
-		String cIp = null;
-		cIp = request.getHeader("X-Forwarded-For");
-		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
-			cIp = request.getHeader("Proxy-Client-IP");
-		}
-		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
-			cIp = request.getHeader("WL-Proxy-Client-IP");
-		}
-		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
-			cIp = request.getHeader("HTTP_CLIENT_IP");
-		}
-		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
-			cIp = request.getHeader("HTTP_X_FORWARDED_FOR");
-		}
-		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
-			cIp = request.getRemoteAddr();
-		}
-		return cIp;
-		
-		
-	}
+//	public String getClosetIp(HttpServletRequest request) {
+//		String cIp = null;
+//		cIp = request.getHeader("X-Forwarded-For");
+//		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
+//			cIp = request.getHeader("Proxy-Client-IP");
+//		}
+//		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
+//			cIp = request.getHeader("WL-Proxy-Client-IP");
+//		}
+//		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
+//			cIp = request.getHeader("HTTP_CLIENT_IP");
+//		}
+//		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
+//			cIp = request.getHeader("HTTP_X_FORWARDED_FOR");
+//		}
+//		if( cIp==null || cIp.length() == 0 || "unknown".equalsIgnoreCase(cIp)) {
+//			cIp = request.getRemoteAddr();
+//		}
+//		return cIp;
+//	}
 
 }

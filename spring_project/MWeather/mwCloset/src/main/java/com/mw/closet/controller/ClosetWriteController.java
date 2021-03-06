@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mw.closet.domain.ClosetWriteRequest;
+import com.mw.closet.domain.LoginInfo;
 import com.mw.closet.service.ClosetRegService;
 import com.mw.closet.service.RedisService;
 

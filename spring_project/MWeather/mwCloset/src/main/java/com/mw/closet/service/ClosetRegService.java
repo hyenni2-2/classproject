@@ -34,10 +34,20 @@ public class ClosetRegService {
 		int result = 0;
 		try {
 			// memidx, cname JSESSION ID로 가져오기
-			LoginInfo redisLogin = redis.getUserInformation(regRequest.getJsessionId());	
-
+			 LoginInfo redisLogin = redis.getUserInformation(regRequest.getJsessionId());	
 			regRequest.setMemIdx(redisLogin.getMemIdx());
 			regRequest.setName(redisLogin.getMemName());
+						
+			// 세션값 가져오기(테스트용)
+//			int memIdx = (int) request.getSession().getAttribute("memIdx");
+//			String name = (String) request.getSession().getAttribute("name");
+//			
+//			regRequest.setMemIdx(memIdx);
+//			regRequest.setName(name);
+//			
+//			regRequest.getMemIdx();
+//			regRequest.getName();
+			
 			// 나머지 요소 받아오기
 			regRequest.getimgData();
 			regRequest.getCtext();
