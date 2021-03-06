@@ -481,12 +481,13 @@ function saveDrag() {
     // 코디 드래거블 해제
     $('#codibg img').draggable({ disabled: true });
     // closet, codibg css 수정
-    $('.content').css('margin-top', '100px');
-    $('.content').css('margin-left', '30px');
-    $('.content').css('margin-right', '30px');
-    $('#codibg').css('top', '180px');
+    $('.content').css('margin-top', '0');
+    $('.content').css('margin-left', '0');
+    $('.content').css('margin-right', '0');
+    $('#codibg').css('top', '0');
     $('#codibg').css('margin-left', '0');
     $('#codibg').css('background-color', '#EDEDED');
+    $('#codibg').css('border','1px solid #ddd');
 
     // 텍스트에리어 만들어주기
     var cHtml = '      <div class="writeTitle"><span>글쓰기</span></div>';
@@ -494,8 +495,8 @@ function saveDrag() {
     cHtml += '          <div class="form-floating">';
     cHtml += '            <textarea class="form-control" id="closetText"></textarea>';
     cHtml += '          </div>';
-    cHtml += '              <button type="button" class="btn btn-light" id="savebuttn">SAVE</button>';
     cHtml += '              <button type="button" class="btn btn-light" id="cancelbuttn" onclick="redirect()">CANCEL</button>';
+    cHtml += '              <button type="button" class="btn btn-light" id="savebuttn">SAVE</button>';
     cHtml += '</div>';
     
     $('.writeWrap').append(cHtml);
