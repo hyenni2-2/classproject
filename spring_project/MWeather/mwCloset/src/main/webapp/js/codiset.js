@@ -129,7 +129,6 @@ function viewclick(cIdx) {
             console.log(viewPhoto);
             // 클로젯뷰 안의 이미지 for문으로 넣기
             for (var i = 0; i < viewPhoto.length; i++) {
-                console.log('내용확인:'+viewPhoto[i].src);
                 viewhtml += '               <img src="';
                 viewhtml +=                             viewPhoto[i].src;
                 viewhtml += '                               " style="z-index:' + viewPhoto[i].z + '; position:absolute; left:' + (viewPhoto[i].x+20) + 'px; top:' + (viewPhoto[i].y-350) + 'px;" width=150 height=150 >';
@@ -150,7 +149,6 @@ function viewclick(cIdx) {
                     likeChk = 2;
                     viewhtml += '<img src="'+myUrl+'/closet/image/icon/' + heartImg + '" id="heartview" onclick="clickLike(' + cIdx + ',' + likeChk + ')" ><span class="viewLike">' + viewData.clikecnt+'</span>';
                 }
-            
 
             // memIdx가 현재 로그인한 사람과 같을 경우 삭제,편집 페이지 보여주기
             if (viewData.memIdx == memIdx) {
@@ -182,7 +180,7 @@ function clickLike(cIdx, likeChk) {
         likeChk: likeChk
     };
     $.ajax({
-        url: "http://localhost:8080"+'/closet/list/like',
+        url: myUrl+'/closet/list/like',
         type: 'post',
         data: like,
         success: function (data) {
@@ -209,12 +207,13 @@ function edit(cIdx) {
         success: function (data) {
             var dataPhoto = JSON.parse(data.cphoto);
 
-            var edithtml = '<div class="editTitle" id="editTitle"><span>수정하기</span></div>';
+            var edithtml ='<div class="editWrap">';
+            edithtml += '   <div class="editTitle" id="editTitle"><span>수정하기</span></div>';
             edithtml += '       <div class="editCloset" id="editCloset">' 
             for(var i=0; i<dataPhoto.length; i++){
                 edithtml += '       <img src="';
                 edithtml += dataPhoto[i].src;
-                edithtml += '"          style="z-index:' + dataPhoto[i].z + '; position:absolute; left:' + (dataPhoto[i].x-30) + 'px; top:' + (dataPhoto[i].y) + 'px;" width=150 height=150 >';
+                edithtml += '"          style="z-index:' + dataPhoto[i].z + '; position:absolute; left:' + (dataPhoto[i].x-30) + 'px; top:' + (dataPhoto[i].y-350) + 'px;" width=150 height=150 >';
             }
             edithtml += '       </div>';
             edithtml += '   <div class="form-floating" id="editText">';
@@ -222,9 +221,10 @@ function edit(cIdx) {
             edithtml += '           <input type=hidden id="cIdx" name="cIdx" value="' + cIdx + '">';
             edithtml += '                <textarea class="form-control" id="closetEditText" style="height: 100px">' + data.ctext + '</textarea>';
             edithtml += '   </div>';
-            edithtml += '<div class="editbtns">';
+            edithtml += '   <div class="editbtns">';
             edithtml += '   <button type="button" class="btn btn-light" id="editView" onclick="editCall(' + cIdx + ')">수정</button>';
             edithtml += '   <button type="button" class="btn btn-light" id="cancel" onclick="redirect()">취소</button>';
+            edithtml += '   </div>';
             edithtml += '</div>';
             $('.content').append(edithtml);
         }
@@ -269,8 +269,7 @@ function redirect() {
     closetPageLoc = 'noList';
 
     $('.content').empty();
-    $('.content').css('margin-left', '0');
-    $('.content').css('margin-right', '0');
+    $('.content').css({'margin-top':'100px','margin-left':'0','margin-right':'0'});
     listView(1);
 
 }
@@ -481,13 +480,12 @@ function saveDrag() {
     // 코디 드래거블 해제
     $('#codibg img').draggable({ disabled: true });
     // closet, codibg css 수정
-    $('.content').css('margin-top', '0');
-    $('.content').css('margin-left', '0');
-    $('.content').css('margin-right', '0');
-    $('#codibg').css('top', '0');
-    $('#codibg').css('margin-left', '0');
-    $('#codibg').css('background-color', '#EDEDED');
-    $('#codibg').css('border','1px solid #ddd');
+    $('.content').css({'margin-top':'0','margin-left':'0','margin-right':'0'});
+    $('#codibg').css({'margin-top':'0','margin-left':'0','background-color':'#EDEDED','border':'1px solid #ddd','position':'absolute','top':'180px'});
+    $('.writeWrap').css({'width':'350px','height':'550px','background-color':'white','padding':'10px','margin-left':'10px','margin-top':'120px','box-shadow':'10px 4px 633px 2px'});
+    
+
+
 
     // 텍스트에리어 만들어주기
     var cHtml = '      <div class="writeTitle"><span>글쓰기</span></div>';
@@ -495,12 +493,12 @@ function saveDrag() {
     cHtml += '          <div class="form-floating">';
     cHtml += '            <textarea class="form-control" id="closetText"></textarea>';
     cHtml += '          </div>';
-    cHtml += '              <button type="button" class="btn btn-light" id="cancelbuttn" onclick="redirect()">CANCEL</button>';
     cHtml += '              <button type="button" class="btn btn-light" id="savebuttn">SAVE</button>';
+    cHtml += '              <button type="button" class="btn btn-light" id="cancelbuttn" onclick="redirect()">CANCEL</button>';
     cHtml += '</div>';
     
     $('.writeWrap').append(cHtml);
-
+    
     // 이미지 리스트 넘겨주는 ajax
     $('#savebuttn').on('click', function () {
         // db로 보내주기 위한 객체
@@ -524,8 +522,7 @@ function saveDrag() {
             success: function (data) {
                 // 보낸 후 리스트로 돌아가기
                 $('.content').empty();
-                $('.content').css('margin-left', '0');
-                $('.content').css('margin-right', '0');
+                $('.content').css({'margin-top':'100px','margin-left':'0','margin-right':'0'});
                 listView(1);
                 dragList=[];
             },

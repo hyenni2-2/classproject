@@ -12,6 +12,7 @@
 	 <result column="cphoto" property="cphoto"/>
 	 <result column="clikecnt" property="clikecnt"/>
 	 <result column="ctext" property="ctext"/>
+	 <result column="cRegdate" property="cRegdate"/>
 </resultMap>
 
 
